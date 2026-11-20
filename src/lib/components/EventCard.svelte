@@ -20,6 +20,7 @@
 		labels = [],
 		variant = 'compact',
 		priority = false,
+		level = 3,
 		onopen
 	}: {
 		event: EventCore;
@@ -28,6 +29,8 @@
 		labels?: Label[];
 		variant?: 'large' | 'compact';
 		priority?: boolean;
+		/** Heading level of the title: 2 on pages without section headings, else 3. */
+		level?: 2 | 3;
 		onopen?: (event: EventCore) => void;
 	} = $props();
 
@@ -62,9 +65,9 @@
 
 	<div class="body">
 		<p class="cat"><span class="dot" aria-hidden="true"></span>{t(`cat.${event.cat}`)}</p>
-		<h3 class="title">
+		<svelte:element this={`h${level}`} class="title">
 			<a {href} class="stretched" onclick={() => onopen?.(event)}>{event.title}</a>
-		</h3>
+		</svelte:element>
 		<ul class="facts">
 			<li><Calendar size={18} aria-hidden="true" /><span>{when}</span></li>
 			<li>

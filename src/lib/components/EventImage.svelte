@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CategoryId } from '$shared/types';
 	import CategoryArt from './CategoryArt.svelte';
+	import { sizedImage } from '$lib/image';
 
 	/**
 	 * One image shape for every source: 3:2 hero and 1:1 thumbnail.
@@ -15,11 +16,16 @@
 		priority = false
 	}: { src?: string; cat: CategoryId; variant?: 'hero' | 'thumb'; priority?: boolean } = $props();
 
+	const HERO_WIDTH = 720;
+	const THUMB_WIDTH = 240;
+	const sized = $derived(src ? sizedImage(src, variant === 'hero' ? HERO_WIDTH : THUMB_WIDTH) : undefined);
 	let failed = $state(false);
+	let loaded = $state(false);
 	let fit = $state<'cover' | 'contain'>('cover');
 	const showImage = $derived(!!src && !failed);
 
 	function onload(event: Event) {
+		loaded = true;
 		const image = event.currentTarget as HTMLImageElement;
 		const ratio = image.naturalWidth / Math.max(1, image.naturalHeight);
 		if (variant === 'hero' && (ratio < 1.15 || ratio > 2.4)) fit = 'contain';
@@ -27,13 +33,17 @@
 </script>
 
 <div class="frame {variant}">
+	<!-- The illustration sits underneath, so a loading or missing photo still looks finished. -->
+	{#if !loaded}
+		<CategoryArt {cat} compact={variant === 'thumb'} />
+	{/if}
 	{#if showImage}
 		{#if fit === 'contain'}
-			<img class="backdrop" src={src} alt="" aria-hidden="true" referrerpolicy="no-referrer" />
+			<img class="backdrop" src={sized} alt="" aria-hidden="true" referrerpolicy="no-referrer" />
 		{/if}
 		<img
 			class="photo {fit}"
-			{src}
+			src={sized}
 			alt=""
 			width={variant === 'hero' ? 720 : 192}
 			height={variant === 'hero' ? 480 : 192}
@@ -44,8 +54,6 @@
 			{onload}
 			onerror={() => (failed = true)}
 		/>
-	{:else}
-		<CategoryArt {cat} compact={variant === 'thumb'} />
 	{/if}
 </div>
 

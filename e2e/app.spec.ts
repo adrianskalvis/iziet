@@ -69,7 +69,7 @@ test.describe('returning visitor', () => {
 		const before = await page.evaluate(() => window.scrollY);
 		expect(before).toBeGreaterThan(300);
 		const card = page.locator('article').nth(4);
-		await card.locator('h3 a').click();
+		await card.locator('a.stretched').click();
 		await expect(page).toHaveURL(/pasakums\?id=/);
 		await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 		await page.goBack();
@@ -88,7 +88,7 @@ test.describe('returning visitor', () => {
 	test('event page links back to the original source', async ({ page }) => {
 		await page.goto('/saraksts?skats=visi');
 		await waitForCards(page);
-		await page.locator('article h3 a').first().click();
+		await page.locator('article a.stretched').first().click();
 		await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 		// Sources load with the detail shard, a moment after the page renders.
 		await expect(page.locator('dl.meta a[target="_blank"]').first()).toBeVisible({ timeout: 10_000 });
@@ -98,7 +98,7 @@ test.describe('returning visitor', () => {
 	test('saving an event puts it on the saved page', async ({ page }) => {
 		await page.goto('/saraksts?skats=visi');
 		await waitForCards(page);
-		const title = await page.locator('article h3 a').first().innerText();
+		const title = await page.locator('article a.stretched').first().innerText();
 		await page.locator('article').first().getByRole('button', { name: 'Saglabāt' }).click();
 		await page.goto('/saglabatie');
 		await expect(page.getByText(title, { exact: true })).toBeVisible();

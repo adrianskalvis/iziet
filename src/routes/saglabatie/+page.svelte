@@ -42,7 +42,7 @@
 	{:else}
 		<div class="cards">
 			{#each upcoming as event (event.id)}
-				<EventCard {event} {now} km={distanceKm(origin, event)} />
+				<EventCard level={2} {event} {now} km={distanceKm(origin, event)} />
 			{/each}
 		</div>
 		{#if past.length}

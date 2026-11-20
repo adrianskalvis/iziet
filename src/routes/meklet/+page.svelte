@@ -94,8 +94,8 @@
 			{/if}
 		{:else}
 			<div class="cards">
-				{#each results as item (item.event.id)}
-					<EventCard event={item.event} {now} km={item.km} />
+				{#each results as item, index (item.event.id)}
+					<EventCard level={2} event={item.event} {now} km={item.km} priority={index === 0} />
 				{/each}
 			</div>
 		{/if}

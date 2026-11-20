@@ -40,7 +40,7 @@ test.describe('returning visitor screens', () => {
 		await page.waitForTimeout(600);
 		await page.screenshot({ path: `${DIR}/07-list-nearby.png` });
 
-		await page.locator('article h3 a').first().click();
+		await page.locator('article a.stretched').first().click();
 		await page.getByRole('heading', { level: 1 }).waitFor();
 		await page.waitForTimeout(800);
 		await page.screenshot({ path: `${DIR}/08-event.png` });

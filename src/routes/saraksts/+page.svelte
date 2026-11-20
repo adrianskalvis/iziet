@@ -135,8 +135,8 @@
 			{/if}
 		{:else}
 			<div class="cards">
-				{#each items.slice(0, visible) as item (item.event.id)}
-					<EventCard event={item.event} {now} km={item.km} labels={reasonLabels(item, profileStore.value, now)} />
+				{#each items.slice(0, visible) as item, index (item.event.id)}
+					<EventCard level={2} priority={index === 0} event={item.event} {now} km={item.km} labels={reasonLabels(item, profileStore.value, now)} />
 				{/each}
 			</div>
 			{#if items.length > visible}
