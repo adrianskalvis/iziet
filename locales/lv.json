@@ -1,0 +1,404 @@
+{
+	"app": {
+		"name": "Iziet",
+		"tagline": "Ko darīt tuvumā un visā Latvijā",
+		"description": "Atrodi pasākumu tuvumā 30 sekundēs: koncerti, tirdziņi, izstādes, sports un vēl."
+	},
+	"nav": {
+		"skip": "Pāriet uz saturu",
+		"menu": "Izvēlne",
+		"openMenu": "Atvērt izvēlni",
+		"closeMenu": "Aizvērt izvēlni",
+		"back": "Atpakaļ",
+		"home": "Sākums",
+		"all": "Visi pasākumi",
+		"categories": "Kategorijas",
+		"saved": "Saglabātie",
+		"profile": "Mani iestatījumi",
+		"about": "Par Iziet",
+		"install": "Pievienot sākuma ekrānam",
+		"flag": "Latvijas karogs"
+	},
+	"home": {
+		"nearby": "Tuvumā",
+		"elsewhere": "Citur Latvijā",
+		"showMore": "Rādīt vairāk",
+		"place": "Vieta: {place}",
+		"change": "Mainīt",
+		"loading": "Ielādē pasākumus…",
+		"emptyNearby": "Šobrīd tuvumā pasākumu nav.",
+		"nearestTown": "Tuvākie pasākumi: {town}, {distance}",
+		"seeTown": "Skatīt pasākumus: {town}",
+		"emptyElsewhere": "Citur Latvijā šobrīd nekas neatbilst tavām interesēm.",
+		"widen": "Paskaties visus pasākumus",
+		"browse": "Pārlūkot pēc kategorijas"
+	},
+	"search": {
+		"label": "Meklēt",
+		"placeholder": "Meklē pasākumu vai vietu",
+		"scope": "Kur meklēt",
+		"nearby": "Tuvumā",
+		"all": "Visa Latvija",
+		"clear": "Notīrīt meklēšanu",
+		"noResults": "Nekas netika atrasts. Pārbaudi rakstību.",
+		"tryAll": "Meklēt visā Latvijā",
+		"hint": "Piemēram: koncerts, tirgus, Jūrmala, anime",
+		"results": "Rezultāti"
+	},
+	"list": {
+		"nearby": "Tuvumā",
+		"elsewhere": "Citur Latvijā",
+		"all": "Visi pasākumi",
+		"filters": "Filtri",
+		"when": "Kad",
+		"today": "Šodien",
+		"tomorrow": "Rīt",
+		"weekend": "Nedēļas nogalē",
+		"week": "Šonedēļ",
+		"anytime": "Jebkad",
+		"category": "Kategorija",
+		"allCategories": "Visas",
+		"free": "Bez maksas",
+		"family": "Ģimenēm",
+		"clear": "Notīrīt filtrus",
+		"loadMore": "Rādīt vēl",
+		"empty": "Ar šiem filtriem pasākumu nav.",
+		"sort": "Kārtot",
+		"sortBest": "Piemērotākie",
+		"sortSoon": "Drīzākie",
+		"sortNear": "Tuvākie"
+	},
+	"card": {
+		"open": "Atvērt pasākumu: {title}",
+		"distance": "{distance} no tevis",
+		"moreTimes": "un vēl {count}",
+		"save": "Saglabāt",
+		"unsave": "Noņemt no saglabātajiem"
+	},
+	"event": {
+		"when": "Kad",
+		"where": "Kur",
+		"price": "Cena",
+		"tickets": "Biļetes",
+		"buyTickets": "Pirkt biļetes",
+		"ticketsAt": "Pirkt biļetes: {seller}",
+		"searchTickets": "Meklēt biļetes: {seller}",
+		"moreDates": "Citi datumi",
+		"directions": "Kā nokļūt",
+		"addToCalendar": "Pievienot kalendāram",
+		"share": "Dalīties",
+		"copied": "Saite nokopēta",
+		"save": "Saglabāt",
+		"saved": "Saglabāts",
+		"about": "Apraksts",
+		"source": "Avots",
+		"sources": "Avoti",
+		"original": "Skatīt oriģinālo lapu",
+		"language": "Valoda",
+		"ages": "Vecums",
+		"ageFrom": "No {age} gadiem",
+		"ageRange": "{min}–{max} gadi",
+		"adult": "Tikai pieaugušajiem (18+)",
+		"cancelled": "Atcelts",
+		"soldout": "Biļetes izpārdotas",
+		"postponed": "Pārcelts",
+		"notFound": "Pasākums nav atrasts. Varbūt tas jau ir beidzies.",
+		"backHome": "Uz sākumu",
+		"similar": "Līdzīgi pasākumi",
+		"imageCredit": "Attēls: {source}",
+		"disclaimer": "Informāciju sniedz rīkotājs vai avots. Pirms došanās pārbaudi oriģinālajā lapā."
+	},
+	"date": {
+		"today": "Šodien",
+		"tonight": "Šovakar",
+		"tomorrow": "Rīt",
+		"dayAfter": "Parīt",
+		"at": "plkst.",
+		"allDay": "Visu dienu",
+		"until": "Līdz {date}",
+		"months": ["janvāris", "februāris", "marts", "aprīlis", "maijs", "jūnijs", "jūlijs", "augusts", "septembris", "oktobris", "novembris", "decembris"],
+		"monthsShort": ["janv.", "febr.", "marts", "apr.", "maijs", "jūn.", "jūl.", "aug.", "sept.", "okt.", "nov.", "dec."],
+		"monthsLocative": ["janvārī", "februārī", "martā", "aprīlī", "maijā", "jūnijā", "jūlijā", "augustā", "septembrī", "oktobrī", "novembrī", "decembrī"],
+		"monthsDative": ["janvārim", "februārim", "martam", "aprīlim", "maijam", "jūnijam", "jūlijam", "augustam", "septembrim", "oktobrim", "novembrim", "decembrim"],
+		"weekdays": ["svētdiena", "pirmdiena", "otrdiena", "trešdiena", "ceturtdiena", "piektdiena", "sestdiena"],
+		"weekdaysShort": ["svētd.", "pirmd.", "otrd.", "trešd.", "ceturtd.", "piektd.", "sestd."],
+		"weekdayAdverbs": ["svētdien", "pirmdien", "otrdien", "trešdien", "ceturtdien", "piektdien", "sestdien"],
+		"and": "un",
+		"ago": {
+			"minutes": "pirms {n} min",
+			"hours": "pirms {n} h",
+			"days": "pirms {n} d."
+		}
+	},
+	"price": {
+		"free": "Bez maksas",
+		"from": "No {price}",
+		"unknown": "Cena nav norādīta"
+	},
+	"plural": {
+		"events": {
+			"zero": "{n} pasākumu",
+			"one": "{n} pasākums",
+			"other": "{n} pasākumi"
+		},
+		"times": {
+			"zero": "{n} laiku",
+			"one": "{n} laiks",
+			"other": "{n} laiki"
+		},
+		"none": "Pasākumu nav"
+	},
+	"reason": {
+		"nearYou": "Tuvu tev",
+		"tonight": "Šovakar",
+		"today": "Šodien",
+		"tomorrow": "Rīt",
+		"weekend": "Nedēļas nogalē",
+		"free": "Bez maksas",
+		"family": "Piemērots ģimenēm",
+		"likes": {
+			"koncerti": "Tev patīk koncerti",
+			"teatris": "Tev patīk teātris",
+			"izstades": "Tev patīk izstādes un kino",
+			"festivali": "Tev patīk festivāli",
+			"gimenem": "Ģimenēm",
+			"ediens": "Tev patīk labs ēdiens",
+			"tirdzini": "Tev patīk tirdziņi",
+			"blusu": "Tev patīk blusu tirgi",
+			"sports": "Tev patīk sports",
+			"darbnicas": "Tev patīk darbnīcas",
+			"anime": "Tev patīk anime un spēles",
+			"hobiji": "Tavs hobijs",
+			"tag": "Tev patīk: {tag}"
+		}
+	},
+	"cat": {
+		"koncerti": "Koncerti",
+		"teatris": "Teātris",
+		"izstades": "Izstādes un kino",
+		"festivali": "Festivāli un svētki",
+		"gimenem": "Ģimenēm",
+		"ediens": "Ēdiens un dzērieni",
+		"tirdzini": "Zemnieku tirdziņi",
+		"blusu": "Blusu tirgi",
+		"sports": "Sports",
+		"darbnicas": "Radošās darbnīcas",
+		"anime": "Anime un spēles",
+		"hobiji": "Hobiji"
+	},
+	"tag": {
+		"fotografija": "Fotogrāfija",
+		"smarzas": "Smaržas",
+		"kolekcionesana": "Kolekcionēšana",
+		"vinils": "Vinila plates",
+		"galda-speles": "Galda spēles",
+		"anime": "Anime un manga",
+		"cosplay": "Kosplejs",
+		"komiksi": "Komiksi",
+		"datorspeles": "Datorspēles",
+		"esports": "E-sports",
+		"rokdarbi": "Rokdarbi",
+		"keramika": "Keramika",
+		"floristika": "Floristika",
+		"zimesana": "Zīmēšana un glezniecība",
+		"kulinarija": "Kulinārija",
+		"vins": "Vīns",
+		"alus": "Alus",
+		"kafija": "Kafija",
+		"joga": "Joga un meditācija",
+		"deja": "Dejas",
+		"literatura": "Grāmatas un dzeja",
+		"zinatne": "Zinātne",
+		"tehnologijas": "Tehnoloģijas",
+		"astronomija": "Astronomija",
+		"daba": "Daba un pārgājieni",
+		"putni": "Putnu vērošana",
+		"dzivnieki": "Dzīvnieki",
+		"auto-moto": "Auto un moto",
+		"darzs": "Dārzs",
+		"vesture": "Vēsture",
+		"sahs": "Šahs",
+		"klasika": "Klasiskā mūzika",
+		"dzezs": "Džezs un blūzs",
+		"roks": "Roks",
+		"elektroniska": "Elektroniskā mūzika",
+		"tautas-muzika": "Tautas mūzika",
+		"kori": "Kori",
+		"opera": "Opera",
+		"balets": "Balets",
+		"stand-up": "Stand-up un komēdija",
+		"cirks": "Cirks",
+		"kino": "Kino",
+		"maksla": "Māksla",
+		"dizains": "Dizains un arhitektūra",
+		"mode": "Mode",
+		"labsajuta": "Labsajūta",
+		"ekskursijas": "Ekskursijas",
+		"lekcijas": "Lekcijas un sarunas"
+	},
+	"lang": {
+		"lv": "Latviski",
+		"ru": "Krieviski",
+		"en": "Angliski",
+		"ltg": "Latgaliski"
+	},
+	"companion": {
+		"alone": "Viens pats",
+		"friends": "Ar draugiem",
+		"family": "Ar ģimeni"
+	},
+	"age": {
+		"0-6": "0–6 g.",
+		"7-12": "7–12 g.",
+		"13-17": "13–17 g."
+	},
+	"onboarding": {
+		"progress": "{step}. solis no {total}",
+		"skip": "Izlaist",
+		"next": "Turpināt",
+		"done": "Gatavs",
+		"back": "Atpakaļ",
+		"hello": "Sveiks! Es esmu Cielaviņa.",
+		"helloLead": "Palīdzēšu atrast, kur iziet. Trīs ātri jautājumi, un visus var izlaist.",
+		"placeTitle": "Kur meklēt pasākumus?",
+		"useLocation": "Izmantot atrašanās vietu",
+		"locationReason": "Atrašanās vietu izmantojam tikai attālumam līdz pasākumiem. Tā paliek tavā ierīcē.",
+		"locating": "Nosaku atrašanās vietu…",
+		"located": "Atrašanās vieta: {place}",
+		"locationDenied": "Atrašanās vieta nav pieejama. Izvēlies pilsētu.",
+		"orCity": "Vai izvēlies pilsētu",
+		"otherPlace": "Cita vieta",
+		"placeSearch": "Meklē pilsētu vai ciemu",
+		"noPlace": "Šādu vietu neatradām.",
+		"companionTitle": "Ar ko tu parasti ej?",
+		"companionLead": "Var izvēlēties vairākus.",
+		"kidsAges": "Bērnu vecums (nav obligāti)",
+		"interestTitle": "Kas tevi interesē?",
+		"interestLead": "Izvēlies, cik gribi. Vēlāk varēsi mainīt.",
+		"moreInterests": "Vēl intereses",
+		"fewerInterests": "Mazāk interešu"
+	},
+	"ask": {
+		"later": "Vēlāk",
+		"close": "Aizvērt jautājumu",
+		"thanks": "Paldies! Ieteikumi atjaunoti.",
+		"location": {
+			"title": "Rādīt, kas notiek tieši tev blakus?",
+			"yes": "Jā, izmantot atrašanās vietu"
+		},
+		"apkaime": {
+			"title": "Kurā Rīgas apkaimē tu esi?",
+			"placeholder": "Meklē apkaimi"
+		},
+		"kids": {
+			"title": "Cik veci ir bērni?"
+		},
+		"distance": {
+			"title": "Cik tālu esi gatavs braukt?",
+			"30": "Līdz 30 min",
+			"60": "Līdz 1 h",
+			"120": "Līdz 2 h",
+			"any": "Visa Latvija"
+		},
+		"time": {
+			"title": "Kad tev parasti ir laiks?",
+			"weekday": "Darbdienu vakaros",
+			"saturday": "Sestdienās",
+			"sunday": "Svētdienās",
+			"any": "Jebkad"
+		},
+		"price": {
+			"title": "Cik esi gatavs maksāt?",
+			"free": "Tikai bez maksas",
+			"10": "Līdz 10 €",
+			"30": "Līdz 30 €",
+			"any": "Nav svarīgi"
+		},
+		"less": {
+			"title": "Rādīt mazāk: {category}?",
+			"yes": "Jā, mazāk",
+			"no": "Nē, paturēt"
+		},
+		"install": {
+			"title": "Pievienot Iziet sākuma ekrānam?",
+			"lead": "Atvērsies ar vienu pieskārienu un strādās arī bez interneta.",
+			"yes": "Pievienot"
+		}
+	},
+	"profile": {
+		"title": "Mani iestatījumi",
+		"privacy": "Tavi iestatījumi glabājas tikai šajā ierīcē.",
+		"place": "Atrašanās vieta",
+		"noPlace": "Nav izvēlēta (rādām Rīgu)",
+		"apkaime": "Rīgas apkaime",
+		"noApkaime": "Nav izvēlēta",
+		"companions": "Ar ko ej",
+		"interests": "Intereses",
+		"tags": "Hobiji un žanri",
+		"text": "Teksta lielums",
+		"textNormal": "Parasts",
+		"textLarge": "Liels",
+		"edit": "Mainīt",
+		"reset": "Sākt no jauna",
+		"resetConfirm": "Vai tiešām dzēst visus iestatījumus šajā ierīcē?",
+		"resetDone": "Iestatījumi dzēsti."
+	},
+	"saved": {
+		"title": "Saglabātie",
+		"empty": "Saglabāto pasākumu vēl nav.",
+		"emptyHint": "Pieskaries sirsniņai pie pasākuma, lai to saglabātu.",
+		"past": "Jau notikuši"
+	},
+	"categories": {
+		"title": "Kategorijas",
+		"lead": "Izvēlies, ko gribi redzēt.",
+		"niches": "Hobiji un žanri"
+	},
+	"about": {
+		"title": "Par Iziet",
+		"intro": "Iziet apkopo pasākumus no Latvijas pilsētām, kultūras namiem, biļešu tirgotājiem un rīkotājiem. Mēs vienmēr norādām saiti uz oriģinālo lapu un biļešu tirgotāju.",
+		"howTitle": "Kā mēs izvēlamies pasākumus",
+		"how": "Katram pasākumam aprēķinām punktus: attālums (30%), tavas intereses (25%), piemērotība ģimenei (15%), cik drīz tas notiek (15%), cena (10%) un vairāku avotu apstiprinājums (5%). Pie kartītes redzams īss iemesls, kāpēc to iesakām.",
+		"privacyTitle": "Privātums",
+		"privacy": "Nav kontu, nav sīkdatņu, nav izsekošanas. Tavi iestatījumi glabājas tikai tavā ierīcē. Atrašanās vietu izmantojam tikai attāluma aprēķinam, un tā netiek sūtīta uz serveri.",
+		"sourcesTitle": "Datu avoti",
+		"updated": "Dati atjaunoti {time}",
+		"state": {
+			"ok": "Darbojas",
+			"cached": "Rāda saglabātos datus",
+			"failed": "Nav pieejams",
+			"disabled": "Gaida atļauju"
+		},
+		"count": "{n} pasākumi",
+		"attributionTitle": "Atsauces",
+		"attribution": "Apdzīvotās vietas: Wikidata (CC0). Rīgas apkaimes: Rīgas dome, data.gov.lv (CC BY 4.0). Adreses un koordinātas: © OpenStreetMap dalībnieki (ODbL).",
+		"rightsTitle": "Pasākumu informācija",
+		"rights": "Pasākumu nosaukumi, attēli un apraksti pieder to rīkotājiem un avotiem. Ja vēlies, lai tavs pasākums vai avots netiek rādīts, raksti mums."
+	},
+	"offline": {
+		"banner": "Nav interneta savienojuma. Rādām iepriekš ielādētos pasākumus.",
+		"online": "Savienojums atjaunots.",
+		"stale": "Dati atjaunoti {time}"
+	},
+	"error": {
+		"load": "Neizdevās ielādēt pasākumus.",
+		"retry": "Mēģināt vēlreiz",
+		"generic": "Radās kļūda. Mēģini vēlreiz pēc brīža.",
+		"notFound": "Šī lapa nav atrasta."
+	},
+	"sync": {
+		"title": "Sinhronizācija",
+		"lead": "Pieslēgšanās nav obligāta. Tā vajadzīga tikai, lai iestatījumi būtu vienādi visās tavās ierīcēs.",
+		"google": "Turpināt ar Google",
+		"apple": "Turpināt ar Apple",
+		"passkey": "Pieslēgties ar piekļuves atslēgu",
+		"signedIn": "Pieslēdzies: {name}",
+		"signOut": "Atslēgties",
+		"synced": "Sinhronizēts",
+		"failed": "Sinhronizācija neizdevās. Iestatījumi saglabāti šajā ierīcē."
+	},
+	"mascot": {
+		"name": "Cielaviņa",
+		"alt": "Cielaviņa, baltā cielava"
+	}
+}
