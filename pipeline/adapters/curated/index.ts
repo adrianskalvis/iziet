@@ -5,7 +5,7 @@ import { recordToRaw } from './parse';
 const adapter: Adapter = {
 	id: 'curated',
 	name: 'Kurētie pasākumi',
-	homepage: 'https://iziet.lv/par',
+	homepage: 'https://adrianskalvis.github.io/iziet/par',
 	kind: 'curated',
 	async fetch(ctx) {
 		const events = CURATED_RECORDS.map((record) => recordToRaw(record, ctx.now, ctx.horizonDays)).filter(

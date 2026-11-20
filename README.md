@@ -29,13 +29,14 @@ npx tsx pipeline/dev/run-adapter.ts liveriga   # try one adapter
 - Adapters live in `pipeline/adapters/<id>/` (62 in total). Each has `parse.ts`, fixture tests and a default export.
 - Output: `static/data/events.json` (list), `static/data/details/0..15.json` (event pages), `static/data/meta.json` (source status).
 - Sources that need written permission run only with their flag: `SOURCE_BILESUSERVISS=1`, `SOURCE_LATVIATRAVEL=1`, `SOURCE_TICKETSHOP=1`, `SOURCE_NICHE_BLUSA=1`.
+- Relay: Apollo Kino, Forum Cinemas, LNSO, Saulkrasti and Dzintari refuse GitHub's servers (Cloudflare bot challenge). `npm run data:relay` fetches them from this computer, uploads them to the `relay` release and starts a site run. `sh scripts/relay-install.sh` schedules it at 07.40 and 19.40; `--remove` stops it. A relay file older than 7 days is ignored.
 - Geodata: `npm run geo` rebuilds Rīga apkaimes (Rīgas dome, CC BY 4.0) and towns (Wikidata, CC0).
 
 ## Tests
 
 ```bash
 npm run check          # svelte-check, TypeScript
-npm test               # 230 unit tests (Vitest)
+npm test               # 237 unit tests (Vitest)
 npm run test:e2e       # 15 Playwright tests at 390×844, writes screenshots/
 ```
 

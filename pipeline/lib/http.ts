@@ -11,7 +11,7 @@ import robotsParser from 'robots-parser';
  * - Optional disk cache for development and offline runs.
  */
 
-export const USER_AGENT = 'IzietBot/0.1 (+https://iziet.lv/par)';
+export const USER_AGENT = 'IzietBot/0.1 (+https://adrianskalvis.github.io/iziet/par)';
 export const ROBOTS_TOKEN = 'IzietBot';
 
 const DEFAULT_TIMEOUT_MS = 20_000;
