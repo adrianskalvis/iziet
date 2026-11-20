@@ -14,7 +14,7 @@ import {
 
 export const XIAOMI_ID = 'xiaomi-arena';
 export const XIAOMI_HOME = 'https://xiaomi-arena.com/';
-const ADDRESS = 'Skanstes iela 7, Rīga';
+const ADDRESS = 'Skanstes iela 21, Rīga';
 
 export interface XiaomiItem {
 	url: string;

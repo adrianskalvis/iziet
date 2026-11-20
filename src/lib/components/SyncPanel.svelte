@@ -3,7 +3,7 @@
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { savedStore } from '$lib/stores/saved.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
-	import { consumeRedirect, mergePayloads, pull, push, signOut, startSignIn, syncConfig, type Session } from '$lib/sync';
+	import { consumeRedirect, mergePayloads, pull, push, readSession, signOut, startSignIn, syncConfig, type Session } from '$lib/sync';
 	import { onMount } from 'svelte';
 
 	/** Renders nothing unless sync is configured at build time (feature flag). */
@@ -13,8 +13,16 @@
 
 	onMount(() => {
 		if (!config) return;
-		session = consumeRedirect();
-		if (session) syncNow();
+		session = readSession();
+		consumeRedirect(config)
+			.then((result) => {
+				session = result;
+				if (result) syncNow();
+			})
+			.catch((error) => {
+				console.warn(error);
+				ui.showToast(t('sync.failed'));
+			});
 	});
 
 	async function syncNow() {

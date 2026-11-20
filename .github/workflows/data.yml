@@ -1,6 +1,7 @@
 name: Refresh events
 
-# Runs every adapter, writes static/data and the per-source caches, and commits them.
+# Two jobs: "fetch" parses untrusted web pages with read-only permissions and no
+# stored git credentials; "commit" only takes the generated files and pushes them.
 # Cloudflare Pages rebuilds the site on that push.
 on:
   schedule:
@@ -8,18 +9,22 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: data-refresh
   cancel-in-progress: false
 
 jobs:
-  refresh:
+  fetch:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -35,6 +40,30 @@ jobs:
           SOURCE_NICHE_BLUSA: ${{ vars.SOURCE_NICHE_BLUSA }}
       - name: Unit tests
         run: npm test
+      - uses: actions/upload-artifact@v4
+        with:
+          name: event-data
+          path: |
+            static/data
+            data/cache/sources
+          retention-days: 3
+
+  commit:
+    needs: fetch
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: event-data
+          path: artifact
+      - name: Copy only JSON data into the tree
+        run: |
+          rsync -a --delete --include='*/' --include='*.json' --exclude='*' artifact/static/data/ static/data/
+          rsync -a --delete --include='*.json' --exclude='*' artifact/data/cache/sources/ data/cache/sources/
       - name: Commit data
         run: |
           git config user.name "iziet-data-bot"

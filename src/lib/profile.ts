@@ -1,5 +1,5 @@
 import { APKAIMES, PLACES } from '$shared/places.generated';
-import type { Apkaime, CategoryId, Place, PlaceKind } from '$shared/types';
+import { CATEGORY_IDS, type Apkaime, type CategoryId, type Place, type PlaceKind } from '$shared/types';
 import { haversineKm, nearest, type LatLng } from '$shared/geo';
 
 /**
@@ -69,20 +69,40 @@ export function defaultProfile(now = new Date()): Profile {
 export function parseProfile(raw: unknown): Profile {
 	const base = defaultProfile();
 	if (!raw || typeof raw !== 'object' || (raw as Profile).v !== 1) return base;
-	const input = raw as Partial<Profile>;
-	const arr = <T>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
+	const input = raw as Record<string, unknown>;
+	// Only known fields with valid values are kept; synced or tampered data cannot add keys.
+	const oneOf = <T extends string>(value: unknown, allowed: readonly T[]): T[] =>
+		Array.isArray(value) ? [...new Set(value.filter((v): v is T => allowed.includes(v as T)))] : [];
+	const strings = (value: unknown): string[] =>
+		Array.isArray(value) ? value.filter((v): v is string => typeof v === 'string' && v.length < 40).slice(0, 100) : [];
+	const num = (value: unknown): number | undefined => (typeof value === 'number' && Number.isFinite(value) ? value : undefined);
+	const str = (value: unknown): string | undefined => (typeof value === 'string' && value.length < 40 ? value : undefined);
+	const geo = input.geo as Record<string, unknown> | undefined;
+	const geoLat = num(geo?.lat);
+	const geoLng = num(geo?.lng);
+	const travel = num(input.maxTravelMin);
+	const price = num(input.priceMax);
 	return {
 		...base,
-		...input,
-		companions: arr<Companion>(input.companions),
-		kids: arr<KidsAge>(input.kids),
-		cats: arr<CategoryId>(input.cats),
-		tags: arr<string>(input.tags),
-		less: arr<CategoryId>(input.less),
-		asked: input.asked && typeof input.asked === 'object' ? input.asked : {},
-		opens: input.opens && typeof input.opens === 'object' ? input.opens : {},
+		onboarded: input.onboarded === true,
+		placeId: str(input.placeId),
+		geo: geoLat !== undefined && geoLng !== undefined ? { lat: geoLat, lng: geoLng, at: str(geo?.at) ?? base.updatedAt } : undefined,
+		apkaime: str(input.apkaime),
+		companions: oneOf(input.companions, ['alone', 'friends', 'family'] as const),
+		kids: oneOf(input.kids, KIDS_AGES),
+		cats: oneOf(input.cats, CATEGORY_IDS),
+		tags: strings(input.tags),
+		less: oneOf(input.less, CATEGORY_IDS),
+		maxTravelMin: travel === 30 || travel === 60 || travel === 120 ? travel : input.maxTravelMin === null ? null : undefined,
+		timePref: Array.isArray(input.timePref) ? oneOf(input.timePref, ['weekday', 'saturday', 'sunday'] as const) : undefined,
+		priceMax: price === 0 || price === 10 || price === 30 ? price : input.priceMax === null ? null : undefined,
 		textSize: input.textSize === 'large' ? 'large' : 'normal',
-		v: 1
+		asked: input.asked && typeof input.asked === 'object' ? (input.asked as Profile['asked']) : {},
+		sessions: num(input.sessions) ?? 0,
+		lastSessionAt: str(input.lastSessionAt),
+		opens: input.opens && typeof input.opens === 'object' ? (input.opens as Profile['opens']) : {},
+		elsewhereOpens: num(input.elsewhereOpens) ?? 0,
+		updatedAt: str(input.updatedAt) ?? base.updatedAt
 	};
 }
 

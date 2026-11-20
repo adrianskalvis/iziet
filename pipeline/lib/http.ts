@@ -87,6 +87,44 @@ interface CachedResponse {
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const MAX_REDIRECTS = 3;
+
+/** Registrable site, approximated by the last two host labels ("www.liveriga.com" → "liveriga.com"). */
+function siteOf(hostname: string): string {
+	return hostname.toLowerCase().split('.').slice(-2).join('.');
+}
+
+/** Reads the body as a stream, stops past MAX_BODY_BYTES, and honours the declared charset. */
+async function readLimited(response: Response, url: string): Promise<string> {
+	const declared = Number(response.headers.get('content-length') ?? 0);
+	if (declared > MAX_BODY_BYTES) throw new Error(`Response too large (${declared} bytes) for ${url}`);
+	const reader = response.body?.getReader();
+	if (!reader) return '';
+	const chunks: Uint8Array[] = [];
+	let total = 0;
+	for (;;) {
+		const { done, value } = await reader.read();
+		if (done) break;
+		total += value.byteLength;
+		if (total > MAX_BODY_BYTES) {
+			await reader.cancel();
+			throw new Error(`Response too large (over ${MAX_BODY_BYTES} bytes) for ${url}`);
+		}
+		chunks.push(value);
+	}
+	const bytes = new Uint8Array(total);
+	let offset = 0;
+	for (const chunk of chunks) {
+		bytes.set(chunk, offset);
+		offset += chunk.byteLength;
+	}
+	const charset = response.headers.get('content-type')?.match(/charset=([\w-]+)/i)?.[1] ?? 'utf-8';
+	try {
+		return new TextDecoder(charset).decode(bytes);
+	} catch {
+		return new TextDecoder('utf-8').decode(bytes);
+	}
+}
 
 export function createHttp(config: HttpConfig = {}): Http {
 	const userAgent = config.userAgent ?? USER_AGENT;
@@ -139,20 +177,38 @@ export function createHttp(config: HttpConfig = {}): Http {
 		}
 	}
 
-	async function rawFetch(url: string, options: FetchOptions): Promise<string> {
-		const response = await fetchImpl(url, {
-			method: options.method ?? 'GET',
-			body: options.body,
-			headers: { 'User-Agent': userAgent, 'Accept-Language': 'lv,en;q=0.8', ...options.headers },
-			redirect: 'follow',
-			signal: AbortSignal.timeout(options.timeoutMs ?? DEFAULT_TIMEOUT_MS)
-		});
-		if (!response.ok) throw new HttpError(response.status, url);
-		const length = Number(response.headers.get('content-length') ?? 0);
-		if (length > MAX_BODY_BYTES) throw new Error(`Response too large (${length} bytes) for ${url}`);
-		const body = await response.text();
-		if (body.length > MAX_BODY_BYTES) throw new Error(`Response too large for ${url}`);
-		return body;
+	/**
+	 * One request with manual redirects: at most MAX_REDIRECTS hops, all on the
+	 * same site, each hop checked against that origin's robots.txt (unless this is
+	 * the robots.txt request itself). The body is streamed and cut at MAX_BODY_BYTES.
+	 */
+	async function rawFetch(url: string, options: FetchOptions, checkRobots = false): Promise<string> {
+		const signal = AbortSignal.timeout(options.timeoutMs ?? DEFAULT_TIMEOUT_MS);
+		let current = url;
+		for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
+			const response = await fetchImpl(current, {
+				method: hop === 0 ? (options.method ?? 'GET') : 'GET',
+				body: hop === 0 ? options.body : undefined,
+				headers: { 'User-Agent': userAgent, 'Accept-Language': 'lv,en;q=0.8', ...options.headers },
+				redirect: 'manual',
+				signal
+			});
+			const location = response.headers.get('location');
+			if (response.status >= 300 && response.status < 400 && location) {
+				const next = new URL(location, current);
+				if (siteOf(next.hostname) !== siteOf(new URL(url).hostname)) throw new Error(`Cross-site redirect from ${url} to ${next.origin}`);
+				if (checkRobots) {
+					const robots = await loadRobots(next.origin);
+					if (robots.unreachable) throw new HostUnreachableError(next.origin, robots.unreachable);
+					if (!robots.isAllowed(next.toString())) throw new RobotsDisallowedError(next.toString());
+				}
+				current = next.toString();
+				continue;
+			}
+			if (!response.ok) throw new HttpError(response.status, current);
+			return readLimited(response, current);
+		}
+		throw new Error(`Too many redirects for ${url}`);
 	}
 
 	function loadRobots(origin: string): Promise<RobotsEntry> {
@@ -205,7 +261,7 @@ export function createHttp(config: HttpConfig = {}): Http {
 		let lastError: unknown;
 		for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
 			try {
-				const body = await scheduled(host, robots.delayMs, () => rawFetch(url, options));
+				const body = await scheduled(host, robots.delayMs, () => rawFetch(url, options, true));
 				await writeCache(key, url, body);
 				return body;
 			} catch (error) {

@@ -361,7 +361,7 @@
 		"howTitle": "Kā mēs izvēlamies pasākumus",
 		"how": "Katram pasākumam aprēķinām punktus: attālums (30%), tavas intereses (25%), piemērotība ģimenei (15%), cik drīz tas notiek (15%), cena (10%) un vairāku avotu apstiprinājums (5%). Pie kartītes redzams īss iemesls, kāpēc to iesakām.",
 		"privacyTitle": "Privātums",
-		"privacy": "Nav kontu, nav sīkdatņu, nav izsekošanas. Tavi iestatījumi glabājas tikai tavā ierīcē. Atrašanās vietu izmantojam tikai attāluma aprēķinam, un tā netiek sūtīta uz serveri.",
+		"privacy": "Nav kontu, nav sīkdatņu, nav izsekošanas. Tavi iestatījumi glabājas tikai tavā ierīcē. Atrašanās vietu izmantojam tikai attāluma aprēķinam, un tā netiek sūtīta uz serveri. Pasākumu attēli ielādējas tieši no rīkotāju un avotu vietnēm.",
 		"sourcesTitle": "Datu avoti",
 		"updated": "Dati atjaunoti {time}",
 		"state": {

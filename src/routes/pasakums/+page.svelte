@@ -17,6 +17,7 @@
 	import { ui } from '$lib/stores/ui.svelte';
 	import { CATEGORY_TINT } from '$shared/categories';
 	import type { EventItem } from '$shared/types';
+	import { safeHttpUrl } from '$shared/url';
 	import CalendarPlus from '@lucide/svelte/icons/calendar-plus';
 	import Calendar from '@lucide/svelte/icons/calendar';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
@@ -162,7 +163,7 @@
 					{#each event.tickets as ticket, index (ticket.url)}
 						<a
 							class="btn {index === 0 ? 'btn-primary' : 'btn-secondary'} btn-block"
-							href={ticket.url}
+							href={safeHttpUrl(ticket.url)}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -204,7 +205,7 @@
 					<dt>{event.sources.length > 1 ? t('event.sources') : t('event.source')}</dt>
 					<dd>
 						{#each event.sources as source, index (source.id + source.url)}
-							{#if index > 0}, {/if}<a class="link" href={source.url} target="_blank" rel="noopener noreferrer">{source.name}<ExternalLink size={14} aria-hidden="true" /></a>
+							{#if index > 0}, {/if}<a class="link" href={safeHttpUrl(source.url)} target="_blank" rel="noopener noreferrer">{source.name}<ExternalLink size={14} aria-hidden="true" /></a>
 						{/each}
 					</dd>
 				</div>

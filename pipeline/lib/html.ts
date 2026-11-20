@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import { safeHttpUrl } from '../../src/lib/shared/url';
 
 export { cheerio };
 
@@ -22,16 +23,9 @@ export function truncate(text: string, max: number): string {
 	return `${(space > max * 0.6 ? cut.slice(0, space) : cut).replace(/[,.;:\s]+$/, '')}…`;
 }
 
-/** Resolves a possibly relative URL; returns undefined for javascript: and empty links. */
+/** Resolves a possibly relative URL; returns undefined for anything but http(s), including obfuscated javascript:. */
 export function absoluteUrl(href: string | undefined | null, base: string): string | undefined {
-	if (!href) return undefined;
-	const trimmed = href.trim();
-	if (!trimmed || /^(javascript|mailto|tel):/i.test(trimmed)) return undefined;
-	try {
-		return new URL(trimmed, base).toString();
-	} catch {
-		return undefined;
-	}
+	return safeHttpUrl(href, base);
 }
 
 /** Removes utm_* and fbclid parameters so the same link compares equal. */

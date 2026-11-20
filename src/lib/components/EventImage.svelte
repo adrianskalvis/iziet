@@ -2,6 +2,7 @@
 	import type { CategoryId } from '$shared/types';
 	import CategoryArt from './CategoryArt.svelte';
 	import { sizedImage } from '$lib/image';
+	import { safeHttpsUrl } from '$shared/url';
 
 	/**
 	 * One image shape for every source: 3:2 hero and 1:1 thumbnail.
@@ -18,11 +19,12 @@
 
 	const HERO_WIDTH = 720;
 	const THUMB_WIDTH = 240;
-	const sized = $derived(src ? sizedImage(src, variant === 'hero' ? HERO_WIDTH : THUMB_WIDTH) : undefined);
+	const safeSrc = $derived(safeHttpsUrl(src));
+	const sized = $derived(safeSrc ? sizedImage(safeSrc, variant === 'hero' ? HERO_WIDTH : THUMB_WIDTH) : undefined);
 	let failed = $state(false);
 	let loaded = $state(false);
 	let fit = $state<'cover' | 'contain'>('cover');
-	const showImage = $derived(!!src && !failed);
+	const showImage = $derived(!!sized && !failed);
 
 	function onload(event: Event) {
 		loaded = true;

@@ -13,7 +13,7 @@ import {
 export const TEATRIS_ID = 'nacionalais-teatris';
 export const TEATRIS_BASE = 'https://teatris.lv';
 export const TEATRIS_REPERTOIRE = `${TEATRIS_BASE}/repertuars/`;
-const ADDRESS = 'Kaļķu iela 6, Rīga';
+const ADDRESS = 'Kronvalda bulvāris 2, Rīga';
 const VENUE = 'Latvijas Nacionālais teātris';
 
 /** Production pages from the repertoire list. The calendar page loads through admin-ajax and is not used. */

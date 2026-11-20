@@ -3,6 +3,7 @@ import { CATEGORY_RULES, TAGS } from '../src/lib/shared/categories';
 import { fold } from '../src/lib/shared/fold';
 import type { CategoryId, EventItem, RawEvent } from '../src/lib/shared/types';
 import { rigaParts } from '../src/lib/shared/time';
+import { safeHttpsUrl, safeHttpUrl } from '../src/lib/shared/url';
 import { htmlToText, stripTracking, truncate } from './lib/html';
 import { apkaimeAt, placeAt, placeFromText } from './places';
 
@@ -76,6 +77,8 @@ export interface NormalizeContext {
 export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | undefined {
 	const title = tidyTitle(raw.title ?? '');
 	if (!title || !raw.start || Number.isNaN(Date.parse(raw.start))) return undefined;
+	const pageUrl = safeHttpUrl(raw.url);
+	if (!pageUrl) return undefined;
 
 	const point = raw.lat !== undefined && raw.lng !== undefined && Number.isFinite(raw.lat) && Number.isFinite(raw.lng) ? { lat: raw.lat, lng: raw.lng } : undefined;
 	const validPoint = point && point.lat > 55.5 && point.lat < 58.2 && point.lng > 20.8 && point.lng < 28.4 ? point : undefined;
@@ -89,7 +92,7 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 		.filter((iso) => iso !== raw.start && Date.parse(iso) > nowMs)
 		.sort()
 		.slice(0, MAX_TIMES);
-	const tickets = [...new Map((raw.tickets ?? []).filter((t) => /^https?:/.test(t.url)).map((t) => [stripTracking(t.url), { ...t, url: stripTracking(t.url) }])).values()];
+	const tickets = [...new Map((raw.tickets ?? []).flatMap((t) => { const safe = safeHttpUrl(t.url); return safe ? [[stripTracking(safe), { seller: t.seller, url: stripTracking(safe) }] as const] : []; })).values()];
 	const desc = raw.description ? truncate(htmlToText(raw.description), MAX_DESC) : undefined;
 	const price =
 		raw.free || raw.priceMin !== undefined
@@ -108,8 +111,8 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 		tags: detectTags(raw),
 		start: raw.start,
 		tickets,
-		url: raw.url,
-		sources: [{ id: raw.source, name: ctx.sourceName, url: raw.url }],
+		url: pageUrl,
+		sources: [{ id: raw.source, name: ctx.sourceName, url: pageUrl }],
 		town: place?.name ?? raw.town!.trim()
 	};
 	if (desc) item.desc = desc;
@@ -127,7 +130,8 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 		if (apkaime) item.apkaime = apkaime;
 	}
 	if (price) item.price = price;
-	if (raw.image && /^https?:\/\//.test(raw.image)) item.img = raw.image;
+	const image = safeHttpsUrl(raw.image);
+	if (image) item.img = image;
 	if (raw.imageWidth && raw.imageHeight) Object.assign(item, { imgW: raw.imageWidth, imgH: raw.imageHeight });
 	const lang = normaliseLang(raw.lang);
 	if (lang) item.lang = lang;

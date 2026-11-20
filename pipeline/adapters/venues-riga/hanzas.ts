@@ -5,7 +5,7 @@ import { fixShoutingTitle, isoFrom, notEnded, plainText, readTime, sellerName, w
 
 export const HANZAS_ID = 'hanzas-perons';
 export const HANZAS_LIST = 'https://hanzasperons.lv/visi-pasakumi/';
-const ADDRESS = 'Hanzas iela 5, Rīga';
+const ADDRESS = 'Hanzas iela 16a, Rīga';
 /** Site tags that carry no category: year, month, "new", venue slug. */
 const NOISE_TERM =
 	/^(jaunakie-lv|new-lv|hanzas-perons|20\d{2}|(janvaris|februaris|marts|aprilis|maijs|junijs|julijs|augusts|septembris|oktobris|novembris|decembris)(-\d+)?|(january|february|march|april|may|june|july|august|september|october|november|december)-lv|marts-\d+)$/;
