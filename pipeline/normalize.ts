@@ -51,8 +51,8 @@ export function tidyTitle(title: string): string {
 	return letters.length > 6 && upper.length / letters.length > 0.8 ? capitaliseWords(clean) : clean;
 }
 
-/** Council and committee meetings, residents' meetings and staff training: listed in municipal calendars, not leisure events. */
-const NOT_LEISURE = /\b(domes sede|komitejas sede|komisijas sede|padomes sede|deputatu pienemsana|iedzivotaju sapulce|pedagogiem)\b/;
+/** Any official sitting ("sēde" of a council, committee, commission or court), residents' meetings and staff training: listed in municipal calendars, not leisure events. */
+const NOT_LEISURE = /\b(sedes?|deputatu pienemsana|iedzivotaju sapulce|pedagogiem)\b/;
 
 const FREE_ENTRY = /\b(ieeja|ieejas maksa|dalibas maksa|dalibas)[^.!?]{0,20}\b(bez maksas|briva|bezmaksas)|\bbezmaksas (ieeja|pasakums)|\bfree (entry|admission)/;
 /** Any mention of money: the event has a price for someone. */
