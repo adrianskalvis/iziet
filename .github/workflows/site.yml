@@ -45,6 +45,14 @@ jobs:
           path: data/cache/sources
           key: sources-${{ github.run_id }}
           restore-keys: sources-
+      # Sources that refuse GitHub's servers arrive through the "relay" release,
+      # uploaded from the owner's computer by scripts/relay.sh. They are used
+      # only when the live fetch here fails and the file is under 7 days old.
+      - name: Download relay data
+        run: gh release download relay --dir data/relay --pattern '*.json' --clobber || echo "No relay data"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
       - name: Fetch and normalise events
         run: npm run data -- ${ONLY:+"--only=$ONLY"}
         env:

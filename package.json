@@ -17,6 +17,7 @@
     "test:e2e": "playwright test",
     "data": "tsx pipeline/run.ts",
     "data:offline": "tsx pipeline/run.ts --offline",
+    "data:relay": "sh scripts/relay.sh",
     "geo": "tsx scripts/build-geo.ts",
     "icons": "tsx scripts/build-icons.ts"
   },

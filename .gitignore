@@ -10,6 +10,7 @@ playwright-report/
 coverage/
 data/cache/http/
 data/cache/sources/
+data/relay/
 design-refs/liveriga-current-cards.webp
 *.log
 data/last-run.log

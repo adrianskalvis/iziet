@@ -1,0 +1,59 @@
+import { describe, expect, test } from 'vitest';
+import type { RawEvent } from '../src/lib/shared/types';
+import { isSourceResult, newestFresh, scrubContacts, scrubText } from './relay';
+
+const DAY_MS = 24 * 3600_000;
+
+function rawEvent(patch: Partial<RawEvent> = {}): RawEvent {
+	return { source: 'lnso', sourceId: '1', url: 'https://www.lnso.lv/e/1', title: 'Koncerts', start: '2026-12-01T19:00', ...patch };
+}
+
+describe('scrubText', () => {
+	test('removes email addresses and Latvian phone numbers', () => {
+		expect(scrubText('Pieteikšanās: apk@apk.lv vai tālr. +371 29 123 456.')).toBe('Pieteikšanās: vai tālr.');
+		expect(scrubText('Zvani 67 123 456, rakstī info@kino.lv')).toBe('Zvani, rakstī');
+	});
+
+	test('keeps prices, years and times', () => {
+		expect(scrubText('Biļetes 12 € līdz 2026. gada 1. decembrim, sākums 19.00')).toBe(
+			'Biļetes 12 € līdz 2026. gada 1. decembrim, sākums 19.00'
+		);
+	});
+});
+
+describe('scrubContacts', () => {
+	test('cleans description and organiser and leaves other fields', () => {
+		const event = rawEvent({ description: 'Info: a@b.lv', organizer: 'Kino, tālr. 26 000 000' });
+		const clean = scrubContacts(event);
+		expect(clean.description).toBe('Info:');
+		expect(clean.organizer).toBe('Kino, tālr.');
+		expect(clean.title).toBe('Koncerts');
+		expect(event.description).toBe('Info: a@b.lv');
+	});
+});
+
+describe('newestFresh', () => {
+	const now = Date.parse('2026-11-21T12:00:00Z');
+	const at = (daysAgo: number) => ({ fetchedAt: new Date(now - daysAgo * DAY_MS).toISOString(), events: [] });
+
+	test('picks the newest result under the age limit', () => {
+		const cache = at(3);
+		const relay = at(1);
+		expect(newestFresh([cache, relay], now, 7 * DAY_MS)).toBe(relay);
+	});
+
+	test('ignores missing and stale results', () => {
+		expect(newestFresh([undefined, at(8)], now, 7 * DAY_MS)).toBeUndefined();
+		const cache = at(2);
+		expect(newestFresh([cache, undefined], now, 7 * DAY_MS)).toBe(cache);
+	});
+});
+
+describe('isSourceResult', () => {
+	test('accepts a fetch time and an event list, rejects anything else', () => {
+		expect(isSourceResult({ fetchedAt: '2026-11-21T12:00:00Z', events: [rawEvent()] })).toBe(true);
+		expect(isSourceResult({ fetchedAt: 'yesterday', events: [] })).toBe(false);
+		expect(isSourceResult({ fetchedAt: '2026-11-21T12:00:00Z', events: [{ title: 'x' }] })).toBe(false);
+		expect(isSourceResult(undefined)).toBe(false);
+	});
+});

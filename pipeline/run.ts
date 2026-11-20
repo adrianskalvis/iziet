@@ -6,8 +6,10 @@
  *   npm run data -- --offline        replay the HTTP cache only
  *   npm run data -- --only=fienta    run selected adapters (others use their cache)
  *
- * A failing source falls back to its last cached result (data/cache/sources),
- * and a run that would shrink the dataset by more than 80% keeps the old file.
+ * A failing source falls back to the newer of its last cached result
+ * (data/cache/sources) and its relay file (data/relay, see relay.ts), when
+ * under 7 days old. A run that would shrink the dataset by more than 80%
+ * keeps the old file.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -29,24 +31,19 @@ import {
 import { isEnabled, loadAdapters } from './adapters/registry';
 import type { Adapter } from './adapters/types';
 import { dedupe } from './dedupe';
+import { CACHE_MAX_AGE_MS, HORIZON_DAYS } from './config';
 import { createHttp } from './lib/http';
 import { normalize } from './normalize';
+import { isSourceResult, newestFresh, RELAY_DIR, type SourceResult } from './relay';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCE_CACHE_DIR = path.join(ROOT, 'data/cache/sources');
 const HTTP_CACHE_DIR = path.join(ROOT, 'data/cache/http');
 const OUT_DIR = path.join(ROOT, 'static/data');
-const HORIZON_DAYS = 120;
-const CACHE_MAX_AGE_MS = 7 * 24 * 3600_000;
 const ADAPTER_TIMEOUT_MS = 12 * 60_000;
 const CONCURRENCY = 6;
 const PAST_GRACE_MS = 12 * 3600_000;
 const MIN_KEEP_RATIO = 0.2;
-
-interface CachedSource {
-	fetchedAt: string;
-	events: RawEvent[];
-}
 
 const args = process.argv.slice(2);
 const offline = args.includes('--offline');
@@ -59,6 +56,12 @@ async function readJson<T>(file: string): Promise<T | undefined> {
 	} catch {
 		return undefined;
 	}
+}
+
+/** A cache or relay file, or undefined when it is missing or malformed. */
+async function readSourceResult(file: string): Promise<SourceResult | undefined> {
+	const value = await readJson<unknown>(file);
+	return isSourceResult(value) ? value : undefined;
 }
 
 function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
@@ -96,7 +99,7 @@ async function runAdapter(adapter: Adapter, now: Date): Promise<{ status: Source
 			const fetchedAt = new Date().toISOString();
 			if (events.length > 0) {
 				await mkdir(SOURCE_CACHE_DIR, { recursive: true });
-				await writeFile(cacheFile, JSON.stringify({ fetchedAt, events } satisfies CachedSource));
+				await writeFile(cacheFile, JSON.stringify({ fetchedAt, events } satisfies SourceResult));
 			}
 			log(`✓ ${adapter.id}: ${events.length} events (${Math.round((Date.now() - started) / 1000)} s)`);
 			if (events.length > 0) return { status: { ...base, state: 'ok', count: events.length, fetchedAt }, events };
@@ -104,10 +107,13 @@ async function runAdapter(adapter: Adapter, now: Date): Promise<{ status: Source
 			log(`✗ ${adapter.id}: ${(error as Error).message}`);
 		}
 	}
-	const cached = await readJson<CachedSource>(cacheFile);
-	if (cached && now.getTime() - Date.parse(cached.fetchedAt) < CACHE_MAX_AGE_MS) {
-		log(`↺ ${adapter.id}: using cache from ${cached.fetchedAt} (${cached.events.length} events)`);
-		return { status: { ...base, state: 'cached', count: cached.events.length, fetchedAt: cached.fetchedAt }, events: cached.events };
+	const cached = await readSourceResult(cacheFile);
+	const relayed = await readSourceResult(path.join(RELAY_DIR, `${adapter.id}.json`));
+	const fallback = newestFresh([cached, relayed], now.getTime(), CACHE_MAX_AGE_MS);
+	if (fallback) {
+		const from = fallback === relayed ? 'relay' : 'cache';
+		log(`↺ ${adapter.id}: using ${from} from ${fallback.fetchedAt} (${fallback.events.length} events)`);
+		return { status: { ...base, state: 'cached', count: fallback.events.length, fetchedAt: fallback.fetchedAt }, events: fallback.events };
 	}
 	return { status: { ...base, state: runLive ? 'failed' : 'cached', count: 0, message: runLive ? 'No events and no recent cache' : 'Not run' }, events: [] };
 }
