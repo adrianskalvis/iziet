@@ -83,6 +83,14 @@ describe('pickNearby', () => {
 		expect(titles(profile({ ...CENTRS, cats: ['koncerti'] }))).toHaveLength(3);
 	});
 
+	test('does not recommend a sold-out event on home', () => {
+		const soldOut = event({ ...CENTRS, title: 'Izpārdots', status: 'soldout', start: '2026-11-20T19:00:00+02:00' });
+		const open = event({ ...CENTRS, cat: 'teatris', title: 'Ir biļetes' });
+		expect(pickNearby([soldOut, open], profile({ ...CENTRS }), now).picks.map((x) => x.event.title)).toEqual(['Ir biļetes']);
+		expect(pickLatvia([soldOut, open], profile({ ...CENTRS }), now).map((x) => x.event.title)).toEqual(['Ir biļetes']);
+		expect(listEvents([soldOut, open], profile({ ...CENTRS }), now, { scope: 'all' })).toHaveLength(2);
+	});
+
 	test('suggests the nearest town when nothing fits nearby', () => {
 		const sigulda = event({ lat: 57.1539, lng: 24.8544, town: 'Sigulda', placeId: 'Q465698' });
 		const result = pickNearby([sigulda], profile({ placeId: 'Q1773', cats: ['koncerti'] }), now);

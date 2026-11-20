@@ -68,6 +68,11 @@ function hasFamily(profile: Profile): boolean {
 }
 
 /** Hard filters before scoring. */
+/** Home recommends only events the user can still go to: sold-out and postponed ones stay in lists and search. */
+function isBookable(event: EventCore): boolean {
+	return event.status !== 'soldout' && event.status !== 'postponed';
+}
+
 export function passesHardFilters(event: EventCore, profile: Profile, now: Date): boolean {
 	if (!isActive(event, now)) return false;
 	if (hasFamily(profile) && event.adult) return false;
@@ -250,7 +255,7 @@ export function pickNearby(events: EventCore[], profile: Profile, now: Date, cou
 	const origin = resolveOrigin(profile);
 	const baseRadius = NEARBY_RADIUS[origin.kind];
 	const scored = events
-		.filter((event) => passesHardFilters(event, profile, now) && withinDays(event, now, NEARBY_WINDOW_DAYS))
+		.filter((event) => isBookable(event) && passesHardFilters(event, profile, now) && withinDays(event, now, NEARBY_WINDOW_DAYS))
 		.map((event) => scoreEvent(event, profile, origin, now, 'nearby'));
 
 	for (const [radiusKm, widened] of [
@@ -295,7 +300,7 @@ export function pickElsewhere(
 	const maxKm = profile.maxTravelMin ? TRAVEL_KM_PER_MIN[profile.maxTravelMin] : Infinity;
 	const hasInterests = profile.cats.length > 0 || profile.tags.length > 0;
 	const candidates = events
-		.filter((event) => passesHardFilters(event, profile, now) && withinDays(event, now, ELSEWHERE_WINDOW_DAYS))
+		.filter((event) => isBookable(event) && passesHardFilters(event, profile, now) && withinDays(event, now, ELSEWHERE_WINDOW_DAYS))
 		.map((event) => scoreEvent(event, profile, origin, now, 'elsewhere'))
 		.filter((item) => item.km !== undefined && item.km > nearbyRadiusKm && item.km <= maxKm)
 		.filter((item) => !hasInterests || item.parts.I === 1 || (hasFamily(profile) && item.parts.F === 1))
@@ -316,7 +321,7 @@ export function pickElsewhere(
 export function pickLatvia(events: EventCore[], profile: Profile, now: Date, count = 6): Scored[] {
 	const origin = resolveOrigin(profile);
 	const candidates = events
-		.filter((event) => passesHardFilters(event, profile, now) && withinDays(event, now, ELSEWHERE_WINDOW_DAYS))
+		.filter((event) => isBookable(event) && passesHardFilters(event, profile, now) && withinDays(event, now, ELSEWHERE_WINDOW_DAYS))
 		.map((event) => scoreEvent(event, profile, origin, now, 'elsewhere'))
 		.sort(compareScored);
 	const picks: Scored[] = [];
