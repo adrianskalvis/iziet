@@ -29,15 +29,15 @@ npx tsx pipeline/dev/run-adapter.ts liveriga   # try one adapter
 - Adapters live in `pipeline/adapters/<id>/` (62 in total). Each has `parse.ts`, fixture tests and a default export.
 - Output: `static/data/events.json` (list), `static/data/details/0..15.json` (event pages), `static/data/meta.json` (source status).
 - Sources that need written permission run only with their flag: `SOURCE_BILESUSERVISS=1`, `SOURCE_LATVIATRAVEL=1`, `SOURCE_TICKETSHOP=1`, `SOURCE_NICHE_BLUSA=1`.
-- Relay: Apollo Kino, Forum Cinemas, LNSO, Saulkrasti and Dzintari refuse GitHub's servers (Cloudflare bot challenge). `npm run data:relay` fetches them from this computer, uploads them to the `relay` release and starts a site run. `sh scripts/relay-install.sh` schedules it at 07.40 and 19.40; `--remove` stops it. A relay file older than 7 days is ignored.
+- Relay: Apollo Kino, Forum Cinemas, LNSO, Saulkrasti and Dzintari refuse GitHub's servers (Cloudflare bot challenge). `npm run data:relay` fetches them from this computer, uploads them to the `relay` release and starts a site run. `sh scripts/relay-install.sh` schedules it at 07.40 and 19.40; `--remove` stops it. A relay file older than 30 days is ignored.
 - Geodata: `npm run geo` rebuilds Rīga apkaimes (Rīgas dome, CC BY 4.0) and towns (Wikidata, CC0).
 
 ## Tests
 
 ```bash
 npm run check          # svelte-check, TypeScript
-npm test               # 237 unit tests (Vitest)
-npm run test:e2e       # 15 Playwright tests at 390×844, writes screenshots/
+npm test               # 262 unit tests (Vitest)
+npm run test:e2e       # 17 Playwright tests at 390×844, writes screenshots/
 ```
 
 ## Deploy
@@ -51,6 +51,15 @@ GitHub Pages, from `.github/workflows/site.yml`:
 
 Optional sync: create the table in `docs/sync.sql` on Supabase (EU region), enable Google and Apple sign-in, then build with `VITE_FEATURE_SYNC=1`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
 
+## Upkeep
+
+The site runs without attention. GitHub fetches events every 6 hours, deploys them and commits the data.
+
+- One issue with the label `source-health` opens when a source has given no fresh events for 3 days (10 days for relay sources). It lists each source and what to do, updates after every run and closes itself. No open issue means nothing to do.
+- GitHub emails the owner when a workflow run fails.
+- The relay needs this computer about once a week; with `sh scripts/relay-install.sh` it runs by itself at 07.40 and 19.40.
+- Past events drop out on every run and again in the app, so a stopped pipeline never shows old events.
+
 ## Layout
 
 | Path | What |
@@ -60,6 +69,6 @@ Optional sync: create the table in `docs/sync.sql` on Supabase (EU region), enab
 | `src/lib/shared` | Types, categories, time and geo helpers shared with the pipeline |
 | `locales/lv.json` | Every UI string |
 | `pipeline` | Data pipeline and adapters |
-| `research` | Research, questions and answers |
+| `research` | Research, questions and answers, and the persona review (`REVIEW.md`) |
 | `DECISIONS.md` | Every choice made during the build and why |
 | `MORNING_REPORT.md` | What works, what does not, open decisions |
