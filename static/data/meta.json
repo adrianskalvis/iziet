@@ -1,22 +1,22 @@
 {
- "generatedAt": "2026-11-20T22:53:40.369Z",
- "count": 2408,
+ "generatedAt": "2026-11-20T23:00:40.166Z",
+ "count": 2643,
  "sources": [
   {
    "id": "apollo-kino",
    "name": "Apollo Kino",
    "homepage": "https://www.apollokino.lv",
-   "state": "failed",
-   "count": 0,
-   "message": "No events and no recent cache"
+   "state": "cached",
+   "count": 83,
+   "fetchedAt": "2026-11-20T22:59:36.608Z"
   },
   {
    "id": "forum-cinemas",
    "name": "Forum Cinemas",
    "homepage": "https://www.forumcinemas.lv",
-   "state": "failed",
-   "count": 0,
-   "message": "No events and no recent cache"
+   "state": "cached",
+   "count": 86,
+   "fetchedAt": "2026-11-20T22:59:39.049Z"
   },
   {
    "id": "curated",
@@ -70,9 +70,9 @@
    "id": "saulkrasti",
    "name": "Saulkrastu novads",
    "homepage": "https://saulkrasti.lv/events/",
-   "state": "failed",
-   "count": 0,
-   "message": "No events and no recent cache"
+   "state": "cached",
+   "count": 26,
+   "fetchedAt": "2026-11-20T22:59:39.675Z"
   },
   {
    "id": "daugavpils",
@@ -94,9 +94,9 @@
    "id": "lnso",
    "name": "Latvijas Nacionālais simfoniskais orķestris",
    "homepage": "https://www.lnso.lv/event-list/",
-   "state": "failed",
-   "count": 0,
-   "message": "No events and no recent cache"
+   "state": "cached",
+   "count": 23,
+   "fetchedAt": "2026-11-20T23:00:14.585Z"
   },
   {
    "id": "dailes",
@@ -454,9 +454,9 @@
    "id": "mezaparks",
    "name": "Mežaparka Lielā estrāde",
    "homepage": "https://estrade.riga.lv",
-   "state": "failed",
+   "state": "cached",
    "count": 0,
-   "message": "No events and no recent cache"
+   "message": "Not run"
   },
   {
    "id": "opera",
@@ -486,9 +486,9 @@
    "id": "dzintari",
    "name": "Dzintaru koncertzāle",
    "homepage": "https://dzintarukoncertzale.lv/",
-   "state": "failed",
-   "count": 0,
-   "message": "No events and no recent cache"
+   "state": "cached",
+   "count": 32,
+   "fetchedAt": "2026-11-20T23:00:16.071Z"
   },
   {
    "id": "aluksne",
