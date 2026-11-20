@@ -38,6 +38,8 @@
 	const price = $derived(formatPrice(event.price));
 	const place = $derived([event.venue, event.town].filter(Boolean).join(', '));
 	const distance = $derived(km === undefined ? undefined : formatEventDistance(km, event.approx));
+	/** "Bez maksas" shows once: as the reason chip when there is one, else as the price row. */
+	const freeIsLabelled = $derived(!!event.price?.free && labels.some((label) => label.key === 'reason.free'));
 	const saved = $derived(savedStore.ids.includes(event.id));
 	const tint = $derived(CATEGORY_TINT[event.cat]);
 	const href = $derived(`${base}/pasakums?id=${encodeURIComponent(event.id)}`);
@@ -75,7 +77,7 @@
 				<MapPin size={18} aria-hidden="true" />
 				<span class="place">{place}{#if distance}{' · '}<span class="distance">{distance}</span>{/if}</span>
 			</li>
-			{#if price}
+			{#if price && !freeIsLabelled}
 				<li class:free={event.price?.free}><Ticket size={18} aria-hidden="true" /><span>{price}</span></li>
 			{/if}
 		</ul>

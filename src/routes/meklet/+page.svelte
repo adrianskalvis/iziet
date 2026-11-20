@@ -10,7 +10,7 @@
 	import { plural, t } from '$lib/i18n';
 	import { resolveOrigin } from '$lib/profile';
 	import { distanceKm, listEvents, NEARBY_RADIUS, passesHardFilters, scoreEvent, type Scored } from '$lib/rank';
-	import { searchIds } from '$lib/search';
+	import { namesTown, searchIds } from '$lib/search';
 	import { eventStore } from '$lib/stores/events.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { onMount } from 'svelte';
@@ -43,7 +43,8 @@
 		for (const id of ids) {
 			const event = eventStore.byId.get(id);
 			if (!event || !passesHardFilters(event, profile, now)) continue;
-			if (scope === 'nearby') {
+			// A query that names a town shows that town, however far it is.
+			if (scope === 'nearby' && !namesTown(query, event.town)) {
 				const km = distanceKm(origin, event);
 				if (km === undefined || km > radius) continue;
 			}

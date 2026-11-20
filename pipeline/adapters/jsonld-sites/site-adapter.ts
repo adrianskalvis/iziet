@@ -52,6 +52,7 @@ export async function runJsonLdSite(site: JsonLdSite, ctx: AdapterContext): Prom
 				defaultCategory: site.defaultCategory,
 				lang: site.lang,
 				keepUpper: site.keepUpper,
+				namesInTitles: site.namesInTitles,
 				skipTitle: site.skipTitle
 			})
 		)

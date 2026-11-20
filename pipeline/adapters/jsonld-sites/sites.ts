@@ -109,6 +109,8 @@ export const JSONLD_SITES: JsonLdSite[] = [
 		defaultCategory: 'koncerti',
 		lang: ['lv'],
 		keepUpper: ['LNSO'],
+		// Concert titles are lists of soloists and composers.
+		namesInTitles: true,
 		listingUrls: ['https://www.lnso.lv/event-list/'],
 		mode: 'detail',
 		detailLink: /^https:\/\/www\.lnso\.lv\/event-list\/(?!feed|page)[a-z0-9-]+\/$/,

@@ -115,12 +115,14 @@ export interface FinishOptions {
 	defaultCategory?: CategoryId;
 	lang?: string[];
 	keepUpper?: string[];
+	/** Titles made of personal names: leave capitals alone here; normalize.ts capitalises each word. */
+	namesInTitles?: boolean;
 	skipTitle?: RegExp;
 }
 
 /** Applies the field rules every adapter shares. Returns undefined for unusable events. */
 export function finishEvent(event: RawEvent, options: FinishOptions): RawEvent | undefined {
-	const title = cleanTitle(event.title, options.keepUpper);
+	const title = options.namesInTitles ? htmlToText(event.title ?? '') : cleanTitle(event.title, options.keepUpper);
 	if (!title || options.skipTitle?.test(title)) return undefined;
 	const startMs = Date.parse(event.start);
 	if (Number.isNaN(startMs)) return undefined;

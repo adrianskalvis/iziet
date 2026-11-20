@@ -69,6 +69,7 @@
 		"clear": "Notīrīt filtrus",
 		"loadMore": "Rādīt vēl",
 		"empty": "Ar šiem filtriem pasākumu nav.",
+		"tryAll": "Meklēt visā Latvijā",
 		"sort": "Kārtot",
 		"sortBest": "Piemērotākie",
 		"sortSoon": "Drīzākie",
@@ -118,7 +119,9 @@
 		"backHome": "Uz sākumu",
 		"similar": "Līdzīgi pasākumi",
 		"imageCredit": "Attēls: {source}",
-		"disclaimer": "Informāciju sniedz rīkotājs vai avots. Pirms došanās pārbaudi oriģinālajā lapā."
+		"disclaimer": "Pirms došanās pārbaudi laiku un cenu avota lapā.",
+		"priceUnknown": "Cena nav norādīta",
+		"readMore": "Lasīt vairāk avota lapā"
 	},
 	"date": {
 		"today": "Šodien",
@@ -377,7 +380,7 @@
 		"updated": "Dati atjaunoti {time}",
 		"state": {
 			"ok": "Darbojas",
-			"cached": "Rāda saglabātos datus",
+			"cached": "Rāda iepriekš ielādētus datus",
 			"failed": "Nav pieejams",
 			"disabled": "Gaida atļauju"
 		},

@@ -15,9 +15,29 @@ interface SearchDoc {
 	topics: string;
 }
 
+/**
+ * Words a search may use for the event's kind. "Izstādes un kino" is one
+ * category of two kinds, so a film is indexed as a film and an exhibition as
+ * an exhibition; otherwise "foto izstāde" would return cinema showings.
+ */
 function topics(event: EventCore): string {
-	const labels = [t(`cat.${event.cat}`), ...event.tags.map((tag) => (has(`tag.${tag}`) ? t(`tag.${tag}`) : tag))];
-	return labels.join(' ');
+	const isFilm = event.tags.includes('kino');
+	const kind = event.cat !== 'izstades' ? t(`cat.${event.cat}`) : isFilm ? 'kino filma filmas seanss' : 'izstāde izstādes';
+	return [kind, ...event.tags.map((tag) => (has(`tag.${tag}`) ? t(`tag.${tag}`) : tag))].join(' ');
+}
+
+const TOWN_WORD_MIN = 4;
+
+/**
+ * True when the query names the event's town: a query word of 4 letters or more
+ * starts the town name, ignoring diacritics and the last letter (Jūrmalā, Cēsīs).
+ * Search then shows that town even when it lies outside "Tuvumā".
+ */
+export function namesTown(query: string, town: string): boolean {
+	const foldedTown = fold(town);
+	return fold(query)
+		.split(/\s+/)
+		.some((word) => word.length >= TOWN_WORD_MIN && foldedTown.length - word.length <= 1 && foldedTown.startsWith(word.slice(0, -1)));
 }
 
 export function buildIndex(events: EventCore[]): MiniSearch<SearchDoc> {

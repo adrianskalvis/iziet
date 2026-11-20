@@ -53,6 +53,7 @@ export interface JsonLdSite {
 	imageRewrite?: (url: string) => string;
 	maxSpanDays?: number;
 	keepUpper?: string[];
+	namesInTitles?: boolean;
 	skipTitle?: RegExp;
 }
 

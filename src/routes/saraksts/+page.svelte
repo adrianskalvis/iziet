@@ -48,6 +48,12 @@
 			? listEvents(eventStore.events, profileStore.value, now, { scope, cats, tag, whens, free, family, placeId, sort })
 			: []
 	);
+	/** The same filters over the whole country, offered when the list here is empty. */
+	const allLatviaQuery = $derived.by(() => {
+		const next = new URLSearchParams(params);
+		next.set('skats', 'visi');
+		return next.toString();
+	});
 	let visible = $state(visibleByUrl.get(browser ? page.url.search : '') ?? PAGE_SIZE);
 
 	const title = $derived(
@@ -122,6 +128,9 @@
 		<p class="count" role="status">{plural('events', items.length, { noneKey: 'plural.none' })}</p>
 		{#if items.length === 0}
 			<p class="muted">{t('list.empty')}</p>
+			{#if view !== 'visi'}
+				<a class="btn btn-primary" href={`${base}/saraksts?${allLatviaQuery}`}>{t('list.tryAll')}</a>
+			{/if}
 			{#if whens.length || free || family || cats.length}
 				<a class="btn btn-secondary" href={`${base}/saraksts?skats=${view}`}>{t('list.clear')}</a>
 			{/if}

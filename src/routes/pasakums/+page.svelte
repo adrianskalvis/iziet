@@ -48,6 +48,8 @@
 		});
 	});
 	const km = $derived(event ? distanceKm(origin, event) : undefined);
+	/** One button per seller: a film with 20 showings would list the same cinema 20 times. */
+	const tickets = $derived((event?.tickets ?? []).filter((ticket, index, all) => all.findIndex((other) => other.seller === ticket.seller) === index));
 	const distance = $derived(event && km !== undefined ? formatEventDistance(km, event.approx) : undefined);
 	const saved = $derived(event ? savedStore.ids.includes(event.id) : false);
 	const price = $derived(event ? formatPriceRange(event.price) : undefined);
@@ -149,17 +151,19 @@
 						{#if distance}{' · '}<span class="distance">{t('card.distance', { distance })}</span>{/if}
 					</dd>
 				</div>
-				{#if price}
-					<div>
-						<dt><Ticket size={20} aria-hidden="true" /><span class="visually-hidden">{t('event.price')}</span></dt>
+				<div>
+					<dt><Ticket size={20} aria-hidden="true" /><span class="visually-hidden">{t('event.price')}</span></dt>
+					{#if price}
 						<dd class:free={event.price?.free}>{price}</dd>
-					</div>
-				{/if}
+					{:else}
+						<dd class="muted">{t('event.priceUnknown')}</dd>
+					{/if}
+				</div>
 			</dl>
 
-			{#if event.tickets.length}
+			{#if tickets.length}
 				<div class="tickets">
-					{#each event.tickets as ticket, index (ticket.url)}
+					{#each tickets as ticket, index (ticket.url)}
 						<a
 							class="btn {index === 0 ? 'btn-primary' : 'btn-secondary'} btn-block"
 							href={safeHttpUrl(ticket.url)}
@@ -167,7 +171,7 @@
 							rel="noopener noreferrer"
 						>
 							<Ticket size={20} aria-hidden="true" />
-							{event.tickets.length === 1 ? t('event.buyTickets') : t('event.ticketsAt', { seller: ticket.seller })}
+							{tickets.length === 1 ? t('event.buyTickets') : t('event.ticketsAt', { seller: ticket.seller })}
 						</a>
 					{/each}
 				</div>
@@ -178,7 +182,7 @@
 				<button class="action" type="button" onclick={() => downloadIcs(event)}><CalendarPlus size={22} aria-hidden="true" />{t('event.addToCalendar')}</button>
 				<button class="action" type="button" onclick={share}><Share2 size={22} aria-hidden="true" />{t('event.share')}</button>
 				<button class="action" type="button" aria-pressed={saved} onclick={toggleSave}>
-					<Heart size={22} fill={saved ? 'currentColor' : 'none'} aria-hidden="true" />{t('event.save')}
+					<Heart size={22} fill={saved ? 'currentColor' : 'none'} aria-hidden="true" />{saved ? t('event.saved') : t('event.save')}
 				</button>
 			</div>
 
@@ -186,6 +190,11 @@
 				<section class="desc">
 					<h2>{t('event.about')}</h2>
 					<p>{event.desc}</p>
+					{#if event.desc.endsWith('…') && event.url}
+						<a class="link" href={safeHttpUrl(event.url)} target="_blank" rel="noopener noreferrer">
+							{t('event.readMore')}<ExternalLink size={14} aria-hidden="true" />
+						</a>
+					{/if}
 				</section>
 			{/if}
 
@@ -202,9 +211,9 @@
 				{/if}
 				<div>
 					<dt>{event.sources.length > 1 ? t('event.sources') : t('event.source')}</dt>
-					<dd>
-						{#each event.sources as source, index (source.id + source.url)}
-							{#if index > 0}, {/if}<a class="link" href={safeHttpUrl(source.url)} target="_blank" rel="noopener noreferrer">{source.name}<ExternalLink size={14} aria-hidden="true" /></a>
+					<dd class="sources">
+						{#each event.sources as source (source.id + source.url)}
+							<a class="link" href={safeHttpUrl(source.url)} target="_blank" rel="noopener noreferrer">{source.name}<ExternalLink size={14} aria-hidden="true" /></a>
 						{/each}
 					</dd>
 				</div>
@@ -327,6 +336,23 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 6px;
+	}
+
+	/* Large text or a narrow screen: two rows of two, so no button runs off the screen. */
+	:global(html.text-large) .actions {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (max-width: 340px) {
+		.actions {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.sources {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 16px;
 	}
 
 	.action {
