@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { formatDistance, formatPrice, formatWhen } from '$lib/format';
+	import { formatEventDistance, formatPrice, formatWhen } from '$lib/format';
 	import { has, t } from '$lib/i18n';
 	import type { Label } from '$lib/rank';
 	import { savedStore } from '$lib/stores/saved.svelte';
@@ -37,6 +37,7 @@
 	const when = $derived(formatWhen(event, now));
 	const price = $derived(formatPrice(event.price));
 	const place = $derived([event.venue, event.town].filter(Boolean).join(', '));
+	const distance = $derived(km === undefined ? undefined : formatEventDistance(km, event.approx));
 	const saved = $derived(savedStore.ids.includes(event.id));
 	const tint = $derived(CATEGORY_TINT[event.cat]);
 	const href = $derived(`${base}/pasakums?id=${encodeURIComponent(event.id)}`);
@@ -72,7 +73,7 @@
 			<li><Calendar size={18} aria-hidden="true" /><span>{when}</span></li>
 			<li>
 				<MapPin size={18} aria-hidden="true" />
-				<span class="place">{place}{#if km !== undefined}{' · '}<span class="distance">{formatDistance(km)}</span>{/if}</span>
+				<span class="place">{place}{#if distance}{' · '}<span class="distance">{distance}</span>{/if}</span>
 			</li>
 			{#if price}
 				<li class:free={event.price?.free}><Ticket size={18} aria-hidden="true" /><span>{price}</span></li>

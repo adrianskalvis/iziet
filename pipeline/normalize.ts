@@ -4,7 +4,7 @@ import { fold } from '../src/lib/shared/fold';
 import type { CategoryId, EventItem, RawEvent } from '../src/lib/shared/types';
 import { rigaParts } from '../src/lib/shared/time';
 import { safeHttpsUrl, safeHttpUrl } from '../src/lib/shared/url';
-import { htmlToText, stripTracking, truncate } from './lib/html';
+import { htmlToText, scrubText, stripTracking, truncate } from './lib/html';
 import { apkaimeAt, placeAt, placeFromText } from './places';
 
 const MAX_DESC = 280;
@@ -16,15 +16,47 @@ export function eventId(source: string, sourceId: string): string {
 }
 
 /** Converts an all-caps title to sentence case; leaves mixed case alone. */
+/** Short forms that stay in capitals when an all-capitals title is rewritten. */
+const ACRONYMS = new Set(['LNSO', 'LNOB', 'LNB', 'LNMM', 'LU', 'RTU', 'RSU', 'VEF', 'KKC', 'SIA', 'VSIA', 'ASV', 'ES', 'UK', 'USA', 'DJ', 'TV', 'LTV', 'IT', 'MI', 'AI', 'VIP', 'DIY', 'MTB', 'FK', 'BK', 'HK']);
+/** Joining words that stay lowercase inside a rewritten title. */
+const SMALL_WORDS = new Set(['un', 'ar', 'par', 'no', 'uz', 'pie', 'vai', 'kā', 'ka', 'pa', 'pēc', 'līdz', 'bez', 'pret', 'starp', 'in', 'of', 'the', 'and', 'at', 'for', 'to', 'on', 'feat', 'vs']);
+const ROMAN_NUMERAL = /^[IVX]{1,4}$/;
+
+/**
+ * An all-capitals title with each word capitalised, so personal names stay
+ * readable: "EGILS SILIŅŠ UN LNSO" becomes "Egils Siliņš un LNSO".
+ */
+function capitaliseWords(title: string): string {
+	let first = true;
+	return title.replace(/\p{L}[\p{L}\p{M}]*/gu, (word) => {
+		const isFirst = first;
+		first = false;
+		if (ACRONYMS.has(word) || ROMAN_NUMERAL.test(word)) return word;
+		const lower = word.toLocaleLowerCase('lv-LV');
+		if (!isFirst && SMALL_WORDS.has(lower)) return lower;
+		return lower.charAt(0).toLocaleUpperCase('lv-LV') + lower.slice(1);
+	});
+}
+
+const QUOTE = /["'«»„“”]/;
+
 export function tidyTitle(title: string): string {
-	const clean = title.replace(/\s+/g, ' ').replace(/^["'«„“]+|["'»“”]+$/g, '').trim();
+	let clean = title.replace(/\s+/g, ' ').trim();
+	// Quotes around the whole title go; a quote that closes a name inside the title stays.
+	const inner = clean.slice(1, -1);
+	if (QUOTE.test(clean.charAt(0)) && QUOTE.test(clean.charAt(clean.length - 1)) && !QUOTE.test(inner)) clean = inner.trim();
 	const letters = clean.replace(/[^\p{L}]/gu, '');
 	const upper = letters.replace(/[^\p{Lu}]/gu, '');
-	if (letters.length > 6 && upper.length / letters.length > 0.8) {
-		const lower = clean.toLocaleLowerCase('lv-LV');
-		return lower.charAt(0).toLocaleUpperCase('lv-LV') + lower.slice(1);
-	}
-	return clean;
+	return letters.length > 6 && upper.length / letters.length > 0.8 ? capitaliseWords(clean) : clean;
+}
+
+/** Council and committee meetings, residents' meetings and staff training: listed in municipal calendars, not leisure events. */
+const NOT_LEISURE = /\b(domes sede|komitejas sede|komisijas sede|deputatu pienemsana|iedzivotaju sapulce|pedagogiem)\b/;
+
+/** Free entry stated in plain words, with no amount of money anywhere in the text. */
+function saysFreeEntry(text: string): boolean {
+	const folded = fold(text);
+	return /\b(ieeja|ieejas maksa|dalibas maksa|dalibas)[^.!?]{0,20}\b(bez maksas|briva|bezmaksas)|\bbezmaksas (ieeja|pasakums)|\bfree (entry|admission)/.test(folded) && !/\d\s*(€|eur)/.test(folded);
 }
 
 function countHits(text: string, keywords: string[]): number {
@@ -78,6 +110,7 @@ export interface NormalizeContext {
 export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | undefined {
 	const title = tidyTitle(raw.title ?? '');
 	if (!title || !raw.start || Number.isNaN(Date.parse(raw.start))) return undefined;
+	if (NOT_LEISURE.test(fold(title))) return undefined;
 	const pageUrl = safeHttpUrl(raw.url);
 	if (!pageUrl) return undefined;
 
@@ -94,11 +127,15 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 		.sort()
 		.slice(0, MAX_TIMES);
 	const tickets = [...new Map((raw.tickets ?? []).flatMap((t) => { const safe = safeHttpUrl(t.url); return safe ? [[stripTracking(safe), { seller: t.seller, url: stripTracking(safe) }] as const] : []; })).values()];
-	const desc = raw.description ? truncate(htmlToText(raw.description), MAX_DESC) : undefined;
+	const fullText = raw.description ? htmlToText(raw.description) : '';
+	// Organiser contact details are never stored (decision 19).
+	const desc = fullText ? truncate(scrubText(fullText), MAX_DESC) || undefined : undefined;
 	const price =
 		raw.free || raw.priceMin !== undefined
 			? { ...(raw.free ? { free: true } : {}), ...(raw.priceMin !== undefined ? { min: raw.priceMin } : {}), ...(raw.priceMax !== undefined && raw.priceMax !== raw.priceMin ? { max: raw.priceMax } : {}) }
-			: undefined;
+			: saysFreeEntry(fullText)
+				? { free: true }
+				: undefined;
 
 	const startParts = rigaParts(raw.start);
 	const endParts = raw.end ? rigaParts(raw.end) : undefined;
@@ -120,8 +157,9 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 	if (raw.end && Date.parse(raw.end) >= Date.parse(raw.start)) item.end = raw.end;
 	if (allDay) item.allDay = true;
 	if (times.length) item.times = times;
-	if (raw.venueName) item.venue = raw.venueName.trim();
-	if (raw.address) item.address = raw.address.trim();
+	// Sources send names with HTML entities, for example &quot;Lielais dzintars&quot;.
+	if (raw.venueName) item.venue = htmlToText(raw.venueName);
+	if (raw.address) item.address = htmlToText(raw.address);
 	if (place) item.placeId = place.q;
 	if (location) {
 		item.lat = Math.round(location.lat * 1e5) / 1e5;

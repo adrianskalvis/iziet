@@ -330,7 +330,10 @@ export function pickLatvia(events: EventCore[], profile: Profile, now: Date, cou
 	return picks;
 }
 
-export type When = 'today' | 'tomorrow' | 'weekend' | 'week' | 'any';
+export type When = 'today' | 'tonight' | 'tomorrow' | 'weekend' | 'week' | 'any';
+
+/** "Šovakar" starts at this hour, the same hour from which dates read "Šovakar". */
+const EVENING_HOUR = 17;
 
 export interface ListOptions {
 	scope: 'nearby' | 'elsewhere' | 'all';
@@ -346,19 +349,34 @@ export interface ListOptions {
 	sort?: 'best' | 'soon' | 'near' | 'soon-near';
 }
 
-function matchesWhen(event: EventCore, when: When, now: Date): boolean {
-	if (when === 'any') return true;
-	const startDiff = rigaDayDiff(now, event.start);
-	const endDiff = event.end ? rigaDayDiff(now, event.end) : startDiff;
-	const overlaps = (from: number, to: number) => startDiff <= to && endDiff >= from;
-	if (when === 'today') return overlaps(0, 0);
-	if (when === 'tomorrow') return overlaps(1, 1);
-	if (when === 'week') return overlaps(0, 6);
+/** First and last day of a period, counted in days from today. */
+function periodDays(when: Exclude<When, 'any'>, now: Date): [number, number] {
+	if (when === 'today' || when === 'tonight') return [0, 0];
+	if (when === 'tomorrow') return [1, 1];
+	if (when === 'week') return [0, 6];
 	const weekday = rigaParts(now).weekday;
 	const toFriday = (5 - weekday + 7) % 7;
 	const fromDay = weekday === 6 || weekday === 0 ? 0 : toFriday;
 	const toDay = weekday === 0 ? 0 : weekday === 6 ? 1 : toFriday + 2;
-	return overlaps(fromDay, toDay);
+	return [fromDay, toDay];
+}
+
+/** True when the event itself starts inside the period, not only runs through it. */
+function startsIn(event: EventCore, when: When, now: Date): boolean {
+	if (when === 'any') return true;
+	const [from, to] = periodDays(when, now);
+	const startDiff = rigaDayDiff(now, event.start);
+	if (startDiff < from || startDiff > to) return false;
+	return when !== 'tonight' || (!event.allDay && rigaParts(event.start).hour >= EVENING_HOUR);
+}
+
+function matchesWhen(event: EventCore, when: When, now: Date): boolean {
+	if (when === 'any') return true;
+	if (when === 'tonight') return startsIn(event, when, now);
+	const [from, to] = periodDays(when, now);
+	const startDiff = rigaDayDiff(now, event.start);
+	const endDiff = event.end ? rigaDayDiff(now, event.end) : startDiff;
+	return startDiff <= to && endDiff >= from;
 }
 
 /** Full filtered and sorted list for the "Rādīt vairāk" pages and category pages. */
@@ -373,13 +391,22 @@ export function listEvents(events: EventCore[], profile: Profile, now: Date, opt
 		.filter((event) => !options.family || !!event.family || event.cat === 'gimenem')
 		.filter((event) => !options.placeId || event.placeId === options.placeId)
 		.filter((event) => !options.whens?.length || options.whens.some((when) => matchesWhen(event, when, now)))
-		.map((event) => scoreEvent(event, profile, origin, now, options.scope === 'elsewhere' ? 'elsewhere' : 'nearby'))
+		// Lists that reach past the user's area use the wide distance curve, so 80 km still beats 300 km.
+		.map((event) => scoreEvent(event, profile, origin, now, options.scope === 'nearby' ? 'nearby' : 'elsewhere'))
 		.filter((item) => {
 			if (options.placeId || options.scope === 'all') return true;
 			if (item.km === undefined) return false;
 			return options.scope === 'nearby' ? item.km <= radius : item.km > NEARBY_RADIUS[origin.kind];
 		});
-	const sort = options.sort ?? 'best';
+	const sorted = sortItems(items, options.sort ?? 'best', now);
+	const whens = options.whens ?? [];
+	if (whens.length === 0) return sorted;
+	// With a period chosen, events that start in it lead; long-running ones follow.
+	const startsInPeriod = (item: Scored) => whens.some((when) => startsIn(item.event, when, now));
+	return [...sorted.filter(startsInPeriod), ...sorted.filter((item) => !startsInPeriod(item))];
+}
+
+function sortItems(items: Scored[], sort: NonNullable<ListOptions['sort']>, now: Date): Scored[] {
 	if (sort === 'soon') return items.sort((a, b) => Date.parse(a.event.start) - Date.parse(b.event.start) || compareScored(a, b));
 	if (sort === 'near') return items.sort((a, b) => (a.km ?? 1e9) - (b.km ?? 1e9) || compareScored(a, b));
 	if (sort === 'soon-near') {

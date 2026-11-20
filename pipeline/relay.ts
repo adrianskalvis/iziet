@@ -9,6 +9,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { RawEvent } from '../src/lib/shared/types';
+import { scrubText } from './lib/html';
 
 /** Sources refused on GitHub's runners on 2026-11-21 (HTTP 403 from Cloudflare). */
 export const RELAY_SOURCES = ['apollo-kino', 'forum-cinemas', 'lnso', 'saulkrasti', 'dzintari'];
@@ -18,21 +19,6 @@ export const RELAY_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)),
 export interface SourceResult {
 	fetchedAt: string;
 	events: RawEvent[];
-}
-
-const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
-/** Latvian numbers: 8 digits starting with 2 (mobile), 6 (landline) or 8 (toll-free), optional +371, spaces or dashes. */
-const PHONE = /(?:\+371[\s-]?)?\b[268]\d(?:[\s-]?\d){6}\b/g;
-
-/** Removes email addresses and phone numbers, then tidies the spaces and punctuation left behind. */
-export function scrubText(text: string): string {
-	return text
-		.replace(EMAIL, '')
-		.replace(PHONE, '')
-		.replace(/[ \t]{2,}/g, ' ')
-		.replace(/[ \t]+([,.;:!?])/g, '$1')
-		.replace(/([,.;:])[,.;:]+/g, '$1')
-		.trim();
 }
 
 /** Copy of the event with contact details removed from its free-text fields. Relay files are public. */

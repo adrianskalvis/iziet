@@ -2,7 +2,7 @@
 	export type FilterKey = 'kad' | 'kat' | 'bez' | 'gim' | 'kart';
 
 	/** URL value of each period filter. */
-	export const WHEN_PARAM = { sodien: 'today', rit: 'tomorrow', 'nedelas-nogale': 'weekend', sonedel: 'week' } as const;
+	export const WHEN_PARAM = { sodien: 'today', sovakar: 'tonight', rit: 'tomorrow', 'nedelas-nogale': 'weekend', sonedel: 'week' } as const;
 </script>
 
 <script lang="ts">
@@ -50,6 +50,7 @@
 
 	const WHEN_LABEL: Record<Exclude<When, 'any'>, string> = {
 		today: 'list.today',
+		tonight: 'list.tonight',
 		tomorrow: 'list.tomorrow',
 		weekend: 'list.weekend',
 		week: 'list.week'

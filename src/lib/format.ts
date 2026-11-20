@@ -128,6 +128,19 @@ export function formatDistance(km: number): string {
 	return `${Math.round(km)}${NBSP}km`;
 }
 
+/** Under this distance a town-centre coordinate says nothing: the event is simply in the user's town. */
+const APPROX_MIN_KM = 3;
+
+/**
+ * Distance for an event. When only the town centre is known (approx), a short
+ * distance is hidden and a longer one is rounded: "ap 12 km".
+ */
+export function formatEventDistance(km: number, approx = false): string | undefined {
+	if (!approx) return formatDistance(km);
+	if (km < APPROX_MIN_KM) return undefined;
+	return t('card.aboutDistance', { distance: `${Math.round(km)}${NBSP}km` });
+}
+
 /** "pirms 5 min", "pirms 3 h", "pirms 2 d." */
 export function formatAgo(iso: string, now: Date): string {
 	const minutes = Math.max(1, Math.round((now.getTime() - Date.parse(iso)) / 60_000));

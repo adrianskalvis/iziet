@@ -57,6 +57,7 @@
 		"filters": "Filtri",
 		"when": "Kad",
 		"today": "Šodien",
+		"tonight": "Šovakar",
 		"tomorrow": "Rīt",
 		"weekend": "Nedēļas nogalē",
 		"week": "Šonedēļ",
@@ -72,7 +73,7 @@
 		"sortBest": "Piemērotākie",
 		"sortSoon": "Drīzākie",
 		"sortNear": "Tuvākie",
-		"more": "Vēl",
+		"more": "Citi filtri",
 		"show": "Rādīt rezultātus ({count})",
 		"remove": "Noņemt filtru: {name}",
 		"active": "Izvēlētie filtri"
@@ -80,6 +81,7 @@
 	"card": {
 		"open": "Atvērt pasākumu: {title}",
 		"distance": "{distance} no tevis",
+		"aboutDistance": "ap {distance}",
 		"moreTimes": "un vēl {count}",
 		"save": "Saglabāt",
 		"unsave": "Noņemt no saglabātajiem",

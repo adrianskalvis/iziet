@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { formatDistance, formatPrice, formatPriceRange, formatTime, formatWhen, formatWhenLong } from './format';
+import { formatDistance, formatEventDistance, formatPrice, formatPriceRange, formatTime, formatWhen, formatWhenLong } from './format';
 import { plural, t } from './i18n';
 
 const NBSP = ' ';
@@ -65,6 +65,13 @@ describe('formatDistance', () => {
 		expect(n(formatDistance(0.99))).toBe('1 km');
 		expect(n(formatDistance(2.46))).toBe('2,5 km');
 		expect(n(formatDistance(23.4))).toBe('23 km');
+	});
+
+	test('town-centre coordinates give no short distance and a rounded long one', () => {
+		expect(formatEventDistance(0.05, true)).toBeUndefined();
+		expect(formatEventDistance(2.9, true)).toBeUndefined();
+		expect(n(formatEventDistance(12.4, true)!)).toBe('ap 12 km');
+		expect(n(formatEventDistance(0.83, false)!)).toBe('850 m');
 	});
 });
 

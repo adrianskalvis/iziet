@@ -8,7 +8,7 @@
 	import SkeletonCard from '$lib/components/SkeletonCard.svelte';
 	import { downloadIcs } from '$lib/calendar';
 	import { directionsUrl } from '$lib/directions';
-	import { formatDistance, formatPriceRange, formatShowTime, formatWhenLong } from '$lib/format';
+	import { formatEventDistance, formatPriceRange, formatShowTime, formatWhenLong } from '$lib/format';
 	import { has, t } from '$lib/i18n';
 	import { resolveOrigin } from '$lib/profile';
 	import { distanceKm, listEvents, reasonLabels } from '$lib/rank';
@@ -48,6 +48,7 @@
 		});
 	});
 	const km = $derived(event ? distanceKm(origin, event) : undefined);
+	const distance = $derived(event && km !== undefined ? formatEventDistance(km, event.approx) : undefined);
 	const saved = $derived(event ? savedStore.ids.includes(event.id) : false);
 	const price = $derived(event ? formatPriceRange(event.price) : undefined);
 	const tint = $derived(event ? CATEGORY_TINT[event.cat] : 'nisas');
@@ -145,7 +146,7 @@
 					<dd>
 						{#if event.venue}<strong>{event.venue}</strong><br />{/if}
 						{event.address && event.address.includes(event.town) ? event.address : [event.address, event.town].filter(Boolean).join(', ')}
-						{#if km !== undefined}{' · '}<span class="distance">{t('card.distance', { distance: formatDistance(km) })}</span>{/if}
+						{#if distance}{' · '}<span class="distance">{t('card.distance', { distance })}</span>{/if}
 					</dd>
 				</div>
 				{#if price}

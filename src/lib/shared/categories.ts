@@ -43,7 +43,7 @@ export const CATEGORY_RULES: CategoryRule[] = [
 	{
 		id: 'sports',
 		tint: 'sports',
-		keywords: ['sport', 'skrejien', 'maraton', 'marathon', 'run ', 'futbol', 'football', 'hokej', 'hockey', 'basketbol', 'basketball', 'volejbol', 'sacensib', 'cempionat', 'velo', 'mtb', 'orient', 'peldesan', 'slepos', 'fitness', 'trail', 'triatlon', 'regat', 'cikss', 'turnirs']
+		keywords: ['sport', ' fk ', ' fbk ', 'virslig', 'florbol', 'handbol', 'regbij', 'skrejien', 'maraton', 'marathon', 'run ', 'futbol', 'football', 'hokej', 'hockey', 'basketbol', 'basketball', 'volejbol', 'sacensib', 'cempionat', 'velo', 'mtb', 'orient', 'peldesan', 'slepos', 'fitness', 'trail', 'triatlon', 'regat', 'cikss', 'turnirs']
 	},
 	{
 		id: 'ediens',

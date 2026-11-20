@@ -137,6 +137,30 @@ describe('listEvents with several choices', () => {
 	});
 });
 
+describe('listEvents order', () => {
+	test('with a period chosen, events that start in it come before long-running ones', () => {
+		const course = event({ ...CENTRS, title: 'Kursi', start: '2026-11-10T10:00:00+02:00', end: '2026-12-17T12:00:00+02:00', price: { free: true } });
+		const saturday = event({ ...CENTRS, title: 'Sestdienas tirgus', cat: 'tirdzini', start: '2026-11-21T10:00:00+02:00' });
+		const titles = listEvents([course, saturday], profile({ ...CENTRS }), now, { scope: 'all', whens: ['weekend'] }).map((x) => x.event.title);
+		expect(titles).toEqual(['Sestdienas tirgus', 'Kursi']);
+	});
+
+	test('tonight keeps events that start today from 17.00', () => {
+		const morning = event({ ...CENTRS, title: 'Rīta seanss', start: '2026-11-20T10:00:00+02:00' });
+		const evening = event({ ...CENTRS, title: 'Vakara koncerts', start: '2026-11-20T19:00:00+02:00' });
+		const tomorrow = event({ ...CENTRS, title: 'Rīt', start: '2026-11-21T19:00:00+02:00' });
+		const titles = listEvents([morning, evening, tomorrow], profile({ ...CENTRS }), now, { scope: 'all', whens: ['tonight'] }).map((x) => x.event.title);
+		expect(titles).toEqual(['Vakara koncerts']);
+	});
+
+	test('the whole-country list puts an event 80 km away before one 300 km away', () => {
+		const near = event({ lat: 57.3119, lng: 25.2746, town: 'Cēsis', title: 'Cēsīs' });
+		const far = event({ lat: 56.5047, lng: 21.0108, town: 'Liepāja', title: 'Liepājā', start: '2026-11-22T12:00:00+02:00' });
+		const titles = listEvents([far, near], profile({ ...CENTRS }), now, { scope: 'all' }).map((x) => x.event.title);
+		expect(titles).toEqual(['Cēsīs', 'Liepājā']);
+	});
+});
+
 describe('pickLatvia', () => {
 	test('shows the whole country with one event per town and per category', () => {
 		const riga = event({ ...CENTRS, title: 'Rīgas koncerts' });

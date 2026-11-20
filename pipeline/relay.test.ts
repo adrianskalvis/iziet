@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import type { RawEvent } from '../src/lib/shared/types';
-import { isSourceResult, newestFresh, scrubContacts, scrubText } from './relay';
+import { scrubText } from './lib/html';
+import { isSourceResult, newestFresh, scrubContacts } from './relay';
 
 const DAY_MS = 24 * 3600_000;
 
