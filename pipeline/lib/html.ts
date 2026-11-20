@@ -9,8 +9,14 @@ export function cleanText(value: string | undefined | null): string {
 }
 
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
-/** Latvian numbers: 8 digits starting with 2 (mobile), 6 (landline) or 8 (toll-free), optional +371, spaces or dashes. */
-const PHONE = /(?:\+371[\s-]?)?\b[268]\d(?:[\s-]?\d){6}\b/g;
+/**
+ * Latvian numbers: 8 digits starting with 2 (mobile), 6 (landline) or 8 (toll-free),
+ * optional +371, written 29123456, 29 123 456, 29-123-456, 2912 3456, 29 12 34 56 or
+ * 29 123456. A dash never joins two groups of four and a digit or dash never sits
+ * right before or after, so "2026-2027" and "2026-11-21" stay. An amount of money stays too.
+ */
+const PHONE =
+	/(?:\+371[\s-]?)?(?<![\d-])(?:[268]\d{7}|[268]\d[\s-]\d{3}[\s-]\d{3}|[268]\d{3}\s\d{4}|[268]\d\s\d{2}\s\d{2}\s\d{2}|[268]\d\s\d{6})(?![\d-]|\s?(?:€|eur))/gi;
 
 /** Removes email addresses and phone numbers, then tidies the spaces and punctuation left behind. */
 export function scrubText(text: string): string {

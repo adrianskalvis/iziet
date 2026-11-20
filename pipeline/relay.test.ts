@@ -15,6 +15,13 @@ describe('scrubText', () => {
 		expect(scrubText('Zvani 67 123 456, rakstī info@kino.lv')).toBe('Zvani, rakstī');
 	});
 
+	test('keeps seasons, dates and amounts of money', () => {
+		expect(scrubText('Sezona 2026-2027')).toBe('Sezona 2026-2027');
+		expect(scrubText('Sākums 2026-11-21 plkst. 19.00')).toBe('Sākums 2026-11-21 plkst. 19.00');
+		expect(scrubText('Balvu fonds 20 000 000 €')).toBe('Balvu fonds 20 000 000 €');
+		expect(scrubText('Zvani: 29-123-456 vai 2912 3456.')).toBe('Zvani: vai.');
+	});
+
 	test('keeps prices, years and times', () => {
 		expect(scrubText('Biļetes 12 € līdz 2026. gada 1. decembrim, sākums 19.00')).toBe(
 			'Biļetes 12 € līdz 2026. gada 1. decembrim, sākums 19.00'

@@ -33,7 +33,7 @@
 	const tag = $derived(params.get('tag') ?? undefined);
 	const whens = $derived(
 		chosen(params, 'kad')
-			.filter((value): value is keyof typeof WHEN_PARAM => value in WHEN_PARAM)
+			.filter((value): value is keyof typeof WHEN_PARAM => Object.hasOwn(WHEN_PARAM, value))
 			.map((value) => WHEN_PARAM[value])
 	);
 	const free = $derived(params.get('bez') === '1');

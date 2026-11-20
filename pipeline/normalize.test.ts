@@ -23,6 +23,7 @@ describe('tidyTitle', () => {
 		expect(tidyTitle('EGILS SILIŅŠ, GEORGIJS OSOKINS UN LNSO')).toBe('Egils Siliņš, Georgijs Osokins un LNSO');
 		expect(tidyTitle('LNSO GADUMIJAS KONCERTS')).toBe('LNSO Gadumijas Koncerts');
 		expect(tidyTitle('ZIEMASSVĒTKI AR DJ ROGU II')).toBe('Ziemassvētki ar DJ Rogu II');
+		expect(tidyTitle('ES UN TU: DZEJAS VAKARS')).toBe('Es un Tu: Dzejas Vakars');
 	});
 });
 
@@ -42,6 +43,9 @@ describe('normalize', () => {
 		expect(normalize(raw({ description: 'Ieeja bez maksas.' }), ctx)?.price).toEqual({ free: true });
 		expect(normalize(raw({ description: 'Ieeja bez maksas.', priceMin: 5 }), ctx)?.price).toEqual({ min: 5 });
 		expect(normalize(raw({ description: 'Bērniem bez maksas, pieaugušajiem 5 €.' }), ctx)?.price).toBeUndefined();
+		expect(normalize(raw({ description: 'Ieeja bērniem bez maksas, pieaugušajiem 10 eiro.' }), ctx)?.price).toBeUndefined();
+		expect(normalize(raw({ description: 'Ieeja bez maksas. Zupa EUR 3.' }), ctx)?.price).toBeUndefined();
+		expect(normalize(raw({ description: 'Ieeja pensionāriem bez maksas.' }), ctx)?.price).toBeUndefined();
 	});
 
 	test('drops council meetings and staff training, which are not leisure events', () => {

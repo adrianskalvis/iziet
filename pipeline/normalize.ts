@@ -15,12 +15,12 @@ export function eventId(source: string, sourceId: string): string {
 	return createHash('sha1').update(`${source}:${sourceId}`).digest('base64url').slice(0, 11);
 }
 
-/** Converts an all-caps title to sentence case; leaves mixed case alone. */
-/** Short forms that stay in capitals when an all-capitals title is rewritten. */
-const ACRONYMS = new Set(['LNSO', 'LNOB', 'LNB', 'LNMM', 'LU', 'RTU', 'RSU', 'VEF', 'KKC', 'SIA', 'VSIA', 'ASV', 'ES', 'UK', 'USA', 'DJ', 'TV', 'LTV', 'IT', 'MI', 'AI', 'VIP', 'DIY', 'MTB', 'FK', 'BK', 'HK']);
+/** Short forms that stay in capitals when an all-capitals title is rewritten. None is also a Latvian word ("es", "it"). */
+const ACRONYMS = new Set(['LNSO', 'LNOB', 'LNB', 'LNMM', 'RTU', 'RSU', 'VEF', 'KKC', 'SIA', 'VSIA', 'ASV', 'USA', 'DJ', 'TV', 'LTV', 'VIP', 'DIY', 'MTB', 'FK', 'BK', 'HK']);
 /** Joining words that stay lowercase inside a rewritten title. */
 const SMALL_WORDS = new Set(['un', 'ar', 'par', 'no', 'uz', 'pie', 'vai', 'kā', 'ka', 'pa', 'pēc', 'līdz', 'bez', 'pret', 'starp', 'in', 'of', 'the', 'and', 'at', 'for', 'to', 'on', 'feat', 'vs']);
-const ROMAN_NUMERAL = /^[IVX]{1,4}$/;
+/** II to XVIII and the like; a lone I, V or X is treated as a letter. */
+const ROMAN_NUMERAL = /^[IVX]{2,5}$/;
 
 /**
  * An all-capitals title with each word capitalised, so personal names stay
@@ -40,6 +40,7 @@ function capitaliseWords(title: string): string {
 
 const QUOTE = /["'«»„“”]/;
 
+/** Trims a source title: outer quotes go, an all-capitals title gets capitalised words, mixed case stays. */
 export function tidyTitle(title: string): string {
 	let clean = title.replace(/\s+/g, ' ').trim();
 	// Quotes around the whole title go; a quote that closes a name inside the title stays.
@@ -53,10 +54,17 @@ export function tidyTitle(title: string): string {
 /** Council and committee meetings, residents' meetings and staff training: listed in municipal calendars, not leisure events. */
 const NOT_LEISURE = /\b(domes sede|komitejas sede|komisijas sede|deputatu pienemsana|iedzivotaju sapulce|pedagogiem)\b/;
 
-/** Free entry stated in plain words, with no amount of money anywhere in the text. */
+const FREE_ENTRY = /\b(ieeja|ieejas maksa|dalibas maksa|dalibas)[^.!?]{0,20}\b(bez maksas|briva|bezmaksas)|\bbezmaksas (ieeja|pasakums)|\bfree (entry|admission)/;
+/** Any mention of money: the event has a price for someone. */
+const MONEY = /€|\beur|\beiro/;
+/** Free for one group only: "ieeja bērniem bez maksas". */
+const ONE_GROUP = /bern|skolen|student|pension|senior|lidz \d/;
+
+/** Free entry stated in plain words for everyone, with no mention of money anywhere in the text. */
 function saysFreeEntry(text: string): boolean {
 	const folded = fold(text);
-	return /\b(ieeja|ieejas maksa|dalibas maksa|dalibas)[^.!?]{0,20}\b(bez maksas|briva|bezmaksas)|\bbezmaksas (ieeja|pasakums)|\bfree (entry|admission)/.test(folded) && !/\d\s*(€|eur)/.test(folded);
+	const phrase = folded.match(FREE_ENTRY)?.[0];
+	return phrase !== undefined && !ONE_GROUP.test(phrase) && !MONEY.test(folded);
 }
 
 function countHits(text: string, keywords: string[]): number {
