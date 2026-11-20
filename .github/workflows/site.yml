@@ -33,6 +33,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Raw source results stay out of the public repo; the Actions cache keeps
+      # them between runs so a failing source can fall back to its last result.
+      - uses: actions/cache@v4
+        with:
+          path: data/cache/sources
+          key: sources-${{ github.run_id }}
+          restore-keys: sources-
       - name: Fetch and normalise events
         run: npm run data
         env:
@@ -46,9 +53,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: event-data
-          path: |
-            static/data
-            data/cache/sources
+          path: static/data
           retention-days: 3
 
   build:
@@ -72,7 +77,7 @@ jobs:
           path: artifact
       - name: Use fresh data
         if: needs.data.result == 'success'
-        run: rsync -a --include='*/' --include='*.json' --exclude='*' artifact/static/data/ static/data/
+        run: rsync -a --include='*/' --include='*.json' --exclude='*' artifact/ static/data/
       - id: pages
         uses: actions/configure-pages@v5
       - name: Build
@@ -112,13 +117,12 @@ jobs:
           path: artifact
       - name: Copy only JSON data into the tree
         run: |
-          rsync -a --delete --include='*/' --include='*.json' --exclude='*' artifact/static/data/ static/data/
-          rsync -a --delete --include='*.json' --exclude='*' artifact/data/cache/sources/ data/cache/sources/
+          rsync -a --delete --include='*/' --include='*.json' --exclude='*' artifact/ static/data/
       - name: Commit data
         run: |
           git config user.name "iziet-data-bot"
           git config user.email "iziet-data-bot@users.noreply.github.com"
-          git add static/data data/cache/sources
+          git add static/data
           if git diff --cached --quiet; then
             echo "No data changes"
           else

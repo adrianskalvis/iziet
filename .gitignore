@@ -9,6 +9,8 @@ test-results/
 playwright-report/
 coverage/
 data/cache/http/
+data/cache/sources/
+design-refs/liveriga-current-cards.webp
 *.log
 data/last-run.log
 screenshots/*.png.tmp

@@ -66,3 +66,4 @@ Choices made during the overnight build of 2026-11-20, with the reason for each.
 | 38 | "Pārlūkot pēc kategorijas" shows the user's interests first, 6 chips in all, plus "Visas kategorijas" | Owner request. |
 | 39 | The scope toggle opens search with the best events for that scope before any typing; "Nekas netika atrasts" is gone | Owner reported "Visa Latvija" did nothing. |
 | 40 | "Kā nokļūt" uses venue and address text when only the town centre is known; town matching skips "… novads" and street names | Owner found Neonija (Dzērbene) routed to Cēsis centre. A test checks every event. |
+| 41 | Public repo `adrianskalvis/iziet` holds normalised `static/data` only; raw source responses stay in the GitHub Actions cache; the Live Riga screenshot stays local | Raw Fienta responses contain an organiser email. A third-party screenshot does not belong in a public repo. |
