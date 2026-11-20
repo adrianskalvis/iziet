@@ -26,7 +26,7 @@
 	<a class="brand" href={`${base}/`} onclick={() => (ui.menuOpen = false)}>{t('app.brand')}</a>
 
 	<div class="flag-slot">
-		<Flag width={38} />
+		<Flag width={46} />
 	</div>
 </header>
 

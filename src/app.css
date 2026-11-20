@@ -5,6 +5,7 @@
 	--color-surface: #fbf4ea;
 	--color-surface-raised: #fffaf3;
 	--color-text: #101824;
+	--color-mascot-line: #101824;
 	--color-text-muted: #5a5046;
 	--color-border: #7e6e5e;
 	--color-border-subtle: #d6c0a6;
@@ -77,6 +78,7 @@
 		--color-surface: #27231e;
 		--color-surface-raised: #2f2a24;
 		--color-text: #f2e6d6;
+		--color-mascot-line: #8d8577;
 		--color-text-muted: #bfb2a2;
 		--color-border: #857868;
 		--color-border-subtle: #3a342d;
