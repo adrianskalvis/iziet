@@ -58,3 +58,4 @@ Optional sync: create the table in `docs/sync.sql` on Supabase (EU region), enab
 | `pipeline` | Data pipeline and adapters |
 | `research` | Research, questions and answers |
 | `DECISIONS.md` | Every choice made during the build and why |
+| `MORNING_REPORT.md` | What works, what does not, open decisions |
