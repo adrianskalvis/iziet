@@ -177,7 +177,10 @@ export function dedupe(events: EventItem[]): { events: EventItem[]; merged: numb
 		for (const other of sorted.slice(1)) merged = mergeInto(merged, other);
 		const distinctSources = new Set(merged.sources.map((s) => s.id)).size;
 		const boost = Math.min(1, (distinctSources - 1) / 3);
-		result.push(boost > 0 ? { ...merged, boost: Math.round(boost * 100) / 100 } : merged);
+		// The smallest member id is the cluster id; the others stay as aliases so saved links keep working.
+		const ids = [...new Set(members.map((m) => m.id))].sort();
+		const withIds = { ...merged, id: ids[0], ...(ids.length > 1 ? { alias: ids.slice(1) } : {}) };
+		result.push(boost > 0 ? { ...withIds, boost: Math.round(boost * 100) / 100 } : withIds);
 	}
 	return { events: result, merged: events.length - result.length };
 }

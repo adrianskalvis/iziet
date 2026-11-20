@@ -87,6 +87,8 @@ export interface EventItem {
 	status?: EventStatus;
 	/** Editorial or popularity boost, 0 to 1. */
 	boost?: number;
+	/** Ids of duplicate records merged into this event; saved links to them still resolve. */
+	alias?: string[];
 }
 
 /** Fields that load only on the event page (static/data/details/<shard>.json). */

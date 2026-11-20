@@ -38,7 +38,7 @@ export const CATEGORY_RULES: CategoryRule[] = [
 	{
 		id: 'gimenem',
 		tint: 'gimenem',
-		keywords: ['berniem', 'bernu', 'gimenem', 'gimenes', 'gimenu', 'family', 'kids', 'children', 'lellu', 'rotal', 'pasak', 'multfilm', 'mazuli', 'zoo', 'zoodarz']
+		keywords: ['berniem', 'bernu', 'gimenem', 'gimenes', 'gimenu', 'family', 'kids', 'children', 'lellu', 'rotal', 'pasaka ', 'pasakas', 'pasaku ', 'multfilm', 'mazuli', 'zoo', 'zoodarz']
 	},
 	{
 		id: 'sports',

@@ -47,6 +47,12 @@ describe('dates', () => {
 		expect(parseLvDateTime('Sestdiena, 5. jūn.', now)).toEqual({ iso: '2027-06-05T00:00:00+03:00', allDay: true });
 	});
 
+	test('reads the first day of a range and rejects impossible days', () => {
+		expect(parseLvDateTime('14.–16. decembris 19.00', now)?.iso).toBe('2026-12-14T19:00:00+02:00');
+		expect(parseLvDateTime('12.–14.12.2026', now)?.iso).toBe('2026-12-12T00:00:00+02:00');
+		expect(parseLvDateTime('31.02.2027', now)).toBeUndefined();
+	});
+
 	test('rolls a past day and month into next year', () => {
 		expect(parseLvDateTime('10. marts', now)?.iso.startsWith('2027-03-10')).toBe(true);
 	});
@@ -64,6 +70,12 @@ describe('price', () => {
 		expect(parsePrice('no 12,00 EUR')).toEqual({ min: 12 });
 		expect(parsePrice('€12')).toEqual({ min: 12 });
 		expect(parsePrice('Ieeja par ziedojumiem')).toBeUndefined();
+	});
+
+	test('a price beats a free note for children, and fees are ignored', () => {
+		expect(parsePrice('12 € (bērniem līdz 7 g. bez maksas)')).toEqual({ min: 12 });
+		expect(parsePrice('no 15 € + 1,50 € servisa maksa')).toEqual({ min: 15 });
+		expect(parsePrice('Biļetes 5-10 eur, bērniem 0 €')).toEqual({ min: 5, max: 10 });
 	});
 
 	test('merges prices from several sources', () => {

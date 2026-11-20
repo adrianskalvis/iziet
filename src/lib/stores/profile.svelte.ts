@@ -28,9 +28,14 @@ function write(profile: Profile): void {
 class ProfileStore {
 	value = $state.raw<Profile>(read());
 
-	update(patch: Partial<Profile> | ((current: Profile) => Partial<Profile>)): void {
+	/**
+	 * Replaces the profile. Only preference edits move updatedAt (sync compares it);
+	 * counters and bookkeeping pass { prefs: false }.
+	 */
+	update(patch: Partial<Profile> | ((current: Profile) => Partial<Profile>), options: { prefs?: boolean } = {}): void {
 		const changes = typeof patch === 'function' ? patch(this.value) : patch;
-		const next: Profile = { ...this.value, ...changes, updatedAt: new Date().toISOString() };
+		const updatedAt = options.prefs === false ? (changes.updatedAt ?? this.value.updatedAt) : new Date().toISOString();
+		const next: Profile = { ...this.value, ...changes, updatedAt };
 		this.value = next;
 		write(next);
 		if (browser) {
@@ -43,9 +48,9 @@ class ProfileStore {
 	touchSession(now = new Date()): void {
 		const last = this.value.lastSessionAt ? Date.parse(this.value.lastSessionAt) : 0;
 		if (now.getTime() - last > 30 * 60_000) {
-			this.update((p) => ({ sessions: p.sessions + 1, lastSessionAt: now.toISOString() }));
+			this.update((p) => ({ sessions: p.sessions + 1, lastSessionAt: now.toISOString() }), { prefs: false });
 		} else {
-			this.update({ lastSessionAt: now.toISOString() });
+			this.update({ lastSessionAt: now.toISOString() }, { prefs: false });
 		}
 	}
 

@@ -1,5 +1,6 @@
 import { TAGS } from '$shared/categories';
 import { haversineKm } from '$shared/geo';
+import { eventEndMs } from '$shared/event-time';
 import { rigaDayDiff, rigaParts } from '$shared/time';
 import type { CategoryId, EventCore, PlaceKind } from '$shared/types';
 import { getPlace, KIDS_RANGES, resolveOrigin, type Origin, type Profile } from './profile';
@@ -27,7 +28,6 @@ const MMR_LAMBDA = 0.7;
 const MMR_POOL = 20;
 const LONG_RUNNING_DAYS = 7;
 const LESS_FACTOR = 0.6;
-const DEFAULT_DURATION_MS = 3 * 3600_000;
 const TRAVEL_KM_PER_MIN: Record<number, number> = { 30: 35, 60: 80, 120: 160 };
 
 const TAG_CATEGORY = new Map(TAGS.map((tag) => [tag.id, tag.cat]));
@@ -60,8 +60,7 @@ export interface Scored {
 /** True while the event has not ended and is not cancelled. */
 export function isActive(event: EventCore, now: Date): boolean {
 	if (event.status === 'cancelled') return false;
-	const endMs = event.end ? Date.parse(event.end) : Date.parse(event.start) + DEFAULT_DURATION_MS;
-	return endMs >= now.getTime();
+	return eventEndMs(event) >= now.getTime();
 }
 
 function hasFamily(profile: Profile): boolean {
@@ -364,13 +363,21 @@ export function reasonLabels(item: Scored, profile: Profile, now: Date): Label[]
 	}
 	if (hasFamily(profile) && item.parts.F === 1) personal.push({ label: { key: 'reason.family' }, weight: WEIGHTS.F });
 	personal.sort((a, b) => b.weight - a.weight);
-	const labels = personal.slice(0, 2).map((entry) => entry.label);
-	if (labels.length > 0) return labels;
 
-	const p = rigaParts(item.event.start);
+	// Label 2 is the first time or price fact (research 4.4), else the next personal reason.
+	const fact = factLabel(item, now);
+	const labels: Label[] = [];
+	if (personal[0]) labels.push(personal[0].label);
+	if (fact) labels.push(fact);
+	else if (personal[1]) labels.push(personal[1].label);
+	return labels;
+}
+
+function factLabel(item: Scored, now: Date): Label | undefined {
 	const diff = rigaDayDiff(now, item.event.start);
-	if (diff === 0) return [{ key: p.hour >= 17 ? 'reason.tonight' : 'reason.today' }];
-	if (diff === 1) return [{ key: 'reason.tomorrow' }];
-	if (diff < 7 && isWeekend(item.event.start)) return [{ key: 'reason.weekend' }];
-	return [];
+	if (diff === 0) return { key: rigaParts(item.event.start).hour >= 17 ? 'reason.tonight' : 'reason.today' };
+	if (diff === 1) return { key: 'reason.tomorrow' };
+	if (item.event.price?.free) return { key: 'reason.free' };
+	if (diff > 1 && diff < 7 && isWeekend(item.event.start)) return { key: 'reason.weekend' };
+	return undefined;
 }

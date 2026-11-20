@@ -48,7 +48,7 @@ describe('scoreEvent', () => {
 		expect(scored.parts.D).toBe(1);
 		expect(scored.parts.I).toBe(1);
 		expect(scored.score).toBeGreaterThan(0.85);
-		expect(reasonLabels(scored, familyProfile, now).map((l) => l.key)).toEqual(['reason.nearYou', 'reason.likes.koncerti']);
+		expect(reasonLabels(scored, familyProfile, now).map((l) => l.key)).toEqual(['reason.nearYou', 'reason.free']);
 	});
 
 	test('neutral interest is 0.5 when the user picked nothing', () => {

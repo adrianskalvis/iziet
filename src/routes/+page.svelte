@@ -11,6 +11,7 @@
 	import { formatDistance } from '$lib/format';
 	import { t } from '$lib/i18n';
 	import { canLocate } from '$lib/locate';
+	import { RIGA } from '$lib/profile';
 	import { pickElsewhere, pickNearby, reasonLabels } from '$lib/rank';
 	import { eventStore } from '$lib/stores/events.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
@@ -33,7 +34,7 @@
 	const elsewhere = $derived(
 		ready && nearby ? pickElsewhere(eventStore.events, profile, now, nearby.radiusKm, 3) : []
 	);
-	const placeName = $derived(nearby?.origin.apkaime?.name ?? nearby?.origin.place.name ?? 'Rīga');
+	const placeName = $derived(nearby?.origin.apkaime?.name ?? nearby?.origin.place.name ?? RIGA.name);
 
 	onMount(() => {
 		mounted = true;
@@ -73,11 +74,10 @@
 		goto(`${base}/meklet?q=${encodeURIComponent(value)}&kur=${kur}`, { keepFocus: true });
 	}
 
-	function trackOpen(event: EventCore, elsewhereBlock = false) {
-		profileStore.update((p) => ({
-			opens: { ...p.opens, [event.cat]: (p.opens[event.cat] ?? 0) + 1 },
-			elsewhereOpens: p.elsewhereOpens + (elsewhereBlock ? 1 : 0)
-		}));
+	/** The event page counts category opens; home only counts opens from "Citur Latvijā". */
+	function trackOpen(_event: EventCore, elsewhereBlock = false) {
+		if (!elsewhereBlock) return;
+		profileStore.update((p) => ({ elsewhereOpens: p.elsewhereOpens + 1 }), { prefs: false });
 	}
 </script>
 
@@ -207,10 +207,13 @@
 	}
 
 	.place {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--tap-min);
 		font-size: var(--text-small);
 		color: var(--color-text-muted);
 		text-decoration: none;
-		padding: 4px 0;
+
 	}
 
 	.cards {

@@ -23,7 +23,7 @@ Choices made during the overnight build of 2026-11-20, with the reason for each.
 | 10 | Score S = 0.30·D + 0.25·I + 0.15·F + 0.15·T + 0.10·P + 0.05·B, as one pure function in `src/lib/rank.ts` | Section 4.1. |
 | 11 | "Tuvumā" candidates: within 10 km (Rīga), 15 km (state cities), 25 km (towns), 35 km (villages); widen ×2 when nothing scores ≥ 0.5; else show the nearest town with a fitting event | Resolves the radius conflict between sections 2 and 4: the radius picks, the decay ranks. |
 | 12 | Interest is 0.5 for everyone when the user picked no interests | With I = 0 a skipped profile would rarely reach the 0.5 threshold. |
-| 13 | Reason labels: personal reasons first (Tuvu tev, Tev patīk …, Piemērots ģimenēm); a time label (Šovakar, Rīt, Nedēļas nogalē) only when no personal reason applies | The card already shows date and price, so repeating them as a reason adds nothing. |
+| 13 | Reason labels: at most 2. Label 1 is the strongest personal reason (Tuvu tev, Tev patīk …, Piemērots ģimenēm); label 2 is the first fact (Šovakar, Šodien, Rīt, Bez maksas, Nedēļas nogalē), else the next personal reason | Section 4.4. Code review pointed out the first build skipped the fact label. |
 | 14 | In Rīga, the user's own apkaime fills first, then bordering apkaimes, then the city | Brief. Bordering is computed from the 58 official polygons. |
 
 ## Data
@@ -36,7 +36,7 @@ Choices made during the overnight build of 2026-11-20, with the reason for each.
 | 18 | Images are hot-linked from the source over https, never re-hosted; CDNs with a width parameter get 240 px (thumbnails) or 720 px (hero) requests | Answer 11. One shape for all sources: 3:2 hero, 1:1 thumbnail; portrait posters show whole on a blurred copy of themselves; missing images show the category illustration. |
 | 19 | Organiser emails and phone numbers are never stored | Fienta and blusa.eu responses contain them. |
 | 20 | Coordinates: exact when the source gives them, copied between events at the same venue, else the town centre (`approx: true`, never used for apkaime or dedup) | Most municipal sources give only a town. |
-| 21 | Dedup on the same day, venue, start within 30 minutes and title similarity (trigram ≥ 0.5 or every distinctive word matching); different cinemas never merge | Section 4.8. The venue name must match at trigram ≥ 0.7. |
+| 21 | Dedup on the same day, venue, start within 30 minutes and title similarity (trigram ≥ 0.5 or every distinctive word matching); different cinemas never merge; the merged event takes the smallest member id and keeps the others as aliases | Section 4.8. The venue name must match at trigram ≥ 0.7. Aliases keep saved links working when a source drops out. |
 | 22 | Data split: `events.json` (list fields, 125 KB gzip for 1,679 events) plus 16 detail shards loaded on the event page | Keeps the home page inside the performance budget. |
 | 23 | Failed source → its last cached result up to 7 days old; a run that would shrink the data below 20% keeps the old file | Brief: use the last cached data. |
 | 24 | No Nominatim geocoding in the pipeline | nominatim.openstreetmap.org robots.txt disallows bots. The curated agent looked up 5 market coordinates by hand. |

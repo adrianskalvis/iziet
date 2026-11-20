@@ -92,7 +92,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 4px;
-		min-height: 40px;
+		min-height: var(--tap-min);
 		font-weight: 800;
 	}
 

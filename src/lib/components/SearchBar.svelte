@@ -71,11 +71,11 @@
 		{/if}
 	</label>
 
-	<div class="scope" role="radiogroup" aria-label={t('search.scope')}>
-		<button type="button" role="radio" aria-checked={scope === 'nearby'} class="chip" onclick={() => setScope('nearby')}>
+	<div class="scope" role="group" aria-label={t('search.scope')}>
+		<button type="button" aria-pressed={scope === 'nearby'} class="chip" onclick={() => setScope('nearby')}>
 			{t('search.nearby')}
 		</button>
-		<button type="button" role="radio" aria-checked={scope === 'all'} class="chip" onclick={() => setScope('all')}>
+		<button type="button" aria-pressed={scope === 'all'} class="chip" onclick={() => setScope('all')}>
 			{t('search.all')}
 		</button>
 	</div>

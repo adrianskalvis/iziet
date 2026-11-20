@@ -74,26 +74,33 @@ export function parseLvDateTime(text: string, now: Date = new Date()): ParsedDat
 	if (!text) return undefined;
 	const clean = text.replace(/\s+/g, ' ').trim();
 
-	const numeric = clean.match(/\b(\d{1,2})\.(\d{1,2})\.(\d{2,4})\b/);
+	// "12.–14.12.2026": the range starts on the first day.
+	const numeric = clean.match(/\b(?:(\d{1,2})\.\s*[–-]\s*)?(\d{1,2})\.(\d{1,2})\.(\d{2,4})\b/);
 	if (numeric) {
-		const day = Number(numeric[1]);
-		const month = Number(numeric[2]);
-		let year = Number(numeric[3]);
+		const day = Number(numeric[1] ?? numeric[2]);
+		const month = Number(numeric[3]);
+		let year = Number(numeric[4]);
 		if (year < 100) year += 2000;
-		if (month >= 1 && month <= 12 && day >= 1 && day <= 31) return withTime(year, month, day, clean.slice(numeric.index! + numeric[0].length));
+		if (validDay(year, month, day)) return withTime(year, month, day, clean.slice(numeric.index! + numeric[0].length));
 	}
 
-	const worded = clean.match(/\b(\d{1,2})\.\s*([A-Za-zĀ-žā-ž]+)\.?(?:\s+(\d{4}))?/u);
+	// "14.–16. decembris 19.00": the range starts on the first day.
+	const worded = clean.match(/\b(?:(\d{1,2})\.\s*[–-]\s*)?(\d{1,2})\.\s*([A-Za-zĀ-žā-ž]+)\.?(?:\s+(\d{4}))?/u);
 	if (worded) {
-		const month = monthFromWord(worded[2]);
+		const month = monthFromWord(worded[3]);
+		const day = Number(worded[1] ?? worded[2]);
 		if (month) {
-			const day = Number(worded[1]);
 			const explicitYear = clean.match(/\b(20\d{2})\.?\s*(?:g\.|gada)?/);
-			const year = worded[3] ? Number(worded[3]) : explicitYear ? Number(explicitYear[1]) : inferYear(month, day, now);
-			return withTime(year, month, day, clean.slice(worded.index! + worded[0].length));
+			const year = worded[4] ? Number(worded[4]) : explicitYear ? Number(explicitYear[1]) : inferYear(month, day, now);
+			if (validDay(year, month, day)) return withTime(year, month, day, clean.slice(worded.index! + worded[0].length));
 		}
 	}
 	return undefined;
+}
+
+function validDay(year: number, month: number, day: number): boolean {
+	if (month < 1 || month > 12 || day < 1) return false;
+	return day <= new Date(Date.UTC(year, month, 0)).getUTCDate();
 }
 
 function withTime(year: number, month: number, day: number, rest: string): ParsedDate {

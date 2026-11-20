@@ -6,9 +6,10 @@
 /**
  * Offline support (research 5.12):
  * - App shell, prerendered pages and fonts: precached per version, cache-first.
- * - /data/*.json: stale-while-revalidate, so cached events show at once offline.
- * - Event images from other sites: cache-first, at most 150 entries.
- * - Pages: network first, cached copy when offline.
+ * - /data/*.json: network first with a 3 s timeout, so returning users see fresh
+ *   events, and the cached copy when the network is slow or gone.
+ * - Event images from other sites: cache-first, at most 150 entries, best effort.
+ * - Pages: network first with a 3 s timeout, cached copy when offline.
  */
 import { build, files, prerendered, version } from '$service-worker';
 
@@ -17,6 +18,8 @@ const SHELL_CACHE = `shell-${version}`;
 const DATA_CACHE = 'data-v1';
 const IMAGE_CACHE = 'images-v1';
 const MAX_IMAGES = 150;
+const DATA_TIMEOUT_MS = 3000;
+const PAGE_TIMEOUT_MS = 3000;
 
 const PRECACHE = [...build, ...files.filter((file) => !file.startsWith('/data/') && !file.startsWith('/icons/')), ...prerendered];
 const PRECACHED = new Set(PRECACHE);
@@ -39,16 +42,34 @@ sw.addEventListener('activate', (event) => {
 	);
 });
 
-async function staleWhileRevalidate(request: Request): Promise<Response> {
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+	return new Promise((resolve, reject) => {
+		const timer = setTimeout(() => reject(new Error('timeout')), ms);
+		promise.then(
+			(value) => {
+				clearTimeout(timer);
+				resolve(value);
+			},
+			(error) => {
+				clearTimeout(timer);
+				reject(error);
+			}
+		);
+	});
+}
+
+async function freshData(request: Request, event: FetchEvent): Promise<Response> {
 	const cache = await caches.open(DATA_CACHE);
-	const cached = await cache.match(request, { ignoreSearch: true });
-	const network = fetch(request)
-		.then((response) => {
-			if (response.ok) cache.put(request, response.clone());
-			return response;
-		})
-		.catch(() => cached ?? Response.error());
-	return cached ?? network;
+	const network = fetch(request).then((response) => {
+		if (response.ok) event.waitUntil(cache.put(request, response.clone()).catch(() => {}));
+		return response;
+	});
+	try {
+		return await withTimeout(network, DATA_TIMEOUT_MS);
+	} catch {
+		const cached = await cache.match(request, { ignoreSearch: true });
+		return cached ?? network.catch(() => Response.error());
+	}
 }
 
 async function trimCache(name: string, max: number): Promise<void> {
@@ -57,30 +78,35 @@ async function trimCache(name: string, max: number): Promise<void> {
 	for (const key of keys.slice(0, Math.max(0, keys.length - max))) await cache.delete(key);
 }
 
-async function cacheFirstImage(request: Request): Promise<Response> {
+async function cacheFirstImage(request: Request, event: FetchEvent): Promise<Response> {
 	const cache = await caches.open(IMAGE_CACHE);
 	const cached = await cache.match(request);
 	if (cached) return cached;
 	const response = await fetch(request);
 	if (response.ok || response.type === 'opaque') {
-		await cache.put(request, response.clone());
-		trimCache(IMAGE_CACHE, MAX_IMAGES);
+		// Best effort: a full storage quota must never hide an image that loaded.
+		event.waitUntil(
+			cache
+				.put(request, response.clone())
+				.then(() => trimCache(IMAGE_CACHE, MAX_IMAGES))
+				.catch(() => {})
+		);
 	}
 	return response;
 }
 
-async function networkFirstPage(request: Request): Promise<Response> {
+async function networkFirstPage(request: Request, event: FetchEvent): Promise<Response> {
+	const path = new URL(request.url).pathname;
 	try {
-		const response = await fetch(request);
+		const response = await withTimeout(fetch(request), PAGE_TIMEOUT_MS);
 		if (response.ok) {
 			const cache = await caches.open(SHELL_CACHE);
-			cache.put(new URL(request.url).pathname, response.clone());
+			event.waitUntil(cache.put(path, response.clone()).catch(() => {}));
 		}
 		return response;
 	} catch {
 		const cache = await caches.open(SHELL_CACHE);
-		const path = new URL(request.url).pathname;
-		return (await cache.match(path)) ?? (await cache.match('/')) ?? Response.error();
+		return (await cache.match(path)) ?? (await cache.match(`${path}.html`)) ?? (await cache.match('/')) ?? Response.error();
 	}
 }
 
@@ -91,11 +117,11 @@ sw.addEventListener('fetch', (event) => {
 
 	if (url.origin === sw.location.origin) {
 		if (url.pathname.startsWith('/data/')) {
-			event.respondWith(staleWhileRevalidate(request));
+			event.respondWith(freshData(request, event));
 			return;
 		}
 		if (request.mode === 'navigate') {
-			event.respondWith(networkFirstPage(request));
+			event.respondWith(networkFirstPage(request, event));
 			return;
 		}
 		if (PRECACHED.has(url.pathname)) {
@@ -105,6 +131,6 @@ sw.addEventListener('fetch', (event) => {
 	}
 
 	if (request.destination === 'image') {
-		event.respondWith(cacheFirstImage(request).catch(() => Response.error()));
+		event.respondWith(cacheFirstImage(request, event).catch(() => Response.error()));
 	}
 });

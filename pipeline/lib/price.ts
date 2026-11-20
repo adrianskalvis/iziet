@@ -9,34 +9,38 @@ export interface ParsedPrice {
 	free?: boolean;
 }
 
-const FREE_PATTERNS = [
-	/bez\s*maksas/i,
-	/bezmaksas/i,
-	/ieeja\s+br[iī]va/i,
-	/br[iī]va\s+ieeja/i,
-	/\bfree\b/i,
-	/\bбесплатн/i,
-	/^0([.,]00)?\s*(€|eur)?$/i
-];
+const FREE_PATTERNS = [/bez\s*maksas/i, /bezmaksas/i, /ieeja\s+br[iī]va/i, /br[iī]va\s+ieeja/i, /\bfree\b/i, /бесплатн/i];
+
+/** Fees and child prices are not the ticket price: "+ 1,50 € servisa maksa", "(bērniem līdz 7 g. bez maksas)". */
+function stripSideNotes(text: string): string {
+	return text
+		.replace(/\+\s*\d+(?:[.,]\d{1,2})?\s*(?:€|eur\w*)?[^,;)]*/gi, ' ')
+		.replace(/\d+(?:[.,]\d{1,2})?\s*(?:€|eur\w*)?\s*(?:servisa|apkalpošanas|service)[^,;)]*/gi, ' ')
+		.replace(/\((?:[^)]*?)(?:bērn|berni|skolēn|pensionār|senior|children|kids)[^)]*\)/gi, ' ');
+}
 
 /** Reads "Bez maksas", "EUR 59.98 - EUR 105.96", "no 12,00 EUR", "12 €", "€12", "5–10 eur". */
 export function parsePrice(text: string | undefined | null): ParsedPrice | undefined {
 	if (!text) return undefined;
 	const clean = text.replace(/\s+/g, ' ').trim();
 	if (!clean) return undefined;
-	if (FREE_PATTERNS.some((pattern) => pattern.test(clean))) return { free: true, min: 0, max: 0 };
 	if (/ziedojum|donation/i.test(clean)) return undefined;
 
-	const amounts = [...clean.matchAll(/(\d{1,5}(?:[.,]\d{1,2})?)/g)]
+	const main = stripSideNotes(clean);
+	const amounts = [...main.matchAll(/(\d{1,5}(?:[.,]\d{1,2})?)/g)]
 		.map((match) => Number(match[1].replace(',', '.')))
 		.filter((value) => Number.isFinite(value) && value >= 0 && value < 10_000);
-	if (amounts.length === 0) return undefined;
-	const hasCurrency = /€|eur|eiro|euro/i.test(clean);
-	if (!hasCurrency && amounts.length > 2) return undefined;
+	const hasCurrency = /€|eur|eiro|euro/i.test(main);
+
+	// A price wins over a free note elsewhere in the text; free counts only without one.
+	if (amounts.length === 0 || (!hasCurrency && amounts.length > 2)) {
+		return FREE_PATTERNS.some((pattern) => pattern.test(clean)) ? { free: true, min: 0, max: 0 } : undefined;
+	}
 	const min = Math.min(...amounts);
 	const max = Math.max(...amounts);
 	if (max === 0) return { free: true, min: 0, max: 0 };
-	return min === max ? { min } : { min, max };
+	const paidMin = min === 0 ? Math.min(...amounts.filter((a) => a > 0)) : min;
+	return paidMin === max ? { min: paidMin } : { min: paidMin, max };
 }
 
 /** Merges price facts from several sources: lowest min, highest max, free only if all agree. */

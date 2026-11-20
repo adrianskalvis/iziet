@@ -122,7 +122,8 @@ export function formatPriceRange(price: Price | undefined): string | undefined {
 
 /** "850 m" under 1 km, "2,5 km" under 10 km, then whole kilometres. */
 export function formatDistance(km: number): string {
-	if (km < 1) return `${Math.max(50, Math.round((km * 1000) / 50) * 50)}${NBSP}m`;
+	const metres = Math.max(50, Math.round((km * 1000) / 50) * 50);
+	if (metres < 1000) return `${metres}${NBSP}m`;
 	if (km < 10) return `${(Math.round(km * 10) / 10).toString().replace('.', ',')}${NBSP}km`;
 	return `${Math.round(km)}${NBSP}km`;
 }

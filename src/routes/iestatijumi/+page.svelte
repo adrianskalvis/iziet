@@ -5,7 +5,7 @@
 	import PlacePicker from '$lib/components/PlacePicker.svelte';
 	import SyncPanel from '$lib/components/SyncPanel.svelte';
 	import { t } from '$lib/i18n';
-	import { resolveOrigin } from '$lib/profile';
+	import { resolveOrigin, RIGA } from '$lib/profile';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
 	import { fold } from '$shared/fold';
@@ -64,7 +64,7 @@
 						type="button"
 						class="chip"
 						aria-pressed={profile.apkaime === apkaime.id}
-						onclick={() => profileStore.update({ apkaime: profile.apkaime === apkaime.id ? undefined : apkaime.id, placeId: 'Q1773', geo: undefined })}
+						onclick={() => profileStore.update({ apkaime: profile.apkaime === apkaime.id ? undefined : apkaime.id, placeId: RIGA.id, geo: undefined })}
 					>
 						{apkaime.name}
 					</button>
@@ -85,11 +85,11 @@
 
 	<section class="card stack">
 		<h2>{t('profile.text')}</h2>
-		<div class="chip-grid" role="radiogroup" aria-label={t('profile.text')}>
-			<button type="button" role="radio" class="chip" aria-checked={profile.textSize === 'normal'} onclick={() => profileStore.update({ textSize: 'normal' })}>
+		<div class="chip-grid" role="group" aria-label={t('profile.text')}>
+			<button type="button" class="chip" aria-pressed={profile.textSize === 'normal'} onclick={() => profileStore.update({ textSize: 'normal' })}>
 				{t('profile.textNormal')}
 			</button>
-			<button type="button" role="radio" class="chip" aria-checked={profile.textSize === 'large'} onclick={() => profileStore.update({ textSize: 'large' })}>
+			<button type="button" class="chip" aria-pressed={profile.textSize === 'large'} onclick={() => profileStore.update({ textSize: 'large' })}>
 				{t('profile.textLarge')}
 			</button>
 		</div>

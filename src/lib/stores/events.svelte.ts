@@ -14,7 +14,7 @@ class EventStore {
 	status = $state<Status>('idle');
 	events = $state.raw<EventCore[]>([]);
 	meta = $state.raw<DataMeta | null>(null);
-	byId = $derived(new Map(this.events.map((event) => [event.id, event])));
+	byId = $derived(new Map(this.events.flatMap((event) => [[event.id, event] as const, ...(event.alias ?? []).map((alias) => [alias, event] as const)])));
 	#pending: Promise<void> | null = null;
 	#shards = new Map<number, Promise<Record<string, EventDetail>>>();
 
@@ -23,7 +23,7 @@ class EventStore {
 		await this.load();
 		const core = this.byId.get(id);
 		if (!core) return undefined;
-		const shard = shardOf(id);
+		const shard = shardOf(core.id);
 		if (!this.#shards.has(shard)) {
 			const request = fetch(`${base}/data/details/${shard}.json`).then((response) => {
 				if (!response.ok) throw new Error(`details ${shard} HTTP ${response.status}`);
@@ -33,7 +33,7 @@ class EventStore {
 			request.catch(() => this.#shards.delete(shard));
 		}
 		try {
-			const detail = (await this.#shards.get(shard)!)[id];
+			const detail = (await this.#shards.get(shard)!)[core.id];
 			return { ...core, ...(detail ?? { tickets: [], sources: [], url: '' }) } as EventItem;
 		} catch (error) {
 			console.warn('Event details failed to load', error);

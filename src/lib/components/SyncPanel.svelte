@@ -31,7 +31,7 @@
 		try {
 			const local = { profile: profileStore.value, saved: savedStore.ids };
 			const merged = mergePayloads(local, await pull(config, session));
-			profileStore.update(merged.profile);
+			profileStore.update(merged.profile, { prefs: false });
 			for (const id of merged.saved) if (!savedStore.has(id)) savedStore.toggle(id);
 			await push(config, session, { profile: profileStore.value, saved: savedStore.ids });
 			ui.showToast(t('sync.synced'));

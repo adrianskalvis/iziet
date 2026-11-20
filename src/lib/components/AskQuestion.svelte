@@ -2,7 +2,7 @@
 	import { answered, dismissed, type QuestionId } from '$lib/ask';
 	import { t } from '$lib/i18n';
 	import { findApkaime, requestLocation } from '$lib/locate';
-	import { KIDS_AGES, type KidsAge, type Profile, type TimePref } from '$lib/profile';
+	import { KIDS_AGES, RIGA, type KidsAge, type Profile, type TimePref } from '$lib/profile';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
 	import { fold } from '$shared/fold';
@@ -31,7 +31,7 @@
 	}
 
 	function later() {
-		profileStore.update((p) => dismissed(p, id, new Date()));
+		profileStore.update((p) => dismissed(p, id, new Date()), { prefs: false });
 		ondone();
 	}
 
@@ -67,7 +67,7 @@
 			<input type="search" bind:value={apkaimeQuery} placeholder={t('ask.apkaime.placeholder')} autocomplete="off" />
 		</label>
 		{#each apkaimeMatches as apkaime (apkaime.id)}
-			<button class="chip" type="button" onclick={() => finish({ apkaime: apkaime.id, placeId: 'Q1773' })}>{apkaime.name}</button>
+			<button class="chip" type="button" onclick={() => finish({ apkaime: apkaime.id, placeId: RIGA.id })}>{apkaime.name}</button>
 		{/each}
 	</AskCard>
 {:else if id === 'kids'}

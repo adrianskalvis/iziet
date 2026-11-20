@@ -34,7 +34,7 @@
 	let requested = '';
 	const core = $derived(eventStore.byId.get(id));
 	const event = $derived<EventItem | undefined>(
-		full?.id === id ? full : core ? ({ tickets: [], sources: [], url: '', ...core } as EventItem) : undefined
+		full && full.id === core?.id ? full : core ? ({ tickets: [], sources: [], url: '', ...core } as EventItem) : undefined
 	);
 	const origin = $derived(resolveOrigin(profileStore.value));
 
@@ -43,7 +43,7 @@
 		if (!current || requested === current) return;
 		requested = current;
 		eventStore.details(current).then((loaded) => {
-			if (loaded?.id === id) full = loaded;
+			if (loaded && loaded.id === eventStore.byId.get(id)?.id) full = loaded;
 		});
 	});
 	const km = $derived(event ? distanceKm(origin, event) : undefined);
@@ -76,7 +76,7 @@
 		if (!event || tracked === event.id) return;
 		tracked = event.id;
 		const cat = event.cat;
-		profileStore.update((p) => ({ opens: { ...p.opens, [cat]: (p.opens[cat] ?? 0) + 1 } }));
+		profileStore.update((p) => ({ opens: { ...p.opens, [cat]: (p.opens[cat] ?? 0) + 1 } }), { prefs: false });
 	});
 
 	async function share() {
@@ -96,7 +96,7 @@
 
 	function toggleSave() {
 		if (!event) return;
-		const nowSaved = savedStore.toggle(event.id);
+		const nowSaved = savedStore.toggle(event.id, { title: event.title, start: event.start, town: event.town });
 		ui.showToast(nowSaved ? t('event.saved') : t('card.unsave'));
 	}
 </script>
@@ -117,7 +117,9 @@
 		</div>
 	{:else}
 		<article class="event stack" style:--tint={`var(--cat-${tint})`} style:--ink={`var(--cat-${tint}-icon)`}>
-			<EventImage src={event.img} cat={event.cat} priority />
+			{#key event.id}
+				<EventImage src={event.img} cat={event.cat} priority />
+			{/key}
 
 			<div class="head">
 				<a class="cat" href={`${base}/saraksts?skats=visi&kat=${event.cat}`}><span class="dot" aria-hidden="true"></span>{t(`cat.${event.cat}`)}</a>
@@ -179,7 +181,7 @@
 				<button class="action" type="button" onclick={() => downloadIcs(event)}><CalendarPlus size={22} aria-hidden="true" />{t('event.addToCalendar')}</button>
 				<button class="action" type="button" onclick={share}><Share2 size={22} aria-hidden="true" />{t('event.share')}</button>
 				<button class="action" type="button" aria-pressed={saved} onclick={toggleSave}>
-					<Heart size={22} fill={saved ? 'currentColor' : 'none'} aria-hidden="true" />{saved ? t('event.saved') : t('event.save')}
+					<Heart size={22} fill={saved ? 'currentColor' : 'none'} aria-hidden="true" />{t('event.save')}
 				</button>
 			</div>
 
@@ -239,7 +241,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		min-height: 36px;
+		min-height: var(--tap-min);
 		padding: 2px 14px;
 		border-radius: var(--radius-chip);
 		background: var(--tint);
@@ -299,7 +301,7 @@
 	.more-times {
 		display: block;
 		margin-top: 4px;
-		min-height: 44px;
+		min-height: var(--tap-min);
 		padding: 0;
 		border: 0;
 		background: none;
@@ -386,7 +388,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 4px;
-		min-height: 44px;
+		min-height: var(--tap-min);
 	}
 
 	.small {

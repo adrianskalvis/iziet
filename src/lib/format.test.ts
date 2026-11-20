@@ -62,6 +62,7 @@ describe('formatPrice', () => {
 describe('formatDistance', () => {
 	test('uses metres, one decimal, then whole kilometres', () => {
 		expect(n(formatDistance(0.83))).toBe('850 m');
+		expect(n(formatDistance(0.99))).toBe('1 km');
 		expect(n(formatDistance(2.46))).toBe('2,5 km');
 		expect(n(formatDistance(23.4))).toBe('23 km');
 	});

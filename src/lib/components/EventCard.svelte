@@ -50,7 +50,7 @@
 	}
 
 	function toggleSave() {
-		const nowSaved = savedStore.toggle(event.id);
+		const nowSaved = savedStore.toggle(event.id, { title: event.title, start: event.start, town: event.town });
 		ui.showToast(nowSaved ? t('event.saved') : t('card.unsave'));
 	}
 </script>
@@ -91,7 +91,7 @@
 		class="save"
 		type="button"
 		aria-pressed={saved}
-		aria-label={saved ? t('card.unsave') : t('card.save')}
+		aria-label={t('card.save')}
 		onclick={toggleSave}
 	>
 		<Heart size={22} fill={saved ? 'currentColor' : 'none'} aria-hidden="true" />

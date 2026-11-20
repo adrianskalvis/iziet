@@ -1,3 +1,5 @@
+import { eventEndMs } from '$shared/event-time';
+import { rigaParts } from '$shared/time';
 import type { EventItem } from '$shared/types';
 
 /** Builds an .ics file for "Pievienot kalendāram". Times are written in UTC. */
@@ -26,9 +28,21 @@ function fold(line: string): string {
 	return chunks.join('\r\n ');
 }
 
+/** "20261214" for DTSTART;VALUE=DATE, in Riga local time. */
+function dateStamp(ms: number): string {
+	const p = rigaParts(ms);
+	return `${p.year}${String(p.month).padStart(2, '0')}${String(p.day).padStart(2, '0')}`;
+}
+
 export function buildIcs(event: EventItem, now = new Date()): string {
 	const start = Date.parse(event.start);
-	const end = event.end && !(event.end && Date.parse(event.end) - start > 86_400_000) ? Date.parse(event.end) : start + DEFAULT_DURATION_MS;
+	const endMs = eventEndMs(event);
+	// All-day and multi-day events (exhibitions) become date entries; DTEND is the day after the last day.
+	const asDates = event.allDay || endMs - start > 86_400_000;
+	const timedEnd = event.end ? Date.parse(event.end) : start + DEFAULT_DURATION_MS;
+	const when = asDates
+		? [`DTSTART;VALUE=DATE:${dateStamp(start)}`, `DTEND;VALUE=DATE:${dateStamp(endMs + 1)}`]
+		: [`DTSTART:${utcStamp(start)}`, `DTEND:${utcStamp(timedEnd)}`];
 	const location = [event.venue, event.address, event.town].filter(Boolean).join(', ');
 	const lines = [
 		'BEGIN:VCALENDAR',
@@ -38,8 +52,7 @@ export function buildIcs(event: EventItem, now = new Date()): string {
 		'BEGIN:VEVENT',
 		`UID:${event.id}@iziet.lv`,
 		`DTSTAMP:${utcStamp(now.getTime())}`,
-		`DTSTART:${utcStamp(start)}`,
-		`DTEND:${utcStamp(end)}`,
+		...when,
 		`SUMMARY:${escapeText(event.title)}`,
 		location ? `LOCATION:${escapeText(location)}` : '',
 		`URL:${event.url}`,

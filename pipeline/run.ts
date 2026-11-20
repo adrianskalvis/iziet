@@ -12,6 +12,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { eventEndMs } from '../src/lib/shared/event-time';
 import { fold } from '../src/lib/shared/fold';
 import {
 	CORE_TIMES,
@@ -161,8 +162,7 @@ function propagateVenueCoords(events: EventItem[]): EventItem[] {
 }
 
 function inWindow(event: EventItem, now: Date): boolean {
-	const end = event.end ? Date.parse(event.end) : Date.parse(event.start);
-	return end >= now.getTime() - PAST_GRACE_MS && Date.parse(event.start) <= now.getTime() + HORIZON_DAYS * 86_400_000;
+	return eventEndMs(event) >= now.getTime() - PAST_GRACE_MS && Date.parse(event.start) <= now.getTime() + HORIZON_DAYS * 86_400_000;
 }
 
 async function main(): Promise<void> {

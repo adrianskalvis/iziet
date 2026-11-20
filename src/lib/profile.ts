@@ -47,7 +47,7 @@ export interface Profile {
 
 export const PROFILE_KEY = 'iziet.profile.v1';
 
-export function defaultProfile(now = new Date()): Profile {
+export function defaultProfile(_now = new Date()): Profile {
 	return {
 		v: 1,
 		onboarded: false,
@@ -61,7 +61,8 @@ export function defaultProfile(now = new Date()): Profile {
 		sessions: 0,
 		opens: {},
 		elsewhereOpens: 0,
-		updatedAt: now.toISOString()
+		// Epoch, so a synced profile with real choices always wins over an untouched new device.
+		updatedAt: new Date(0).toISOString()
 	};
 }
 
