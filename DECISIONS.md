@@ -77,4 +77,5 @@ Choices made during the overnight build of 2026-11-20, with the reason for each.
 | 49 | Persona review of 2026-11-21: 6 personas and a data audit, 20 findings fixed, 9 open, recorded in `research/REVIEW.md` | Owner request. |
 | 50 | An event with only a town-centre coordinate shows no distance under 3 km and "ap N km" above; whole-country lists use the wide distance curve (half weight at 120 km) | Review: every such event showed "50 m", and far events led the lists. |
 | 51 | Council, committee and residents' meetings and teacher training are dropped; all-capitals titles get capitalised words with a short acronym list | Review: about 40 non-leisure entries; names such as "Egils Siliņš" were lowercased. |
+| 52 | A push to `main` replays the cached source results through the new code before it deploys; the data commit rebases and retries; home never recommends sold-out or postponed events | On 2026-11-21 a code push redeployed 30-minute-old committed data over a fresh run whose commit had lost a push race. A sold-out show led "Visā Latvijā". |
 
