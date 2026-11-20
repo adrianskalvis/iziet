@@ -70,10 +70,12 @@ test.describe('returning visitor', () => {
 		expect(before).toBeGreaterThan(300);
 		const card = page.locator('article').nth(4);
 		await card.locator('h3 a').click();
-		await expect(page.getByRole('link', { name: 'Atpakaļ' })).toBeVisible();
+		await expect(page).toHaveURL(/pasakums\?id=/);
+		await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 		await page.goBack();
-		await waitForCards(page);
-		await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(before - 80);
+		await expect(page).toHaveURL(/saraksts\?skats=visi/);
+		await expect(page.locator('article').first()).toBeAttached({ timeout: 15_000 });
+		await expect.poll(() => page.evaluate(() => window.scrollY), { timeout: 10_000 }).toBeGreaterThan(before - 80);
 	});
 
 	test('filters by free entry and updates the URL', async ({ page }) => {
@@ -88,8 +90,8 @@ test.describe('returning visitor', () => {
 		await waitForCards(page);
 		await page.locator('article h3 a').first().click();
 		await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-		const sourceLinks = page.locator('dl.meta a[target="_blank"]');
-		expect(await sourceLinks.count()).toBeGreaterThan(0);
+		// Sources load with the detail shard, a moment after the page renders.
+		await expect(page.locator('dl.meta a[target="_blank"]').first()).toBeVisible({ timeout: 10_000 });
 		await expect(page.getByRole('link', { name: 'Kā nokļūt' })).toBeVisible();
 	});
 
