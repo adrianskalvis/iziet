@@ -219,6 +219,20 @@ export function mmr(sorted: Scored[], count: number, similarity: Similarity = sa
 	return picked;
 }
 
+/**
+ * Home shows one event per category: the first of each stays, in list order.
+ * Events that match the user's own interests (a picked category or tag) may repeat.
+ */
+export function onePerCategory(ordered: Scored[]): Scored[] {
+	const seen = new Set<CategoryId>();
+	return ordered.filter((item) => {
+		if (item.parts.I === 1) return true;
+		if (seen.has(item.event.cat)) return false;
+		seen.add(item.event.cat);
+		return true;
+	});
+}
+
 function withinDays(event: EventCore, now: Date, days: number): boolean {
 	return rigaDayDiff(now, event.start) <= days;
 }
@@ -247,13 +261,14 @@ export function pickNearby(events: EventCore[], profile: Profile, now: Date, cou
 			.filter((item) => item.km !== undefined && item.km <= radiusKm && item.score >= NEARBY_THRESHOLD)
 			.sort(compareScored);
 		if (qualifying.length === 0) continue;
-		const picks: Scored[] = [];
-		for (const ring of [1, 2, 3, undefined] as const) {
-			if (picks.length >= count) break;
-			const inRing = qualifying.filter((item) => item.ring === ring && !picks.includes(item));
-			picks.push(...mmr(inRing, count - picks.length));
-		}
-		return { origin, picks, radiusKm, widened };
+		// Own apkaime first, then bordering ones, then the rest; each ring in variety order.
+		const ordered = ([1, 2, 3, undefined] as const).flatMap((ring) =>
+			mmr(
+				qualifying.filter((item) => item.ring === ring),
+				MMR_POOL
+			)
+		);
+		return { origin, picks: onePerCategory(ordered).slice(0, count), radiusKm, widened };
 	}
 
 	const fitting = scored
@@ -286,8 +301,29 @@ export function pickElsewhere(
 		.filter((item) => !hasInterests || item.parts.I === 1 || (hasFamily(profile) && item.parts.F === 1))
 		.sort(compareScored);
 	const picks: Scored[] = [];
-	for (const item of mmr(candidates, candidates.length, sameKindOrTown)) {
+	for (const item of onePerCategory(mmr(candidates, candidates.length, sameKindOrTown))) {
 		if (picks.some((picked) => picked.event.town === item.event.town)) continue;
+		picks.push(item);
+		if (picks.length === count) break;
+	}
+	return picks;
+}
+
+/**
+ * Home "Visa Latvija" tab: the best events in the whole country. One per town,
+ * and one per category unless the event matches the user's own interests.
+ */
+export function pickLatvia(events: EventCore[], profile: Profile, now: Date, count = 6): Scored[] {
+	const origin = resolveOrigin(profile);
+	const candidates = events
+		.filter((event) => passesHardFilters(event, profile, now) && withinDays(event, now, ELSEWHERE_WINDOW_DAYS))
+		.map((event) => scoreEvent(event, profile, origin, now, 'elsewhere'))
+		.sort(compareScored);
+	const picks: Scored[] = [];
+	for (const item of candidates) {
+		const sameTown = picks.some((picked) => picked.event.town === item.event.town);
+		const sameCategory = item.parts.I !== 1 && picks.some((picked) => picked.event.cat === item.event.cat);
+		if (sameTown || sameCategory) continue;
 		picks.push(item);
 		if (picks.length === count) break;
 	}
@@ -298,13 +334,16 @@ export type When = 'today' | 'tomorrow' | 'weekend' | 'week' | 'any';
 
 export interface ListOptions {
 	scope: 'nearby' | 'elsewhere' | 'all';
-	cat?: CategoryId;
+	/** Any of these categories; empty or missing means all. */
+	cats?: CategoryId[];
 	tag?: string;
-	when?: When;
+	/** Any of these periods; empty or missing means any time. */
+	whens?: When[];
 	free?: boolean;
 	family?: boolean;
 	placeId?: string;
-	sort?: 'best' | 'soon' | 'near';
+	/** 'soon-near' sorts by day first, then by distance within the day. */
+	sort?: 'best' | 'soon' | 'near' | 'soon-near';
 }
 
 function matchesWhen(event: EventCore, when: When, now: Date): boolean {
@@ -328,12 +367,12 @@ export function listEvents(events: EventCore[], profile: Profile, now: Date, opt
 	const radius = NEARBY_RADIUS[origin.kind] * 2;
 	const items = events
 		.filter((event) => passesHardFilters(event, profile, now))
-		.filter((event) => !options.cat || event.cat === options.cat)
+		.filter((event) => !options.cats?.length || options.cats.includes(event.cat))
 		.filter((event) => !options.tag || event.tags.includes(options.tag))
 		.filter((event) => !options.free || !!event.price?.free)
 		.filter((event) => !options.family || !!event.family || event.cat === 'gimenem')
 		.filter((event) => !options.placeId || event.placeId === options.placeId)
-		.filter((event) => matchesWhen(event, options.when ?? 'any', now))
+		.filter((event) => !options.whens?.length || options.whens.some((when) => matchesWhen(event, when, now)))
 		.map((event) => scoreEvent(event, profile, origin, now, options.scope === 'elsewhere' ? 'elsewhere' : 'nearby'))
 		.filter((item) => {
 			if (options.placeId || options.scope === 'all') return true;
@@ -343,6 +382,11 @@ export function listEvents(events: EventCore[], profile: Profile, now: Date, opt
 	const sort = options.sort ?? 'best';
 	if (sort === 'soon') return items.sort((a, b) => Date.parse(a.event.start) - Date.parse(b.event.start) || compareScored(a, b));
 	if (sort === 'near') return items.sort((a, b) => (a.km ?? 1e9) - (b.km ?? 1e9) || compareScored(a, b));
+	if (sort === 'soon-near') {
+		// Events already running count as today.
+		const day = (item: Scored) => Math.max(0, rigaDayDiff(now, item.event.start));
+		return items.sort((a, b) => day(a) - day(b) || (a.km ?? 1e9) - (b.km ?? 1e9) || compareScored(a, b));
+	}
 	return items.sort(compareScored);
 }
 

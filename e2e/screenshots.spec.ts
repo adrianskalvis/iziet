@@ -30,6 +30,12 @@ test.describe('returning visitor screens', () => {
 		await page.screenshot({ path: `${DIR}/04-home.png` });
 		await page.screenshot({ path: `${DIR}/05-home-full.png`, fullPage: true });
 
+		await page.getByRole('button', { name: 'Visa Latvija' }).click();
+		await page.getByRole('heading', { name: 'Visā Latvijā' }).waitFor();
+		await page.waitForTimeout(600);
+		await page.screenshot({ path: `${DIR}/04b-home-latvia.png`, fullPage: true });
+		await page.getByRole('button', { name: 'Tuvumā', exact: true }).click();
+
 		await page.getByRole('button', { name: 'Atvērt izvēlni' }).click();
 		await page.waitForTimeout(400);
 		await page.screenshot({ path: `${DIR}/06-menu.png` });

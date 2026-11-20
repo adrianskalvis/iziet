@@ -12,7 +12,7 @@
 	import { t } from '$lib/i18n';
 	import { canLocate } from '$lib/locate';
 	import { RIGA } from '$lib/profile';
-	import { pickElsewhere, pickNearby, reasonLabels } from '$lib/rank';
+	import { pickElsewhere, pickLatvia, pickNearby, reasonLabels } from '$lib/rank';
 	import { eventStore } from '$lib/stores/events.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
@@ -24,7 +24,6 @@
 	let mounted = $state(false);
 	let now = $state(new Date());
 	let query = $state('');
-	let scope = $state<Scope>('nearby');
 	let question = $state<QuestionId | undefined>(undefined);
 
 	const profile = $derived(profileStore.value);
@@ -34,6 +33,8 @@
 	const elsewhere = $derived(
 		ready && nearby ? pickElsewhere(eventStore.events, profile, now, nearby.radiusKm, 3) : []
 	);
+	/** Shown in place of the two sections above when the "Visa Latvija" tab is on. */
+	const latvia = $derived(ready && ui.homeScope === 'all' ? pickLatvia(eventStore.events, profile, now) : []);
 	/** The user's own interests first, then the rest, 6 in all; the rest are one tap away. */
 	const browseCats = $derived([...profile.cats, ...CATEGORY_IDS.filter((cat) => !profile.cats.includes(cat))].slice(0, 6));
 	const placeName = $derived(nearby?.origin.apkaime?.name ?? nearby?.origin.place.name ?? RIGA.name);
@@ -76,13 +77,6 @@
 		goto(`${base}/meklet?q=${encodeURIComponent(value)}&kur=${kur}`, { keepFocus: true });
 	}
 
-	/** The scope toggle opens search with the best events for that scope, before any typing. */
-	function onScope(nextScope: Scope) {
-		const kur = nextScope === 'all' ? 'latvija' : 'tuvuma';
-		const q = query.trim() ? `q=${encodeURIComponent(query)}&` : '';
-		goto(`${base}/meklet?${q}kur=${kur}`);
-	}
-
 	/** The event page counts category opens; home only counts opens from "Citur Latvijā". */
 	function trackOpen(_event: EventCore, elsewhereBlock = false) {
 		if (!elsewhereBlock) return;
@@ -98,12 +92,45 @@
 
 {#if !mounted || !showOnboarding}
 	<div class="page home-content stack">
-		<SearchBar bind:value={query} bind:scope oninput={onSearch} onscope={onScope} onsubmit={onSearch} />
+		<!-- The scope buttons work as tabs here: they swap the sections below in place. -->
+		<SearchBar bind:value={query} bind:scope={ui.homeScope} oninput={onSearch} onsubmit={onSearch} />
 
 		{#if question}
 			<AskQuestion id={question} ondone={() => (question = undefined)} />
 		{/if}
 
+		{#if ui.homeScope === 'all'}
+		<section class="block" aria-labelledby="latvia-title">
+			<div class="block-head">
+				<h2 id="latvia-title">{t('home.latvia')}</h2>
+			</div>
+			{#if eventStore.status === 'error'}
+				<div class="empty">
+					<p>{t('error.load')}</p>
+					<button class="btn btn-secondary" type="button" onclick={() => eventStore.load(true)}>{t('error.retry')}</button>
+				</div>
+			{:else if !ready}
+				<SkeletonCard large />
+				<p class="visually-hidden" role="status">{t('home.loading')}</p>
+			{:else if latvia.length === 0}
+				<p class="muted">{t('home.emptyLatvia')}</p>
+			{:else}
+				<div class="cards">
+					{#each latvia as item, index (item.event.id)}
+						<EventCard
+							event={item.event}
+							{now}
+							km={item.km}
+							labels={reasonLabels(item, profile, now)}
+							variant={index === 0 ? 'large' : 'compact'}
+							onopen={(event) => trackOpen(event)}
+						/>
+					{/each}
+				</div>
+			{/if}
+			<a class="more" href={`${base}/saraksts?skats=visi`}>{t('home.showMore')}<ChevronRight size={22} aria-hidden="true" /></a>
+		</section>
+		{:else}
 		<section class="block" aria-labelledby="nearby-title">
 			<div class="block-head">
 				<h2 id="nearby-title">{t('home.nearby')}</h2>
@@ -178,6 +205,7 @@
 			{/if}
 			<a class="more" href={`${base}/saraksts?skats=latvija`}>{t('home.showMore')}<ChevronRight size={22} aria-hidden="true" /></a>
 		</section>
+		{/if}
 
 		<section class="block" aria-labelledby="browse-title">
 			<h2 id="browse-title">{t('home.browse')}</h2>

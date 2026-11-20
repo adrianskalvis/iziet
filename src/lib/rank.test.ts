@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import type { EventItem } from '$shared/types';
 import { defaultProfile, type Profile } from './profile';
-import { listEvents, pickElsewhere, pickNearby, reasonLabels, scoreEvent } from './rank';
+import { listEvents, pickElsewhere, pickLatvia, pickNearby, reasonLabels, scoreEvent } from './rank';
 import { resolveOrigin } from './profile';
 
 // Friday 20 November 2026, 12.00 in Riga.
@@ -73,6 +73,16 @@ describe('pickNearby', () => {
 		expect(pickNearby([adult, past], familyProfile, now).picks).toHaveLength(0);
 	});
 
+	test('shows one event per category unless the user picked that category', () => {
+		const titles = (p: Profile) => pickNearby([concertA, concertB, concertC, show], p, now).picks.map((x) => x.event.title);
+		const concertA = event({ ...CENTRS, title: 'Džeza vakars', start: '2026-11-20T19:00:00+02:00' });
+		const concertB = event({ ...CENTRS, title: 'Balāde', start: '2026-11-21T17:00:00+02:00' });
+		const concertC = event({ ...CENTRS, title: 'Jubilate', start: '2026-11-22T18:00:00+02:00' });
+		const show = event({ ...CENTRS, cat: 'teatris', title: 'Izrāde', start: '2026-11-22T19:00:00+02:00' });
+		expect(titles(profile({ ...CENTRS }))).toEqual(['Džeza vakars', 'Izrāde']);
+		expect(titles(profile({ ...CENTRS, cats: ['koncerti'] }))).toHaveLength(3);
+	});
+
 	test('suggests the nearest town when nothing fits nearby', () => {
 		const sigulda = event({ lat: 57.1539, lng: 24.8544, town: 'Sigulda', placeId: 'Q465698' });
 		const result = pickNearby([sigulda], profile({ placeId: 'Q1773', cats: ['koncerti'] }), now);
@@ -98,7 +108,43 @@ describe('listEvents', () => {
 		const saturday = event({ ...CENTRS, start: '2026-11-21T12:00:00+02:00', price: { free: true } });
 		const monday = event({ ...CENTRS, start: '2026-11-23T12:00:00+02:00', price: { free: true } });
 		const paid = event({ ...CENTRS, start: '2026-11-22T12:00:00+02:00', price: { min: 5 } });
-		const items = listEvents([saturday, monday, paid], profile({}), now, { scope: 'all', when: 'weekend', free: true });
+		const items = listEvents([saturday, monday, paid], profile({}), now, { scope: 'all', whens: ['weekend'], free: true });
 		expect(items.map((i) => i.event.id)).toEqual([saturday.id]);
+	});
+});
+
+describe('listEvents with several choices', () => {
+	const today = event({ ...CENTRS, title: 'Šodien', start: '2026-11-20T19:00:00+02:00' });
+	const tomorrow = event({ ...CENTRS, cat: 'teatris', title: 'Rīt', start: '2026-11-21T19:00:00+02:00' });
+	const later = event({ ...CENTRS, cat: 'sports', title: 'Vēlāk', start: '2026-11-27T19:00:00+02:00' });
+	const titles = (options: Parameters<typeof listEvents>[3]) =>
+		listEvents([later, tomorrow, today], profile({ ...CENTRS }), now, options).map((x) => x.event.title);
+
+	test('two days chosen show events of either day', () => {
+		expect(titles({ scope: 'all', whens: ['today', 'tomorrow'], sort: 'soon' })).toEqual(['Šodien', 'Rīt']);
+	});
+
+	test('two categories chosen show events of either category', () => {
+		expect(titles({ scope: 'all', cats: ['teatris', 'sports'], sort: 'soon' })).toEqual(['Rīt', 'Vēlāk']);
+	});
+
+	test('soonest and nearest together sort by day, then by distance', () => {
+		const farToday = event({ lat: 57.3119, lng: 25.2746, town: 'Cēsis', title: 'Tālu šodien', start: '2026-11-20T12:00:00+02:00' });
+		expect(titles({ scope: 'all', sort: 'soon-near' }).slice(0, 2)).toEqual(['Šodien', 'Rīt']);
+		expect(
+			listEvents([farToday, today, tomorrow], profile({ ...CENTRS }), now, { scope: 'all', sort: 'soon-near' }).map((x) => x.event.title)
+		).toEqual(['Šodien', 'Tālu šodien', 'Rīt']);
+	});
+});
+
+describe('pickLatvia', () => {
+	test('shows the whole country with one event per town and per category', () => {
+		const riga = event({ ...CENTRS, title: 'Rīgas koncerts' });
+		const rigaShow = event({ ...CENTRS, cat: 'teatris', title: 'Rīgas izrāde' });
+		const cesis = event({ lat: 57.3119, lng: 25.2746, town: 'Cēsis', cat: 'teatris', title: 'Cēsu izrāde' });
+		const liepaja = event({ lat: 56.5047, lng: 21.0108, town: 'Liepāja', cat: 'izstades', title: 'Liepājas izstāde' });
+		const titles = pickLatvia([riga, rigaShow, cesis, liepaja], profile({ ...CENTRS }), now).map((x) => x.event.title);
+		expect(titles).toHaveLength(3);
+		expect(titles).toEqual(expect.arrayContaining(['Rīgas koncerts', 'Cēsu izrāde', 'Liepājas izstāde']));
 	});
 });

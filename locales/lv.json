@@ -23,6 +23,8 @@
 	"home": {
 		"nearby": "Tuvumā",
 		"elsewhere": "Citur Latvijā",
+		"latvia": "Visā Latvijā",
+		"emptyLatvia": "Šobrīd pasākumu nav.",
 		"showMore": "Rādīt vairāk",
 		"place": "Vieta: {place}",
 		"change": "Mainīt",

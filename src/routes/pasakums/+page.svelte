@@ -57,7 +57,7 @@
 
 	const similar = $derived(
 		event && eventStore.status === 'ready'
-			? listEvents(eventStore.events, profileStore.value, now, { scope: 'nearby', cat: event.cat })
+			? listEvents(eventStore.events, profileStore.value, now, { scope: 'nearby', cats: [event.cat] })
 					.filter((item) => item.event.id !== event.id)
 					.slice(0, 3)
 			: []

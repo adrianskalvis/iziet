@@ -1,57 +1,73 @@
+<script lang="ts" module>
+	export type FilterKey = 'kad' | 'kat' | 'bez' | 'gim' | 'kart';
+
+	/** URL value of each period filter. */
+	export const WHEN_PARAM = { sodien: 'today', rit: 'tomorrow', 'nedelas-nogale': 'weekend', sonedel: 'week' } as const;
+</script>
+
 <script lang="ts">
 	import { plural, t } from '$lib/i18n';
-	import type { ListOptions, When } from '$lib/rank';
+	import type { When } from '$lib/rank';
 	import { CATEGORY_IDS, type CategoryId } from '$shared/types';
 	import SlidersHorizontal from '@lucide/svelte/icons/sliders-horizontal';
 	import X from '@lucide/svelte/icons/x';
 
 	/**
-	 * One "Filtri" button instead of three sideways-scrolling rows. The panel shows
-	 * every option as wrapping chips (no horizontal scroll), and the chosen filters
-	 * stay visible as chips that remove themselves on tap.
+	 * One "Filtri" button instead of three sideways-scrolling rows. Every option is
+	 * a wrapping chip that switches on with one tap and off with the next; several
+	 * can be on at once. The chosen filters stay visible as chips that remove
+	 * themselves on tap.
 	 */
 	let {
-		when,
+		whens,
+		cats,
 		free,
 		family,
-		sort,
-		cat,
+		soon,
+		near,
 		showCategories = true,
 		count,
-		onset,
+		ontoggle,
+		onreset,
 		onclear
 	}: {
-		when: When;
+		whens: When[];
+		cats: CategoryId[];
 		free: boolean;
 		family: boolean;
-		sort: ListOptions['sort'];
-		cat?: CategoryId;
+		soon: boolean;
+		near: boolean;
 		showCategories?: boolean;
 		count: number;
-		onset: (key: string, value: string | null) => void;
+		/** Switches one value of a filter group on, or off when it is already on. */
+		ontoggle: (key: FilterKey, value: string) => void;
+		/** Switches off every value of one group. */
+		onreset: (key: FilterKey) => void;
 		onclear: () => void;
 	} = $props();
 
 	let open = $state(false);
 
-	const WHEN_OPTIONS: Array<[string | null, When, string]> = [
-		[null, 'any', 'list.anytime'],
-		['sodien', 'today', 'list.today'],
-		['rit', 'tomorrow', 'list.tomorrow'],
-		['nedelas-nogale', 'weekend', 'list.weekend'],
-		['sonedel', 'week', 'list.week']
-	];
+	const WHEN_LABEL: Record<Exclude<When, 'any'>, string> = {
+		today: 'list.today',
+		tomorrow: 'list.tomorrow',
+		weekend: 'list.weekend',
+		week: 'list.week'
+	};
+	const WHEN_OPTIONS = Object.entries(WHEN_PARAM) as Array<[string, Exclude<When, 'any'>]>;
 
-	const active = $derived(
-		[
-			when !== 'any' && { key: 'kad', label: t(WHEN_OPTIONS.find((o) => o[1] === when)![2]) },
-			cat && { key: 'kat', label: t(`cat.${cat}`) },
-			free && { key: 'bez', label: t('list.free') },
-			family && { key: 'gim', label: t('list.family') },
-			sort === 'soon' && { key: 'kart', label: t('list.sortSoon') },
-			sort === 'near' && { key: 'kart', label: t('list.sortNear') }
-		].filter((item): item is { key: string; label: string } => !!item)
-	);
+	const active = $derived([
+		...WHEN_OPTIONS.filter(([, option]) => whens.includes(option)).map(([value, option]) => ({
+			key: 'kad' as const,
+			value,
+			label: t(WHEN_LABEL[option])
+		})),
+		...cats.map((id) => ({ key: 'kat' as const, value: id as string, label: t(`cat.${id}`) })),
+		...(free ? [{ key: 'bez' as const, value: '1', label: t('list.free') }] : []),
+		...(family ? [{ key: 'gim' as const, value: '1', label: t('list.family') }] : []),
+		...(soon ? [{ key: 'kart' as const, value: 'drizak', label: t('list.sortSoon') }] : []),
+		...(near ? [{ key: 'kart' as const, value: 'tuvak', label: t('list.sortNear') }] : [])
+	]);
 </script>
 
 <div class="filters">
@@ -62,9 +78,14 @@
 		</button>
 		{#if active.length}
 			<ul class="active" aria-label={t('list.active')}>
-				{#each active as item (item.key + item.label)}
+				{#each active as item (item.key + item.value)}
 					<li>
-						<button class="chip is-active" type="button" aria-label={t('list.remove', { name: item.label })} onclick={() => onset(item.key, null)}>
+						<button
+							class="chip is-active"
+							type="button"
+							aria-label={t('list.remove', { name: item.label })}
+							onclick={() => ontoggle(item.key, item.value)}
+						>
 							{item.label}
 							<X size={16} aria-hidden="true" />
 						</button>
@@ -79,8 +100,11 @@
 			<fieldset>
 				<legend>{t('list.when')}</legend>
 				<div class="chip-grid">
-					{#each WHEN_OPTIONS as [value, option, label] (option)}
-						<button type="button" class="chip" aria-pressed={when === option} onclick={() => onset('kad', value)}>{t(label)}</button>
+					<button type="button" class="chip" aria-pressed={whens.length === 0} onclick={() => onreset('kad')}>{t('list.anytime')}</button>
+					{#each WHEN_OPTIONS as [value, option] (option)}
+						<button type="button" class="chip" aria-pressed={whens.includes(option)} onclick={() => ontoggle('kad', value)}>
+							{t(WHEN_LABEL[option])}
+						</button>
 					{/each}
 				</div>
 			</fieldset>
@@ -89,9 +113,9 @@
 				<fieldset>
 					<legend>{t('list.category')}</legend>
 					<div class="chip-grid">
-						<button type="button" class="chip" aria-pressed={!cat} onclick={() => onset('kat', null)}>{t('list.allCategories')}</button>
+						<button type="button" class="chip" aria-pressed={cats.length === 0} onclick={() => onreset('kat')}>{t('list.allCategories')}</button>
 						{#each CATEGORY_IDS as id (id)}
-							<button type="button" class="chip" aria-pressed={cat === id} onclick={() => onset('kat', cat === id ? null : id)}>
+							<button type="button" class="chip" aria-pressed={cats.includes(id)} onclick={() => ontoggle('kat', id)}>
 								{t(`cat.${id}`)}
 							</button>
 						{/each}
@@ -102,14 +126,10 @@
 			<fieldset>
 				<legend>{t('list.more')}</legend>
 				<div class="chip-grid">
-					<button type="button" class="chip" aria-pressed={free} onclick={() => onset('bez', free ? null : '1')}>{t('list.free')}</button>
-					<button type="button" class="chip" aria-pressed={family} onclick={() => onset('gim', family ? null : '1')}>{t('list.family')}</button>
-					<button type="button" class="chip" aria-pressed={sort === 'soon'} onclick={() => onset('kart', sort === 'soon' ? null : 'drizak')}>
-						{t('list.sortSoon')}
-					</button>
-					<button type="button" class="chip" aria-pressed={sort === 'near'} onclick={() => onset('kart', sort === 'near' ? null : 'tuvak')}>
-						{t('list.sortNear')}
-					</button>
+					<button type="button" class="chip" aria-pressed={free} onclick={() => ontoggle('bez', '1')}>{t('list.free')}</button>
+					<button type="button" class="chip" aria-pressed={family} onclick={() => ontoggle('gim', '1')}>{t('list.family')}</button>
+					<button type="button" class="chip" aria-pressed={soon} onclick={() => ontoggle('kart', 'drizak')}>{t('list.sortSoon')}</button>
+					<button type="button" class="chip" aria-pressed={near} onclick={() => ontoggle('kart', 'tuvak')}>{t('list.sortNear')}</button>
 				</div>
 			</fieldset>
 

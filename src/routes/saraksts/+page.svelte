@@ -10,34 +10,42 @@
 	import { page } from '$app/state';
 	import BackLink from '$lib/components/BackLink.svelte';
 	import EventCard from '$lib/components/EventCard.svelte';
-	import FilterPanel from '$lib/components/FilterPanel.svelte';
+	import FilterPanel, { WHEN_PARAM, type FilterKey } from '$lib/components/FilterPanel.svelte';
 	import SkeletonCard from '$lib/components/SkeletonCard.svelte';
 	import { has, plural, t } from '$lib/i18n';
 	import { getPlace } from '$lib/profile';
-	import { listEvents, reasonLabels, type ListOptions, type When } from '$lib/rank';
+	import { listEvents, reasonLabels, type ListOptions } from '$lib/rank';
 	import { eventStore } from '$lib/stores/events.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { CATEGORY_IDS, type CategoryId } from '$shared/types';
 	import { onMount } from 'svelte';
 
 	const PAGE_SIZE = 20;
-	const WHEN_PARAM: Record<string, When> = { sodien: 'today', rit: 'tomorrow', 'nedelas-nogale': 'weekend', sonedel: 'week' };
 
 	let now = $state(new Date());
 	const params = $derived(browser ? page.url.searchParams : new URLSearchParams());
 	const view = $derived(params.get('skats') ?? 'visi');
 	const scope = $derived<ListOptions['scope']>(view === 'tuvuma' ? 'nearby' : view === 'latvija' ? 'elsewhere' : 'all');
-	const cat = $derived((CATEGORY_IDS as readonly string[]).includes(params.get('kat') ?? '') ? (params.get('kat') as CategoryId) : undefined);
+	/** Several values of one filter share a parameter, joined by commas: kat=koncerti,teatris. */
+	const chosen = (source: URLSearchParams, key: string) => (source.get(key) ?? '').split(',').filter(Boolean);
+	const cats = $derived(chosen(params, 'kat').filter((id): id is CategoryId => (CATEGORY_IDS as readonly string[]).includes(id)));
+	const cat = $derived(cats.length === 1 ? cats[0] : undefined);
 	const tag = $derived(params.get('tag') ?? undefined);
-	const when = $derived<When>(WHEN_PARAM[params.get('kad') ?? ''] ?? 'any');
+	const whens = $derived(
+		chosen(params, 'kad')
+			.filter((value): value is keyof typeof WHEN_PARAM => value in WHEN_PARAM)
+			.map((value) => WHEN_PARAM[value])
+	);
 	const free = $derived(params.get('bez') === '1');
 	const family = $derived(params.get('gim') === '1');
 	const placeId = $derived(params.get('vieta') ?? undefined);
-	const sort = $derived<ListOptions['sort']>(params.get('kart') === 'drizak' ? 'soon' : params.get('kart') === 'tuvak' ? 'near' : 'best');
+	const soon = $derived(chosen(params, 'kart').includes('drizak'));
+	const near = $derived(chosen(params, 'kart').includes('tuvak'));
+	const sort = $derived<ListOptions['sort']>(soon && near ? 'soon-near' : soon ? 'soon' : near ? 'near' : 'best');
 
 	const items = $derived(
 		eventStore.status === 'ready'
-			? listEvents(eventStore.events, profileStore.value, now, { scope, cat, tag, when, free, family, placeId, sort })
+			? listEvents(eventStore.events, profileStore.value, now, { scope, cats, tag, whens, free, family, placeId, sort })
 			: []
 	);
 	let visible = $state(visibleByUrl.get(browser ? page.url.search : '') ?? PAGE_SIZE);
@@ -65,12 +73,18 @@
 	});
 
 
-	function setParam(key: string, value: string | null) {
+	function setParam(key: FilterKey, values: string[]) {
 		const next = new URLSearchParams(page.url.searchParams);
-		if (value === null) next.delete(key);
-		else next.set(key, value);
+		if (values.length === 0) next.delete(key);
+		else next.set(key, values.join(','));
 		visible = PAGE_SIZE;
 		goto(`${base}/saraksts?${next}`, { replaceState: true, keepFocus: true, noScroll: true });
+	}
+
+	/** One tap switches a filter value on, the next tap switches it off; other values stay. */
+	function toggleParam(key: FilterKey, value: string) {
+		const current = chosen(page.url.searchParams, key);
+		setParam(key, current.includes(value) ? current.filter((item) => item !== value) : [...current, value]);
 	}
 
 </script>
@@ -84,14 +98,16 @@
 	<h1>{title}</h1>
 
 	<FilterPanel
-		{when}
+		{whens}
+		{cats}
 		{free}
 		{family}
-		{sort}
-		{cat}
+		{soon}
+		{near}
 		showCategories={!tag}
 		count={items.length}
-		onset={setParam}
+		ontoggle={toggleParam}
+		onreset={(key) => setParam(key, [])}
 		onclear={() => goto(`${base}/saraksts?skats=${view}`, { replaceState: true, keepFocus: true, noScroll: true })}
 	/>
 
@@ -106,7 +122,7 @@
 		<p class="count" role="status">{plural('events', items.length, { noneKey: 'plural.none' })}</p>
 		{#if items.length === 0}
 			<p class="muted">{t('list.empty')}</p>
-			{#if when !== 'any' || free || family || cat}
+			{#if whens.length || free || family || cats.length}
 				<a class="btn btn-secondary" href={`${base}/saraksts?skats=${view}`}>{t('list.clear')}</a>
 			{/if}
 		{:else}

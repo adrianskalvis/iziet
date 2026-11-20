@@ -52,13 +52,17 @@ test.describe('returning visitor', () => {
 		await expect(menu).toBeHidden();
 	});
 
-	test('Visa Latvija on home opens search with events from all of Latvia', async ({ page }) => {
+	test('Visa Latvija on home swaps the sections in place and Tuvumā swaps them back', async ({ page }) => {
 		await page.goto('/');
 		await waitForCards(page);
 		await page.getByRole('button', { name: 'Visa Latvija' }).click();
-		await expect(page).toHaveURL(/meklet\?kur=latvija/);
-		await expect(page.getByRole('heading', { name: 'Ieteikumi visā Latvijā' })).toBeVisible();
+		await expect(page.getByRole('heading', { name: 'Visā Latvijā' })).toBeVisible();
+		await expect(page.getByRole('heading', { name: 'Citur Latvijā' })).toBeHidden();
+		await expect(page).toHaveURL(/\/$/);
 		await waitForCards(page);
+		await page.getByRole('button', { name: 'Tuvumā', exact: true }).click();
+		await expect(page.getByRole('heading', { name: 'Tuvumā' })).toBeVisible();
+		await expect(page.getByRole('heading', { name: 'Citur Latvijā' })).toBeVisible();
 	});
 
 	test('Atpakaļ on a page opened from the menu reopens the menu', async ({ page }) => {
@@ -105,6 +109,26 @@ test.describe('returning visitor', () => {
 		await expect(page.getByRole('button', { name: 'Noņemt filtru: Bez maksas' })).toBeVisible();
 	});
 
+	test('several filters stay on together and a second tap switches one off', async ({ page }) => {
+		await page.goto('/saraksts?skats=visi');
+		await waitForCards(page);
+		await page.getByRole('button', { name: /^Filtri/ }).click();
+		const today = page.getByRole('button', { name: 'Šodien', exact: true });
+		const tomorrow = page.getByRole('button', { name: 'Rīt', exact: true });
+		await today.click();
+		await tomorrow.click();
+		await page.getByRole('button', { name: 'Koncerti', exact: true }).click();
+		await page.getByRole('button', { name: 'Teātris', exact: true }).click();
+		await expect(today).toHaveAttribute('aria-pressed', 'true');
+		await expect(tomorrow).toHaveAttribute('aria-pressed', 'true');
+		await expect(page).toHaveURL(/kad=sodien%2Crit/);
+		await expect(page).toHaveURL(/kat=koncerti%2Cteatris/);
+		await today.click();
+		await expect(today).toHaveAttribute('aria-pressed', 'false');
+		await expect(tomorrow).toHaveAttribute('aria-pressed', 'true');
+		await expect(page).toHaveURL(/kad=rit/);
+	});
+
 	test('event page links back to the original source', async ({ page }) => {
 		await page.goto('/saraksts?skats=visi');
 		await waitForCards(page);
@@ -137,5 +161,16 @@ test.describe('returning visitor', () => {
 		await waitForCards(page);
 		await expect(page.getByRole('heading', { name: 'Tuvumā' })).toBeVisible();
 		await context.setOffline(false);
+	});
+});
+
+test.describe('visitor without interests', () => {
+	test('home shows one card per category when the user picked no interests', async ({ page }) => {
+		await seedProfile(page, { cats: [] });
+		await page.goto('/');
+		await waitForCards(page);
+		const nearby = page.locator('section', { has: page.getByRole('heading', { name: 'Tuvumā' }) });
+		const categories = await nearby.locator('article .cat').allInnerTexts();
+		expect(new Set(categories).size).toBe(categories.length);
 	});
 });

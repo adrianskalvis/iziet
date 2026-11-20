@@ -8,6 +8,8 @@ class UiStore {
 	menuOrigin: string | null = null;
 	/** Set by a menu link click, consumed by the next navigation. */
 	navFromMenu = false;
+	/** Home tab: events near the user or in the whole country. Kept while the app stays open. */
+	homeScope = $state<'nearby' | 'all'>('nearby');
 	online = $state(browser ? navigator.onLine : true);
 	toast = $state<string | null>(null);
 	/** Deferred install prompt (Chrome and Android). */
