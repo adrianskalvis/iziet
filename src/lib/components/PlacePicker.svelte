@@ -8,7 +8,7 @@
 
 <script lang="ts">
 	import { t } from '$lib/i18n';
-	import { canLocate, findApkaime, requestLocation } from '$lib/locate';
+	import { findApkaime, requestLocation } from '$lib/locate';
 	import { CITY_CHIPS } from '$lib/profile';
 	import { fold } from '$shared/fold';
 	import { PLACES } from '$shared/places.generated';
@@ -48,13 +48,11 @@
 </script>
 
 <div class="picker">
-	{#if canLocate()}
-		<button class="btn btn-primary btn-block locate" type="button" onclick={locate} disabled={locating} aria-pressed={hasGeo}>
-			<LocateFixed size={22} aria-hidden="true" />
-			{locating ? t('onboarding.locating') : t('onboarding.useLocation')}
-		</button>
-		<p class="muted reason">{t('onboarding.locationReason')}</p>
-	{/if}
+	<button class="btn btn-primary btn-block locate" type="button" onclick={locate} disabled={locating} aria-pressed={hasGeo}>
+		<LocateFixed size={22} aria-hidden="true" />
+		{locating ? t('onboarding.locating') : t('onboarding.useLocation')}
+	</button>
+	<p class="muted reason">{t('onboarding.locationReason')}</p>
 	{#if denied}
 		<p class="warning" role="alert">{t('onboarding.locationDenied')}</p>
 	{/if}
