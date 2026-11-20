@@ -74,19 +74,45 @@ export function placeAt(point: LatLng): GazetteerPlace | undefined {
 	return bestTown && bestTown.km <= 15 ? bestTown.place : bestVillage?.place;
 }
 
-/** Finds a settlement named in free text such as "Jelgavā" or "Liepāja, Rožu iela 1". */
+/** Words after a place name that make it a municipality ("Cēsu novads"), not where the event is. */
+const MUNICIPALITY = /^(novad|pagast)/;
+/** Street types: the 1 to 3 words before them are a street name ("Krišjāņa Barona iela"). */
+const STREET = /^(iela|iel|aleja|alej|prospekt|bulvar|gatve|gatv|laukum|soseja|sosej|cels|krastmala|dambis|ielas)$/;
+
+function skippable(words: string[], start: number, end: number): boolean {
+	if (MUNICIPALITY.test(words[end] ?? '')) return true;
+	for (let i = start; i < end; i++) if (STREET.test(words[i])) return true;
+	for (let next = end; next < Math.min(words.length, end + 3); next++) if (STREET.test(words[next])) return true;
+	return false;
+}
+
+/**
+ * Finds a settlement named in free text such as "Jelgavā" or "Liepāja, Rožu iela 1".
+ * Texts are tried in order (source town, then address, then venue). Municipality
+ * names ("Cēsu novads") and street names ("Krišjāņa Barona iela") are skipped, and
+ * a town beats a village in the same text, so '"Vējarozes", Dzērbene, LV-4118
+ * Cēsu novads' gives Dzērbene and "Rīgas iela 5, Cēsis" gives Cēsis.
+ */
 export function placeFromText(...texts: Array<string | undefined>): GazetteerPlace | undefined {
-	for (const text of texts) {
-		if (!text) continue;
-		const words = fold(text)
-			.split(/[^a-z0-9]+/)
-			.filter((word) => word.length >= 3);
-		for (let size = 3; size >= 1; size--) {
-			for (let i = 0; i + size <= words.length; i++) {
-				const phrase = words.slice(i, i + size).join(' ');
-				const match = byStem.get(phrase) ?? byStem.get(stem(phrase));
-				if (match?.length) return match.find((p) => p.kind !== 'village') ?? match[0];
+	for (const strict of [true, false]) {
+		for (const text of texts) {
+			if (!text) continue;
+			const words = fold(text)
+				.split(/[^a-z0-9]+/)
+				.filter((word) => word.length >= 3);
+			let village: GazetteerPlace | undefined;
+			for (let size = 3; size >= 1; size--) {
+				for (let i = 0; i + size <= words.length; i++) {
+					if (strict && skippable(words, i, i + size)) continue;
+					const phrase = words.slice(i, i + size).join(' ');
+					const match = byStem.get(phrase) ?? byStem.get(stem(phrase));
+					if (!match?.length) continue;
+					const town = match.find((p) => p.kind !== 'village');
+					if (town) return town;
+					village ??= match[0];
+				}
 			}
+			if (village) return village;
 		}
 	}
 	return undefined;

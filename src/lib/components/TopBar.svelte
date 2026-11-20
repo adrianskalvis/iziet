@@ -23,10 +23,10 @@
 		<span class="line line-3"></span>
 	</button>
 
-	<a class="brand" href={`${base}/`} onclick={() => (ui.menuOpen = false)}>{t('app.name')}</a>
+	<a class="brand" href={`${base}/`} onclick={() => (ui.menuOpen = false)}>{t('app.brand')}</a>
 
 	<div class="flag-slot">
-		<Flag size={34} />
+		<Flag width={38} />
 	</div>
 </header>
 
@@ -100,7 +100,7 @@
 	.brand {
 		justify-self: center;
 		padding: 6px 12px;
-		font-size: 1.75rem;
+		font-size: 1.625rem;
 		font-weight: 900;
 		letter-spacing: -0.02em;
 		text-decoration: none;

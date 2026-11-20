@@ -19,7 +19,9 @@ const config = {
 	kit: {
 		// Every route is prerendered. Event and list pages read their state from
 		// the query string, so static hosting needs no rewrite rules.
-		adapter: adapter({ pages: 'build', assets: 'build', strict: true }),
+		adapter: adapter({ pages: 'build', assets: 'build', fallback: '404.html', strict: true }),
+		// GitHub Pages serves a project site under /<repo>; the deploy workflow sets BASE_PATH.
+		paths: { base: process.env.BASE_PATH ?? '' },
 		alias: {
 			$locales: 'locales',
 			$shared: 'src/lib/shared'

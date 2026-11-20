@@ -1,11 +1,21 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import { page } from '$app/state';
 	import { t } from '$lib/i18n';
 	import { ui } from '$lib/stores/ui.svelte';
 	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 
-	/** History back (the browser restores scroll) when the user came from inside the app; else home. */
+	/**
+	 * On a page opened from the menu, "Atpakaļ" reopens the menu.
+	 * Elsewhere it goes back in history (the browser restores scroll) when the
+	 * user came from inside the app, else home.
+	 */
 	function onclick(event: MouseEvent) {
+		if (ui.menuOrigin && page.url.pathname === ui.menuOrigin) {
+			event.preventDefault();
+			ui.menuOpen = true;
+			return;
+		}
 		if (ui.navCount > 1) {
 			event.preventDefault();
 			window.history.back();

@@ -50,7 +50,7 @@
 		<SkeletonCard />
 	{:else if upcoming.length === 0 && past.length === 0}
 		<div class="empty">
-			<Mascot size={96} decorative />
+			<Mascot size={76} decorative />
 			<div>
 				<p class="strong">{t('saved.empty')}</p>
 				<p class="muted">{t('saved.emptyHint')}</p>

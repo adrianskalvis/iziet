@@ -24,7 +24,7 @@
 <div class="page stack">
 	<BackLink />
 	<div class="hero">
-		<Mascot size={110} />
+		<Mascot size={84} />
 		<h1>{t('about.title')}</h1>
 	</div>
 	<p>{t('about.intro')}</p>

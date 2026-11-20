@@ -1,9 +1,13 @@
-name: Refresh events
+name: Site
 
-# Two jobs: "fetch" parses untrusted web pages with read-only permissions and no
-# stored git credentials; "commit" only takes the generated files and pushes them.
-# Cloudflare Pages rebuilds the site on that push.
+# One workflow for the live site:
+# - push to main: build with the committed data and deploy to GitHub Pages.
+# - every 6 hours (and by hand): fetch fresh events first, deploy, then commit the data.
+# Scraping runs in a read-only job without stored git credentials; only the
+# commit job can write, and it copies JSON files only.
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
@@ -12,15 +16,14 @@ permissions:
   contents: read
 
 concurrency:
-  group: data-refresh
+  group: site
   cancel-in-progress: false
 
 jobs:
-  fetch:
+  data:
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,8 +51,55 @@ jobs:
             data/cache/sources
           retention-days: 3
 
-  commit:
-    needs: fetch
+  build:
+    needs: data
+    if: always() && (needs.data.result == 'success' || needs.data.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - if: needs.data.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: event-data
+          path: artifact
+      - name: Use fresh data
+        if: needs.data.result == 'success'
+        run: rsync -a --include='*/' --include='*.json' --exclude='*' artifact/static/data/ static/data/
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Build
+        run: npm run build
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    if: always() && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  commit-data:
+    needs: [data, deploy]
+    if: always() && needs.data.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

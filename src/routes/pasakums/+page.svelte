@@ -7,10 +7,11 @@
 	import EventImage from '$lib/components/EventImage.svelte';
 	import SkeletonCard from '$lib/components/SkeletonCard.svelte';
 	import { downloadIcs } from '$lib/calendar';
+	import { directionsUrl } from '$lib/directions';
 	import { formatDistance, formatPriceRange, formatShowTime, formatWhenLong } from '$lib/format';
 	import { has, t } from '$lib/i18n';
 	import { resolveOrigin } from '$lib/profile';
-	import { distanceKm, eventPoint, listEvents, reasonLabels } from '$lib/rank';
+	import { distanceKm, listEvents, reasonLabels } from '$lib/rank';
 	import { eventStore } from '$lib/stores/events.svelte';
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { savedStore } from '$lib/stores/saved.svelte';
@@ -52,12 +53,7 @@
 	const tint = $derived(event ? CATEGORY_TINT[event.cat] : 'nisas');
 	let showAllTimes = $state(false);
 
-	const directions = $derived.by(() => {
-		if (!event) return undefined;
-		const point = eventPoint(event);
-		const destination = point ? `${point.lat},${point.lng}` : [event.venue, event.address, event.town].filter(Boolean).join(', ');
-		return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
-	});
+	const directions = $derived(event ? directionsUrl(event) : undefined);
 
 	const similar = $derived(
 		event && eventStore.status === 'ready'

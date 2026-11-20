@@ -15,7 +15,7 @@
 
 <section class="ask" aria-label={title}>
 	<div class="head">
-		<div class="bird"><Mascot size={56} decorative /></div>
+		<div class="bird"><Mascot size={46} decorative /></div>
 		<div class="text">
 			<h2 class="title">{title}</h2>
 			{#if lead}<p class="muted">{lead}</p>{/if}

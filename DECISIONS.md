@@ -51,6 +51,18 @@ Choices made during the overnight build of 2026-11-20, with the reason for each.
 | 28 | First-visit onboarding and the home skeleton are both in the prerendered HTML; an inline script picks one before first paint | No flash, and the first paint needs no JavaScript (Lighthouse home 100). |
 | 29 | Riga time computed from the EU summer-time rule | Intl was 649 ms of main-thread work when ranking. Checked against Intl over 2025 to 2030. |
 | 30 | Sign-in is off; Google and Apple via Supabase Auth behind `VITE_FEATURE_SYNC=1` plus keys; no SDK | Answer 12. Passkeys need provider support that was not verified, so the button is not shown. Schema in `docs/sync.sql`. |
-| 31 | Cloudflare Pages for hosting, GitHub Actions every 6 hours for data | Answer 14. Nothing is deployed: accounts are not connected. |
+| 31 | GitHub Pages for hosting; one GitHub Actions workflow builds on push and refreshes data every 6 hours | Owner asked for a live site through GitHub Actions on 2026-11-21. Cloudflare Pages still works with the same build (`static/_headers` applies there). |
 | 32 | No analytics, no cookies, no cookie banner | Privacy promise in the app. |
 | 33 | Work is on branch `build/v1`; `main` holds only the research | The repo started empty; the branch keeps the overnight work reviewable. |
+
+## Owner tweaks of 2026-11-21
+
+| # | Decision | Reason |
+|---|---|---|
+| 34 | Top bar reads "Iziet.lv"; the flag is a plain 2:1 rectangle with 2:1:2 stripes | Owner request. |
+| 35 | Cielaviņa redrawn from the owner's reference photo: slim diagonal body, round white face, black crown and bib, white-edged wings, long tail; about 25% smaller | Owner request; the tail wag stays. |
+| 36 | "Atpakaļ" on a page opened from the menu reopens the menu | Owner request. |
+| 37 | List filters sit behind one "Filtri" button; options wrap, nothing scrolls sideways; chosen filters show as removable chips | Owner asked whether older users know sideways scrolling. |
+| 38 | "Pārlūkot pēc kategorijas" shows the user's interests first, 6 chips in all, plus "Visas kategorijas" | Owner request. |
+| 39 | The scope toggle opens search with the best events for that scope before any typing; "Nekas netika atrasts" is gone | Owner reported "Visa Latvija" did nothing. |
+| 40 | "Kā nokļūt" uses venue and address text when only the town centre is known; town matching skips "… novads" and street names | Owner found Neonija (Dzērbene) routed to Cēsis centre. A test checks every event. |

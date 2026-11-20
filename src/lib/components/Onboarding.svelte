@@ -76,7 +76,7 @@
 
 	{#if step === 1}
 		<div class="hello">
-			<Mascot size={96} />
+			<Mascot size={76} />
 			<div class="bubble">
 				<p class="hello-title">{t('onboarding.hello')}</p>
 				<p>{t('onboarding.helloLead')}</p>

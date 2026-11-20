@@ -39,6 +39,10 @@ test.describe('returning visitor screens', () => {
 		await waitForCards(page);
 		await page.waitForTimeout(600);
 		await page.screenshot({ path: `${DIR}/07-list-nearby.png` });
+		await page.getByRole('button', { name: /^Filtri/ }).click();
+		await page.waitForTimeout(300);
+		await page.screenshot({ path: `${DIR}/07b-list-filters.png` });
+		await page.getByRole('button', { name: /^Rādīt rezultātus/ }).click();
 
 		await page.locator('article a.stretched').first().click();
 		await page.getByRole('heading', { level: 1 }).waitFor();
@@ -46,6 +50,10 @@ test.describe('returning visitor screens', () => {
 		await page.screenshot({ path: `${DIR}/08-event.png` });
 		await page.screenshot({ path: `${DIR}/09-event-full.png`, fullPage: true });
 
+		await page.goto('/meklet?kur=latvija');
+		await waitForCards(page);
+		await page.waitForTimeout(600);
+		await page.screenshot({ path: `${DIR}/10b-search-latvija.png` });
 		await page.goto('/meklet?q=jurmala&kur=latvija');
 		await waitForCards(page);
 		await page.waitForTimeout(600);

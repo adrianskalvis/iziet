@@ -10,6 +10,7 @@
 	import { page } from '$app/state';
 	import BackLink from '$lib/components/BackLink.svelte';
 	import EventCard from '$lib/components/EventCard.svelte';
+	import FilterPanel from '$lib/components/FilterPanel.svelte';
 	import SkeletonCard from '$lib/components/SkeletonCard.svelte';
 	import { has, plural, t } from '$lib/i18n';
 	import { getPlace } from '$lib/profile';
@@ -21,7 +22,6 @@
 
 	const PAGE_SIZE = 20;
 	const WHEN_PARAM: Record<string, When> = { sodien: 'today', rit: 'tomorrow', 'nedelas-nogale': 'weekend', sonedel: 'week' };
-	const WHEN_LABEL: Record<When, string> = { today: 'list.today', tomorrow: 'list.tomorrow', weekend: 'list.weekend', week: 'list.week', any: 'list.anytime' };
 
 	let now = $state(new Date());
 	const params = $derived(browser ? page.url.searchParams : new URLSearchParams());
@@ -64,6 +64,7 @@
 		if (browser) visibleByUrl.set(page.url.search, visible);
 	});
 
+
 	function setParam(key: string, value: string | null) {
 		const next = new URLSearchParams(page.url.searchParams);
 		if (value === null) next.delete(key);
@@ -72,13 +73,6 @@
 		goto(`${base}/saraksts?${next}`, { replaceState: true, keepFocus: true, noScroll: true });
 	}
 
-	const whenOptions: Array<[string | null, When]> = [
-		[null, 'any'],
-		['sodien', 'today'],
-		['rit', 'tomorrow'],
-		['nedelas-nogale', 'weekend'],
-		['sonedel', 'week']
-	];
 </script>
 
 <svelte:head>
@@ -89,35 +83,17 @@
 	<BackLink />
 	<h1>{title}</h1>
 
-	<div class="filters" aria-label={t('list.filters')}>
-		<div class="chip-row" role="group" aria-label={t('list.when')}>
-			{#each whenOptions as [value, option] (option)}
-				<button type="button" class="chip" aria-pressed={when === option} onclick={() => setParam('kad', value)}>
-					{t(WHEN_LABEL[option])}
-				</button>
-			{/each}
-		</div>
-		<div class="chip-row" role="group" aria-label={t('list.filters')}>
-			<button type="button" class="chip" aria-pressed={free} onclick={() => setParam('bez', free ? null : '1')}>{t('list.free')}</button>
-			<button type="button" class="chip" aria-pressed={family} onclick={() => setParam('gim', family ? null : '1')}>{t('list.family')}</button>
-			<button type="button" class="chip" aria-pressed={sort === 'soon'} onclick={() => setParam('kart', sort === 'soon' ? null : 'drizak')}>
-				{t('list.sortSoon')}
-			</button>
-			<button type="button" class="chip" aria-pressed={sort === 'near'} onclick={() => setParam('kart', sort === 'near' ? null : 'tuvak')}>
-				{t('list.sortNear')}
-			</button>
-		</div>
-		{#if !tag}
-			<div class="chip-row" role="group" aria-label={t('list.category')}>
-				<button type="button" class="chip" aria-pressed={!cat} onclick={() => setParam('kat', null)}>{t('list.allCategories')}</button>
-				{#each CATEGORY_IDS as id (id)}
-					<button type="button" class="chip" aria-pressed={cat === id} onclick={() => setParam('kat', cat === id ? null : id)}>
-						{t(`cat.${id}`)}
-					</button>
-				{/each}
-			</div>
-		{/if}
-	</div>
+	<FilterPanel
+		{when}
+		{free}
+		{family}
+		{sort}
+		{cat}
+		showCategories={!tag}
+		count={items.length}
+		onset={setParam}
+		onclear={() => goto(`${base}/saraksts?skats=${view}`, { replaceState: true, keepFocus: true, noScroll: true })}
+	/>
 
 	{#if eventStore.status === 'error'}
 		<p>{t('error.load')}</p>
@@ -147,16 +123,6 @@
 </div>
 
 <style>
-	.filters {
-		display: grid;
-		gap: 2px;
-	}
-
-	.chip-row {
-		margin: 0 calc(var(--gutter) * -1);
-		padding-left: var(--gutter);
-		padding-right: var(--gutter);
-	}
 
 	.count {
 		font-weight: 800;

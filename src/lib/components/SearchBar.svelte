@@ -12,12 +12,15 @@
 		scope = $bindable<Scope>('nearby'),
 		autofocus = false,
 		oninput,
+		onscope,
 		onsubmit
 	}: {
 		value?: string;
 		scope?: Scope;
 		autofocus?: boolean;
 		oninput?: (value: string, scope: Scope) => void;
+		/** Called when the scope toggle changes; defaults to oninput. */
+		onscope?: (scope: Scope) => void;
 		onsubmit?: (value: string, scope: Scope) => void;
 	} = $props();
 
@@ -29,7 +32,8 @@
 
 	function setScope(next: Scope) {
 		scope = next;
-		oninput?.(value, scope);
+		if (onscope) onscope(scope);
+		else oninput?.(value, scope);
 	}
 </script>
 

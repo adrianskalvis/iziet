@@ -34,6 +34,8 @@
 	const elsewhere = $derived(
 		ready && nearby ? pickElsewhere(eventStore.events, profile, now, nearby.radiusKm, 3) : []
 	);
+	/** The user's own interests first, then the rest, 6 in all; the rest are one tap away. */
+	const browseCats = $derived([...profile.cats, ...CATEGORY_IDS.filter((cat) => !profile.cats.includes(cat))].slice(0, 6));
 	const placeName = $derived(nearby?.origin.apkaime?.name ?? nearby?.origin.place.name ?? RIGA.name);
 
 	onMount(() => {
@@ -74,6 +76,13 @@
 		goto(`${base}/meklet?q=${encodeURIComponent(value)}&kur=${kur}`, { keepFocus: true });
 	}
 
+	/** The scope toggle opens search with the best events for that scope, before any typing. */
+	function onScope(nextScope: Scope) {
+		const kur = nextScope === 'all' ? 'latvija' : 'tuvuma';
+		const q = query.trim() ? `q=${encodeURIComponent(query)}&` : '';
+		goto(`${base}/meklet?${q}kur=${kur}`);
+	}
+
 	/** The event page counts category opens; home only counts opens from "Citur Latvijā". */
 	function trackOpen(_event: EventCore, elsewhereBlock = false) {
 		if (!elsewhereBlock) return;
@@ -89,7 +98,7 @@
 
 {#if !mounted || !showOnboarding}
 	<div class="page home-content stack">
-		<SearchBar bind:value={query} bind:scope oninput={onSearch} onsubmit={onSearch} />
+		<SearchBar bind:value={query} bind:scope oninput={onSearch} onscope={onScope} onsubmit={onSearch} />
 
 		{#if question}
 			<AskQuestion id={question} ondone={() => (question = undefined)} />
@@ -113,7 +122,7 @@
 				<p class="visually-hidden" role="status">{t('home.loading')}</p>
 			{:else if nearby.picks.length === 0}
 				<div class="empty">
-					<Mascot size={84} decorative />
+					<Mascot size={68} decorative />
 					<div>
 						<p class="empty-title">{t('home.emptyNearby')}</p>
 						{#if nearby.nearestTown}
@@ -172,12 +181,13 @@
 
 		<section class="block" aria-labelledby="browse-title">
 			<h2 id="browse-title">{t('home.browse')}</h2>
-			<div class="chip-row">
-				{#each CATEGORY_IDS as cat (cat)}
+			<div class="chip-grid">
+				{#each browseCats as cat (cat)}
 					<a class="chip cat-chip" href={`${base}/saraksts?skats=visi&kat=${cat}`} style:--ink={`var(--cat-${CATEGORY_TINT[cat]}-icon)`}>
 						<span class="dot" aria-hidden="true"></span>{t(`cat.${cat}`)}
 					</a>
 				{/each}
+				<a class="chip cat-chip all" href={`${base}/kategorijas`}>{t('home.allCategories')}</a>
 			</div>
 		</section>
 	</div>
@@ -209,6 +219,8 @@
 	.place {
 		display: inline-flex;
 		align-items: center;
+		flex-wrap: wrap;
+		column-gap: 0.3em;
 		min-height: var(--tap-min);
 		font-size: var(--text-small);
 		color: var(--color-text-muted);

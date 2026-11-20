@@ -41,9 +41,12 @@ npm run test:e2e       # 13 Playwright tests at 390×844, writes screenshots/
 
 ## Deploy
 
-1. Push the repo to GitHub.
-2. Cloudflare Pages: build command `npm run build`, output folder `build`, Node 22.
-3. GitHub Actions `Refresh events` runs every 6 hours and commits new data; Pages rebuilds on each push.
+GitHub Pages, from `.github/workflows/site.yml`:
+
+1. Push the repo to GitHub (public, so Pages is free).
+2. Settings, Pages, Source: "GitHub Actions".
+3. Every push to `main` builds and deploys. Every 6 hours the workflow fetches fresh events, deploys them and commits the data back.
+4. A custom domain (for example iziet.lv) goes in Settings, Pages; the build then drops the `/iziet` sub-path by itself.
 
 Optional sync: create the table in `docs/sync.sql` on Supabase (EU region), enable Google and Apple sign-in, then build with `VITE_FEATURE_SYNC=1`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
 

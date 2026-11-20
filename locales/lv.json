@@ -1,6 +1,7 @@
 {
 	"app": {
 		"name": "Iziet",
+		"brand": "Iziet.lv",
 		"tagline": "Ko darīt tuvumā un visā Latvijā",
 		"description": "Atrodi pasākumu tuvumā 30 sekundēs: koncerti, tirdziņi, izstādes, sports un vēl."
 	},
@@ -31,7 +32,8 @@
 		"seeTown": "Skatīt pasākumus: {town}",
 		"emptyElsewhere": "Citur Latvijā šobrīd nekas neatbilst tavām interesēm.",
 		"widen": "Paskaties visus pasākumus",
-		"browse": "Pārlūkot pēc kategorijas"
+		"browse": "Pārlūkot pēc kategorijas",
+		"allCategories": "Visas kategorijas"
 	},
 	"search": {
 		"label": "Meklēt",
@@ -40,10 +42,11 @@
 		"nearby": "Tuvumā",
 		"all": "Visa Latvija",
 		"clear": "Notīrīt meklēšanu",
-		"noResults": "Nekas netika atrasts. Pārbaudi rakstību.",
 		"tryAll": "Meklēt visā Latvijā",
 		"hint": "Piemēram: koncerts, tirgus, Jūrmala, anime",
-		"results": "Rezultāti"
+		"results": "Rezultāti",
+		"suggestedNearby": "Ieteikumi tuvumā",
+		"suggestedAll": "Ieteikumi visā Latvijā"
 	},
 	"list": {
 		"nearby": "Tuvumā",
@@ -66,7 +69,11 @@
 		"sort": "Kārtot",
 		"sortBest": "Piemērotākie",
 		"sortSoon": "Drīzākie",
-		"sortNear": "Tuvākie"
+		"sortNear": "Tuvākie",
+		"more": "Vēl",
+		"show": "Rādīt rezultātus ({count})",
+		"remove": "Noņemt filtru: {name}",
+		"active": "Izvēlētie filtri"
 	},
 	"card": {
 		"open": "Atvērt pasākumu: {title}",

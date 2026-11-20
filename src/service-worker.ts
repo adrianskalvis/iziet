@@ -11,7 +11,7 @@
  * - Event images from other sites: cache-first, at most 150 entries, best effort.
  * - Pages: network first with a 3 s timeout, cached copy when offline.
  */
-import { build, files, prerendered, version } from '$service-worker';
+import { base, build, files, prerendered, version } from '$service-worker';
 
 const sw = self as unknown as ServiceWorkerGlobalScope;
 const SHELL_CACHE = `shell-${version}`;
@@ -21,7 +21,7 @@ const MAX_IMAGES = 150;
 const DATA_TIMEOUT_MS = 3000;
 const PAGE_TIMEOUT_MS = 3000;
 
-const PRECACHE = [...build, ...files.filter((file) => !file.startsWith('/data/') && !file.startsWith('/icons/')), ...prerendered];
+const PRECACHE = [...build, ...files.filter((file) => !file.startsWith(`${base}/data/`) && !file.startsWith(`${base}/icons/`)), ...prerendered];
 const PRECACHED = new Set(PRECACHE);
 
 sw.addEventListener('install', (event) => {
@@ -106,7 +106,7 @@ async function networkFirstPage(request: Request, event: FetchEvent): Promise<Re
 		return response;
 	} catch {
 		const cache = await caches.open(SHELL_CACHE);
-		return (await cache.match(path)) ?? (await cache.match(`${path}.html`)) ?? (await cache.match('/')) ?? Response.error();
+		return (await cache.match(path)) ?? (await cache.match(`${path}.html`)) ?? (await cache.match(`${base}/`)) ?? Response.error();
 	}
 }
 
@@ -116,7 +116,7 @@ sw.addEventListener('fetch', (event) => {
 	const url = new URL(request.url);
 
 	if (url.origin === sw.location.origin) {
-		if (url.pathname.startsWith('/data/')) {
+		if (url.pathname.startsWith(`${base}/data/`)) {
 			event.respondWith(freshData(request, event));
 			return;
 		}

@@ -15,9 +15,17 @@
 	let { children }: { children: Snippet } = $props();
 	let menuButton = $state<HTMLButtonElement | null>(null);
 
-	afterNavigate(() => {
+	afterNavigate(({ type, to }) => {
 		ui.menuOpen = false;
 		ui.navCount += 1;
+		const path = to?.url.pathname ?? null;
+		if (ui.navFromMenu) {
+			ui.menuOrigin = path;
+			ui.navFromMenu = false;
+		} else if (type === 'link' && path === ui.menuOrigin) {
+			// Reached the same page another way: "Atpakaļ" goes back normally.
+			ui.menuOrigin = null;
+		}
 	});
 
 	onMount(() => {

@@ -52,6 +52,24 @@ test.describe('returning visitor', () => {
 		await expect(menu).toBeHidden();
 	});
 
+	test('Visa Latvija on home opens search with events from all of Latvia', async ({ page }) => {
+		await page.goto('/');
+		await waitForCards(page);
+		await page.getByRole('button', { name: 'Visa Latvija' }).click();
+		await expect(page).toHaveURL(/meklet\?kur=latvija/);
+		await expect(page.getByRole('heading', { name: 'Ieteikumi visā Latvijā' })).toBeVisible();
+		await waitForCards(page);
+	});
+
+	test('Atpakaļ on a page opened from the menu reopens the menu', async ({ page }) => {
+		await page.goto('/');
+		await page.getByRole('button', { name: 'Atvērt izvēlni' }).click();
+		await page.getByRole('dialog', { name: 'Izvēlne' }).getByRole('link', { name: 'Kategorijas' }).click();
+		await expect(page).toHaveURL(/kategorijas/);
+		await page.getByRole('link', { name: 'Atpakaļ' }).click();
+		await expect(page.getByRole('dialog', { name: 'Izvēlne' })).toBeVisible();
+	});
+
 	test('search finds Rīga events without diacritics and with a typo', async ({ page }) => {
 		await page.goto('/meklet?q=riga&kur=latvija');
 		await expect(page.getByRole('status')).toContainText(/pasākum/);
@@ -68,8 +86,8 @@ test.describe('returning visitor', () => {
 		await page.waitForTimeout(400);
 		const before = await page.evaluate(() => window.scrollY);
 		expect(before).toBeGreaterThan(300);
-		const card = page.locator('article').nth(4);
-		await card.locator('a.stretched').click();
+		// A plain click event: Playwright's click() first scrolls the link to the centre itself.
+		await page.locator('article').nth(4).locator('a.stretched').dispatchEvent('click');
 		await expect(page).toHaveURL(/pasakums\?id=/);
 		await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 		await page.goBack();
@@ -81,8 +99,10 @@ test.describe('returning visitor', () => {
 	test('filters by free entry and updates the URL', async ({ page }) => {
 		await page.goto('/saraksts?skats=visi');
 		await waitForCards(page);
+		await page.getByRole('button', { name: /^Filtri/ }).click();
 		await page.getByRole('button', { name: 'Bez maksas', exact: true }).click();
 		await expect(page).toHaveURL(/bez=1/);
+		await expect(page.getByRole('button', { name: 'Noņemt filtru: Bez maksas' })).toBeVisible();
 	});
 
 	test('event page links back to the original source', async ({ page }) => {

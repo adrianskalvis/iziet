@@ -12,19 +12,19 @@ const OUT = path.join(ROOT, 'static/icons');
 const BG = '#ECD8C0';
 
 const BIRD = `
-	<path d="M34 60 L6 46 Q2 44 6 42 L38 52 Z" fill="#101824" stroke="#101824" stroke-width="2" stroke-linejoin="round"/>
-	<path d="M9 44 L33 54" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-	<path d="M54 82 L51 94 M63 82 L65 94 M47 94 H55 M61 94 H69" stroke="#101824" stroke-width="2.6" stroke-linecap="round"/>
-	<ellipse cx="57" cy="64" rx="30" ry="19" fill="#9aa2a9" stroke="#101824" stroke-width="2"/>
-	<path d="M38 68 Q56 90 82 70 Q80 58 68 56 Q50 58 38 68 Z" fill="#fff" stroke="#101824" stroke-width="2" stroke-linejoin="round"/>
-	<path d="M41 61 Q55 50 69 61 Q56 69 41 61 Z" fill="#5e666d" stroke="#101824" stroke-width="2" stroke-linejoin="round"/>
-	<path d="M70 48 Q86 49 88 61 Q79 67 69 60 Z" fill="#101824"/>
-	<circle cx="83" cy="37" r="18" fill="#fff" stroke="#101824" stroke-width="2"/>
-	<path d="M66 33 Q69 17 86 19 Q100 21 100 32 Q89 26 77 29 Q70 31 66 33 Z" fill="#101824"/>
-	<circle cx="89" cy="37" r="3.6" fill="#101824"/>
-	<circle cx="90.3" cy="35.7" r="1.2" fill="#fff"/>
-	<ellipse cx="85" cy="45.5" rx="3.6" ry="2" fill="#f2a7b1" opacity="0.85"/>
-	<path d="M99.5 39 L109 41.5 L99.5 44 Z" fill="#101824"/>`;
+	<g class="tail"><path d="M43 63 L6 89 Q3 91 6 93 L46 69 Z" fill="#101824" stroke="#101824" stroke-width="2" stroke-linejoin="round"/><path d="M9 91 L43 68.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></g>
+	<path d="M60 69 L57 92 M69 67 L72 92 M53 92 H60 M68 92 H75" stroke="#3a3f45" stroke-width="2.2" stroke-linecap="round"/>
+	<ellipse cx="62" cy="58" rx="27" ry="13" transform="rotate(-22 62 58)" fill="#fff" stroke="#101824" stroke-width="2"/>
+	<path d="M37 68 Q47 47 70 44 Q80 42.5 85 46 Q71 54 56 59 Q45 63 37 68 Z" fill="#a3abb2" stroke="#101824" stroke-width="2" stroke-linejoin="round"/>
+	<path d="M41 66 Q55 51 77 49.5 Q66 59.5 50 64 Q45 65.5 41 66 Z" fill="#4d555c" stroke="#101824" stroke-width="1.8" stroke-linejoin="round"/>
+	<path d="M47 63 Q58 56 70 53 M52 64 Q61 59.5 69 57.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+	<path d="M78 38 Q89 43 99 37 Q101 48 91 54 Q81 55 76 47 Z" fill="#101824"/>
+	<circle cx="88" cy="32" r="12" fill="#fff" stroke="#101824" stroke-width="2"/>
+	<path d="M77 37.5 A12 12 0 0 1 95.5 22.6 Q90 25.8 85.5 27 Q79.5 29.8 77 37.5 Z" fill="#101824" stroke="#101824" stroke-width="1.5" stroke-linejoin="round"/>
+	<circle cx="92" cy="31" r="2.6" fill="#101824"/>
+	<circle cx="93" cy="30" r="0.85" fill="#fff"/>
+	<ellipse cx="91.5" cy="37" rx="2.6" ry="1.4" fill="#f2a7b1" opacity="0.85"/>
+	<path d="M99.5 30.5 L111 32 L99.5 33.8 Z" fill="#101824" stroke="#101824" stroke-width="1.1" stroke-linejoin="round"/>`;
 
 /** Bird scaled into a square; `padding` keeps it inside the maskable safe zone. */
 function iconSvg(size: number, padding: number, rounded: boolean): string {
@@ -63,17 +63,17 @@ async function main(): Promise<void> {
 		description: lv.app.description,
 		lang: 'lv',
 		dir: 'ltr',
-		start_url: '/',
-		scope: '/',
+		start_url: './',
+		scope: './',
 		display: 'standalone',
 		orientation: 'portrait',
 		background_color: BG,
 		theme_color: BG,
 		categories: ['entertainment', 'lifestyle', 'travel'],
 		icons: [
-			{ src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
-			{ src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
-			{ src: '/icons/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
+			{ src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+			{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+			{ src: 'icons/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
 		]
 	};
 	await writeFile(path.join(ROOT, 'static/manifest.webmanifest'), `${JSON.stringify(manifest, null, '\t')}\n`);

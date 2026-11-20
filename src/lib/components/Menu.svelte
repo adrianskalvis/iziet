@@ -84,7 +84,7 @@
 			<ul>
 				{#each links as link (link.href)}
 					<li>
-						<a href={`${base}${link.href}`} aria-current={isCurrent(link.href) ? 'page' : undefined} onclick={() => (ui.menuOpen = false)}>
+						<a href={`${base}${link.href}`} aria-current={isCurrent(link.href) ? 'page' : undefined} onclick={() => { ui.menuOpen = false; ui.navFromMenu = true; }}>
 							{t(link.label)}
 						</a>
 					</li>
@@ -95,7 +95,7 @@
 			{/if}
 		</nav>
 		<div class="mascot">
-			<Mascot size={110} decorative />
+			<Mascot size={84} decorative />
 		</div>
 	</div>
 {/if}
