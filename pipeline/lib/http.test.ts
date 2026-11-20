@@ -49,4 +49,23 @@ describe('createHttp', () => {
 		});
 		await expect(http.text('https://c.lv/big')).rejects.toThrow(/too large/);
 	});
+
+	test('names the Cloudflare reason when a request is refused', async () => {
+		const http = createHttp({
+			minDelayMs: 0,
+			fetchImpl: fakeFetch({
+				'https://d.lv/robots.txt': () => new Response(''),
+				'https://d.lv/challenge': () =>
+					new Response('<title>Just a moment...</title>', { status: 403, headers: { server: 'cloudflare', 'cf-mitigated': 'challenge' } }),
+				'https://d.lv/rule': () =>
+					new Response('<span>Error</span><span>1020</span> Access denied', { status: 403, headers: { server: 'cloudflare' } }),
+				'https://d.lv/country': () => new Response('error code: 1009', { status: 403, headers: { server: 'cloudflare' } }),
+				'https://d.lv/plain': () => new Response('no', { status: 403 })
+			})
+		});
+		await expect(http.text('https://d.lv/challenge')).rejects.toThrow('HTTP 403 for https://d.lv/challenge (Cloudflare bot challenge)');
+		await expect(http.text('https://d.lv/rule')).rejects.toThrow('(Cloudflare error 1020)');
+		await expect(http.text('https://d.lv/country')).rejects.toThrow('(Cloudflare error 1009)');
+		await expect(http.text('https://d.lv/plain')).rejects.toThrow(/^HTTP 403 for https:\/\/d\.lv\/plain$/);
+	});
 });

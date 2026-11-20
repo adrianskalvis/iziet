@@ -28,11 +28,28 @@ export class RobotsDisallowedError extends Error {
 export class HttpError extends Error {
 	constructor(
 		public readonly status: number,
-		public readonly url: string
+		public readonly url: string,
+		public readonly reason?: string
 	) {
-		super(`HTTP ${status} for ${url}`);
+		super(`HTTP ${status} for ${url}${reason ? ` (${reason})` : ''}`);
 		this.name = 'HttpError';
 	}
+}
+
+/** Error pages are small; only the start is searched for a Cloudflare error code. */
+const BLOCK_PAGE_BYTES = 4096;
+
+/**
+ * Names why Cloudflare refused a request, so the run log tells a bot challenge
+ * (cf-mitigated header) from a firewall rule (1020), a country ban (1009) or an
+ * IP ban (1006 to 1008). Undefined for servers other than Cloudflare.
+ */
+async function blockReason(response: Response): Promise<string | undefined> {
+	if (!/cloudflare/i.test(response.headers.get('server') ?? '')) return undefined;
+	if (response.headers.get('cf-mitigated') === 'challenge') return 'Cloudflare bot challenge';
+	const page = (await response.text().catch(() => '')).slice(0, BLOCK_PAGE_BYTES).replace(/<[^>]+>/g, ' ');
+	const code = page.match(/error(?:\s+code)?:?\s+(\d{4})\b/i)?.[1];
+	return code ? `Cloudflare error ${code}` : 'Cloudflare refused';
 }
 
 export interface FetchOptions {
@@ -205,7 +222,7 @@ export function createHttp(config: HttpConfig = {}): Http {
 				current = next.toString();
 				continue;
 			}
-			if (!response.ok) throw new HttpError(response.status, current);
+			if (!response.ok) throw new HttpError(response.status, current, await blockReason(response));
 			return readLimited(response, current);
 		}
 		throw new Error(`Too many redirects for ${url}`);

@@ -11,6 +11,11 @@ on:
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
+    inputs:
+      only:
+        description: Refresh only these source ids (comma-separated); the others reuse their cached result
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -41,8 +46,9 @@ jobs:
           key: sources-${{ github.run_id }}
           restore-keys: sources-
       - name: Fetch and normalise events
-        run: npm run data
+        run: npm run data -- ${ONLY:+"--only=$ONLY"}
         env:
+          ONLY: ${{ inputs.only }}
           # Sources that need written permission stay off until a repository variable is set to "1".
           SOURCE_BILESUSERVISS: ${{ vars.SOURCE_BILESUSERVISS }}
           SOURCE_LATVIATRAVEL: ${{ vars.SOURCE_LATVIATRAVEL }}
