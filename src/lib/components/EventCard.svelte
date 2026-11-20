@@ -6,7 +6,7 @@
 	import { savedStore } from '$lib/stores/saved.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
 	import { CATEGORY_TINT } from '$shared/categories';
-	import type { EventItem } from '$shared/types';
+	import type { EventCore } from '$shared/types';
 	import Calendar from '@lucide/svelte/icons/calendar';
 	import Heart from '@lucide/svelte/icons/heart';
 	import MapPin from '@lucide/svelte/icons/map-pin';
@@ -22,13 +22,13 @@
 		priority = false,
 		onopen
 	}: {
-		event: EventItem;
+		event: EventCore;
 		now: Date;
 		km?: number;
 		labels?: Label[];
 		variant?: 'large' | 'compact';
 		priority?: boolean;
-		onopen?: (event: EventItem) => void;
+		onopen?: (event: EventCore) => void;
 	} = $props();
 
 	const when = $derived(formatWhen(event, now));
@@ -69,7 +69,7 @@
 			<li><Calendar size={18} aria-hidden="true" /><span>{when}</span></li>
 			<li>
 				<MapPin size={18} aria-hidden="true" />
-				<span class="place">{place}{#if km !== undefined}<span class="distance"> · {formatDistance(km)}</span>{/if}</span>
+				<span class="place">{place}{#if km !== undefined}{' · '}<span class="distance">{formatDistance(km)}</span>{/if}</span>
 			</li>
 			{#if price}
 				<li class:free={event.price?.free}><Ticket size={18} aria-hidden="true" /><span>{price}</span></li>
@@ -146,7 +146,7 @@
 		border-radius: var(--radius-chip);
 		background: var(--color-text);
 		color: var(--color-surface);
-		font-size: 0.875rem;
+		font-size: 1rem;
 		font-weight: 800;
 	}
 
@@ -257,7 +257,7 @@
 		padding: 3px 12px;
 		border-radius: var(--radius-chip);
 		background: var(--tint);
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		font-weight: 750;
 	}
 

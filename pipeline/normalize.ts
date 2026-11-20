@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { CATEGORY_RULES, TAGS } from '../src/lib/shared/categories';
 import { fold } from '../src/lib/shared/fold';
 import type { CategoryId, EventItem, RawEvent } from '../src/lib/shared/types';
+import { rigaParts } from '../src/lib/shared/time';
 import { htmlToText, stripTracking, truncate } from './lib/html';
 import { apkaimeAt, placeAt, placeFromText } from './places';
 
@@ -39,8 +40,10 @@ export function classify(raw: RawEvent): CategoryId {
 		const score = 3 * countHits(title, rule.keywords) + 2 * countHits(hints, rule.keywords) + countHits(desc, rule.keywords);
 		if (score > 0 && (!best || score > best.score)) best = { id: rule.id, score };
 	}
-	if (best && (!raw.defaultCategory || best.score >= 3)) return best.id;
-	return raw.defaultCategory ?? best?.id ?? 'festivali';
+	if (!raw.defaultCategory) return best?.id ?? 'festivali';
+	// A single-category source (cinema, theatre) keeps its category unless the title itself says otherwise.
+	const titleHits = best ? countHits(title, CATEGORY_RULES.find((rule) => rule.id === best!.id)!.keywords) : 0;
+	return best && titleHits > 0 ? best.id : raw.defaultCategory;
 }
 
 export function detectTags(raw: RawEvent): string[] {
@@ -93,6 +96,11 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 			? { ...(raw.free ? { free: true } : {}), ...(raw.priceMin !== undefined ? { min: raw.priceMin } : {}), ...(raw.priceMax !== undefined && raw.priceMax !== raw.priceMin ? { max: raw.priceMax } : {}) }
 			: undefined;
 
+	const startParts = rigaParts(raw.start);
+	const endParts = raw.end ? rigaParts(raw.end) : undefined;
+	const midnightStart = startParts.hour === 0 && startParts.minute === 0;
+	const allDay = raw.allDay || (midnightStart && (!endParts || (endParts.hour === 0 && endParts.minute === 0) || (endParts.hour === 23 && endParts.minute === 59)));
+
 	const item: EventItem = {
 		id: eventId(raw.source, raw.sourceId),
 		title,
@@ -106,7 +114,7 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 	};
 	if (desc) item.desc = desc;
 	if (raw.end && Date.parse(raw.end) >= Date.parse(raw.start)) item.end = raw.end;
-	if (raw.allDay) item.allDay = true;
+	if (allDay) item.allDay = true;
 	if (times.length) item.times = times;
 	if (raw.venueName) item.venue = raw.venueName.trim();
 	if (raw.address) item.address = raw.address.trim();
@@ -114,7 +122,8 @@ export function normalize(raw: RawEvent, ctx: NormalizeContext): EventItem | und
 	if (location) {
 		item.lat = Math.round(location.lat * 1e5) / 1e5;
 		item.lng = Math.round(location.lng * 1e5) / 1e5;
-		const apkaime = place?.name === 'Rīga' ? apkaimeAt(location) : undefined;
+		if (!validPoint) item.approx = true;
+		const apkaime = place?.name === 'Rīga' && validPoint ? apkaimeAt(validPoint) : undefined;
 		if (apkaime) item.apkaime = apkaime;
 	}
 	if (price) item.price = price;

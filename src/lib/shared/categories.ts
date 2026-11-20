@@ -68,7 +68,7 @@ export const CATEGORY_RULES: CategoryRule[] = [
 	{
 		id: 'koncerti',
 		tint: 'koncerti',
-		keywords: ['koncert', 'concert', 'live', 'dziesm', 'orkestr', 'koris', 'kora ', 'dzez', 'jazz', 'rock', 'roks', 'pop ', 'hip hop', 'hip-hop', 'rap ', ' dj', 'tour', 'ture', 'muzik', 'music', 'simfon', 'ergel', 'organ', 'filharmon', 'band', 'grupa', 'akustisk', 'unplugged']
+		keywords: ['koncert', 'concert', 'live ', 'dziesm', 'orkestr', 'koris', 'kora ', 'dzez', 'jazz', 'rock', 'roks', 'pop ', 'hip hop', 'hip-hop', 'rap ', ' dj', 'muzik', 'music', 'simfon', 'ergel', 'organ', 'filharmon', ' band', 'akustisk', 'unplugged']
 	},
 	{
 		id: 'hobiji',

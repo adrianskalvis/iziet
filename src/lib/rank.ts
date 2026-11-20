@@ -1,7 +1,7 @@
 import { TAGS } from '$shared/categories';
 import { haversineKm } from '$shared/geo';
 import { rigaDayDiff, rigaParts } from '$shared/time';
-import type { CategoryId, EventItem, PlaceKind } from '$shared/types';
+import type { CategoryId, EventCore, PlaceKind } from '$shared/types';
 import { getPlace, KIDS_RANGES, resolveOrigin, type Origin, type Profile } from './profile';
 
 /**
@@ -47,7 +47,7 @@ export interface Label {
 }
 
 export interface Scored {
-	event: EventItem;
+	event: EventCore;
 	score: number;
 	parts: ScoreParts;
 	km?: number;
@@ -58,7 +58,7 @@ export interface Scored {
 }
 
 /** True while the event has not ended and is not cancelled. */
-export function isActive(event: EventItem, now: Date): boolean {
+export function isActive(event: EventCore, now: Date): boolean {
 	if (event.status === 'cancelled') return false;
 	const endMs = event.end ? Date.parse(event.end) : Date.parse(event.start) + DEFAULT_DURATION_MS;
 	return endMs >= now.getTime();
@@ -69,7 +69,7 @@ function hasFamily(profile: Profile): boolean {
 }
 
 /** Hard filters before scoring. */
-export function passesHardFilters(event: EventItem, profile: Profile, now: Date): boolean {
+export function passesHardFilters(event: EventCore, profile: Profile, now: Date): boolean {
 	if (!isActive(event, now)) return false;
 	if (hasFamily(profile) && event.adult) return false;
 	const onlyAdults = profile.companions.length > 0 && !hasFamily(profile);
@@ -77,18 +77,18 @@ export function passesHardFilters(event: EventItem, profile: Profile, now: Date)
 	return true;
 }
 
-export function eventPoint(event: EventItem): { lat: number; lng: number } | undefined {
+export function eventPoint(event: EventCore): { lat: number; lng: number } | undefined {
 	if (event.lat !== undefined && event.lng !== undefined) return { lat: event.lat, lng: event.lng };
 	const place = getPlace(event.placeId);
 	return place ? { lat: place.lat, lng: place.lng } : undefined;
 }
 
-export function distanceKm(origin: Origin, event: EventItem): number | undefined {
+export function distanceKm(origin: Origin, event: EventCore): number | undefined {
 	const point = eventPoint(event);
 	return point ? haversineKm(origin.point, point) : undefined;
 }
 
-export function interestScore(event: EventItem, profile: Profile): { value: number; tag?: string } {
+export function interestScore(event: EventCore, profile: Profile): { value: number; tag?: string } {
 	if (profile.cats.length === 0 && profile.tags.length === 0) return { value: 0.5 };
 	const followedTag = event.tags.find((tag) => profile.tags.includes(tag));
 	if (followedTag) return { value: 1, tag: followedTag };
@@ -100,7 +100,7 @@ export function interestScore(event: EventItem, profile: Profile): { value: numb
 	return { value: related ? 0.5 : 0 };
 }
 
-export function familyScore(event: EventItem, profile: Profile): number {
+export function familyScore(event: EventCore, profile: Profile): number {
 	if (!hasFamily(profile)) return 0.5;
 	const familyEvent = event.family || event.cat === 'gimenem';
 	if (event.ageMin === undefined && event.ageMax === undefined) return familyEvent ? 1 : 0.5;
@@ -117,7 +117,7 @@ export function isWeekend(iso: string): boolean {
 	return p.weekday === 6 || p.weekday === 0 || (p.weekday === 5 && p.hour >= 17);
 }
 
-export function dateScore(event: EventItem, now: Date, halfLife: number, profile?: Profile): number {
+export function dateScore(event: EventCore, now: Date, halfLife: number, profile?: Profile): number {
 	const days = Math.max(0, rigaDayDiff(now, event.start));
 	const weekendBonus = isWeekend(days === 0 && Date.parse(event.start) < now.getTime() ? now.toISOString() : event.start) ? 0.1 : 0;
 	let value = Math.min(1, 0.5 ** (days / halfLife) + weekendBonus);
@@ -133,7 +133,7 @@ function fitsTimePref(iso: string, prefs: NonNullable<Profile['timePref']>): boo
 	return prefs.includes('weekday') && p.weekday >= 1 && p.weekday <= 5 && p.hour >= 17;
 }
 
-export function priceScore(event: EventItem, profile: Profile): number {
+export function priceScore(event: EventCore, profile: Profile): number {
 	const price = event.price;
 	if (price?.free) return 1;
 	if (price?.min === undefined) return 0.5;
@@ -148,7 +148,7 @@ function decay(km: number, d50: number): number {
 	return 1 / (1 + (km / d50) ** 2);
 }
 
-function ringOf(origin: Origin, event: EventItem): 1 | 2 | 3 | undefined {
+function ringOf(origin: Origin, event: EventCore): 1 | 2 | 3 | undefined {
 	if (origin.kind !== 'riga' || !event.apkaime) return undefined;
 	if (!origin.apkaime) return 3;
 	if (event.apkaime === origin.apkaime.id) return 1;
@@ -156,7 +156,7 @@ function ringOf(origin: Origin, event: EventItem): 1 | 2 | 3 | undefined {
 }
 
 export function scoreEvent(
-	event: EventItem,
+	event: EventCore,
 	profile: Profile,
 	origin: Origin,
 	now: Date,
@@ -188,7 +188,7 @@ export function compareScored(a: Scored, b: Scored): number {
 		b.score - a.score ||
 		Date.parse(a.event.start) - Date.parse(b.event.start) ||
 		(a.km ?? 1e9) - (b.km ?? 1e9) ||
-		b.event.sources.length - a.event.sources.length ||
+		(b.event.src ?? 1) - (a.event.src ?? 1) ||
 		a.event.id.localeCompare(b.event.id)
 	);
 }
@@ -220,7 +220,7 @@ export function mmr(sorted: Scored[], count: number, similarity: Similarity = sa
 	return picked;
 }
 
-function withinDays(event: EventItem, now: Date, days: number): boolean {
+function withinDays(event: EventCore, now: Date, days: number): boolean {
 	return rigaDayDiff(now, event.start) <= days;
 }
 
@@ -233,7 +233,7 @@ export interface NearbyResult {
 	nearestTown?: { name: string; placeId?: string; km: number };
 }
 
-export function pickNearby(events: EventItem[], profile: Profile, now: Date, count = 3): NearbyResult {
+export function pickNearby(events: EventCore[], profile: Profile, now: Date, count = 3): NearbyResult {
 	const origin = resolveOrigin(profile);
 	const baseRadius = NEARBY_RADIUS[origin.kind];
 	const scored = events
@@ -271,7 +271,7 @@ export function pickNearby(events: EventItem[], profile: Profile, now: Date, cou
 }
 
 export function pickElsewhere(
-	events: EventItem[],
+	events: EventCore[],
 	profile: Profile,
 	now: Date,
 	nearbyRadiusKm: number,
@@ -308,7 +308,7 @@ export interface ListOptions {
 	sort?: 'best' | 'soon' | 'near';
 }
 
-function matchesWhen(event: EventItem, when: When, now: Date): boolean {
+function matchesWhen(event: EventCore, when: When, now: Date): boolean {
 	if (when === 'any') return true;
 	const startDiff = rigaDayDiff(now, event.start);
 	const endDiff = event.end ? rigaDayDiff(now, event.end) : startDiff;
@@ -324,7 +324,7 @@ function matchesWhen(event: EventItem, when: When, now: Date): boolean {
 }
 
 /** Full filtered and sorted list for the "Rādīt vairāk" pages and category pages. */
-export function listEvents(events: EventItem[], profile: Profile, now: Date, options: ListOptions): Scored[] {
+export function listEvents(events: EventCore[], profile: Profile, now: Date, options: ListOptions): Scored[] {
 	const origin = resolveOrigin(profile);
 	const radius = NEARBY_RADIUS[origin.kind] * 2;
 	const items = events

@@ -1,5 +1,5 @@
 import { base } from '$app/paths';
-import type { DataMeta, EventItem } from '$shared/types';
+import { shardOf, type DataMeta, type EventCore, type EventDetail, type EventItem } from '$shared/types';
 import type MiniSearch from 'minisearch';
 
 /**
@@ -12,10 +12,34 @@ type Status = 'idle' | 'loading' | 'ready' | 'error';
 
 class EventStore {
 	status = $state<Status>('idle');
-	events = $state.raw<EventItem[]>([]);
+	events = $state.raw<EventCore[]>([]);
 	meta = $state.raw<DataMeta | null>(null);
 	byId = $derived(new Map(this.events.map((event) => [event.id, event])));
 	#pending: Promise<void> | null = null;
+	#shards = new Map<number, Promise<Record<string, EventDetail>>>();
+
+	/** Full event: list record plus its detail shard (description, tickets, sources). */
+	async details(id: string): Promise<EventItem | undefined> {
+		await this.load();
+		const core = this.byId.get(id);
+		if (!core) return undefined;
+		const shard = shardOf(id);
+		if (!this.#shards.has(shard)) {
+			const request = fetch(`${base}/data/details/${shard}.json`).then((response) => {
+				if (!response.ok) throw new Error(`details ${shard} HTTP ${response.status}`);
+				return response.json() as Promise<Record<string, EventDetail>>;
+			});
+			this.#shards.set(shard, request);
+			request.catch(() => this.#shards.delete(shard));
+		}
+		try {
+			const detail = (await this.#shards.get(shard)!)[id];
+			return { ...core, ...(detail ?? { tickets: [], sources: [], url: '' }) } as EventItem;
+		} catch (error) {
+			console.warn('Event details failed to load', error);
+			return { tickets: [], sources: [], url: '', ...core } as EventItem;
+		}
+	}
 	#index: MiniSearch | null = null;
 	#indexPromise: Promise<MiniSearch> | null = null;
 

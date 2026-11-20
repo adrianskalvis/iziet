@@ -12,7 +12,19 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { DataMeta, EventItem, RawEvent, SourceStatus } from '../src/lib/shared/types';
+import { fold } from '../src/lib/shared/fold';
+import {
+	CORE_TIMES,
+	DETAIL_KEYS,
+	DETAIL_SHARDS,
+	shardOf,
+	type DataMeta,
+	type EventCore,
+	type EventDetail,
+	type EventItem,
+	type RawEvent,
+	type SourceStatus
+} from '../src/lib/shared/types';
 import { isEnabled, loadAdapters } from './adapters/registry';
 import type { Adapter } from './adapters/types';
 import { dedupe } from './dedupe';
@@ -112,6 +124,42 @@ async function mapLimit<T, R>(items: T[], limit: number, fn: (item: T) => Promis
 	return results;
 }
 
+/** List record: drops detail-only fields and keeps the first few show times. */
+function toCore(event: EventItem): EventCore {
+	const core: Record<string, unknown> = { ...event };
+	for (const key of DETAIL_KEYS) delete core[key];
+	if (event.times) core.times = event.times.slice(0, CORE_TIMES);
+	const sourceCount = new Set(event.sources.map((s) => s.id)).size;
+	if (sourceCount > 1) core.src = sourceCount;
+	return core as EventCore;
+}
+
+function toDetail(event: EventItem): EventDetail {
+	const detail: Record<string, unknown> = {};
+	for (const key of [...DETAIL_KEYS, 'times'] as const) if (event[key] !== undefined) detail[key] = event[key];
+	return detail as EventDetail;
+}
+
+/**
+ * Many sources give only a town. When another source gave exact coordinates for
+ * the same venue in the same town, reuse them so distance and apkaime are real.
+ */
+function propagateVenueCoords(events: EventItem[]): EventItem[] {
+	const key = (event: EventItem) => (event.venue ? `${fold(event.venue)}|${event.town}` : undefined);
+	const known = new Map<string, Pick<EventItem, 'lat' | 'lng' | 'apkaime'>>();
+	for (const event of events) {
+		const k = key(event);
+		if (k && !event.approx && event.lat !== undefined && !known.has(k)) known.set(k, { lat: event.lat, lng: event.lng, apkaime: event.apkaime });
+	}
+	return events.map((event) => {
+		const k = key(event);
+		const match = event.approx && k ? known.get(k) : undefined;
+		if (!match) return event;
+		const { approx: _approx, ...rest } = event;
+		return { ...rest, lat: match.lat, lng: match.lng, ...(match.apkaime ? { apkaime: match.apkaime } : {}) };
+	});
+}
+
 function inWindow(event: EventItem, now: Date): boolean {
 	const end = event.end ? Date.parse(event.end) : Date.parse(event.start);
 	return end >= now.getTime() - PAST_GRACE_MS && Date.parse(event.start) <= now.getTime() + HORIZON_DAYS * 86_400_000;
@@ -132,8 +180,8 @@ async function main(): Promise<void> {
 			else dropped++;
 		}
 	});
-	const { events, merged } = dedupe(normalized);
-	events.sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id));
+	const { events: deduped, merged } = dedupe(propagateVenueCoords(normalized));
+	const events = propagateVenueCoords(deduped).sort((a, b) => a.start.localeCompare(b.start) || a.id.localeCompare(b.id));
 
 	const previous = await readJson<EventItem[]>(path.join(OUT_DIR, 'events.json'));
 	const previousActive = (previous ?? []).filter((event) => inWindow(event, now));
@@ -144,8 +192,11 @@ async function main(): Promise<void> {
 	}
 
 	const meta: DataMeta = { generatedAt: now.toISOString(), count: events.length, sources: results.map((r) => r.status) };
-	await mkdir(OUT_DIR, { recursive: true });
-	await writeFile(path.join(OUT_DIR, 'events.json'), JSON.stringify(events));
+	await mkdir(path.join(OUT_DIR, 'details'), { recursive: true });
+	await writeFile(path.join(OUT_DIR, 'events.json'), JSON.stringify(events.map(toCore)));
+	const shards: Array<Record<string, EventDetail>> = Array.from({ length: DETAIL_SHARDS }, () => ({}));
+	for (const event of events) shards[shardOf(event.id)][event.id] = toDetail(event);
+	await Promise.all(shards.map((shard, index) => writeFile(path.join(OUT_DIR, 'details', `${index}.json`), JSON.stringify(shard))));
 	await writeFile(path.join(OUT_DIR, 'meta.json'), JSON.stringify(meta, null, 1));
 
 	const byState = results.reduce<Record<string, number>>((acc, r) => ({ ...acc, [r.status.state]: (acc[r.status.state] ?? 0) + 1 }), {});

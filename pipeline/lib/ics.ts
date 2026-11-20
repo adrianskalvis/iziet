@@ -18,6 +18,7 @@ export interface IcsEvent {
 	lng?: number;
 	status?: string;
 	categories?: string[];
+	image?: string;
 }
 
 function unfold(text: string): string[] {
@@ -78,8 +79,14 @@ export function parseIcs(text: string): IcsEvent[] {
 			case 'DTSTART':
 				current.start = parseIcsDate(value, params);
 				break;
-			case 'DTEND':
-				current.end = parseIcsDate(value, params);
+			case 'DTEND': {
+				const end = parseIcsDate(value, params);
+				// All-day DTEND is exclusive in RFC 5545: the event ends the day before.
+				current.end = end?.allDay ? { iso: toRigaIso(Date.parse(end.iso) - 60_000), allDay: true } : end;
+				break;
+			}
+			case 'ATTACH':
+				if (/^https?:\/\/.+\.(jpe?g|png|webp|avif)(\?|$)/i.test(value.trim())) current.image = value.trim();
 				break;
 			case 'GEO': {
 				const [lat, lng] = value.split(/[;,]/).map(Number);

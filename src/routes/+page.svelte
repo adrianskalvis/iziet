@@ -16,7 +16,7 @@
 	import { profileStore } from '$lib/stores/profile.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
 	import { CATEGORY_TINT } from '$shared/categories';
-	import { CATEGORY_IDS, type EventItem } from '$shared/types';
+	import { CATEGORY_IDS, type EventCore } from '$shared/types';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { onMount } from 'svelte';
 
@@ -73,7 +73,7 @@
 		goto(`${base}/meklet?q=${encodeURIComponent(value)}&kur=${kur}`, { keepFocus: true });
 	}
 
-	function trackOpen(event: EventItem, elsewhereBlock = false) {
+	function trackOpen(event: EventCore, elsewhereBlock = false) {
 		profileStore.update((p) => ({
 			opens: { ...p.opens, [event.cat]: (p.opens[event.cat] ?? 0) + 1 },
 			elsewhereOpens: p.elsewhereOpens + (elsewhereBlock ? 1 : 0)

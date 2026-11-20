@@ -55,6 +55,9 @@ function collect(value: unknown, out: JsonNode[]): void {
 	if (!value || typeof value !== 'object') return;
 	const node = value as JsonNode;
 	if (Array.isArray(node['@graph'])) collect(node['@graph'], out);
+	if (Array.isArray(node.itemListElement)) {
+		for (const element of node.itemListElement as JsonNode[]) collect(element?.item ?? element, out);
+	}
 	out.push(node);
 }
 
@@ -122,7 +125,8 @@ export function jsonLdEventToRaw(node: JsonNode, options: JsonLdOptions): RawEve
 	const title = str(node.name);
 	const start = parseIsoLoose(str(node.startDate));
 	if (!title || !start) return undefined;
-	const end = parseIsoLoose(str(node.endDate));
+	const parsedEnd = parseIsoLoose(str(node.endDate));
+	const end = parsedEnd && Date.parse(parsedEnd.iso) >= Date.parse(start.iso) ? parsedEnd : undefined;
 	const url = absoluteUrl(str(node.url) ?? str(node['@id']), options.pageUrl) ?? options.pageUrl;
 
 	const location = first(node.location as JsonNode | JsonNode[] | undefined);
@@ -168,8 +172,8 @@ export function jsonLdEventToRaw(node: JsonNode, options: JsonLdOptions): RawEve
 		venueName: location && typeof location === 'object' ? str(location.name) : str(location),
 		address: addressText || undefined,
 		town: address && typeof address === 'object' ? str(address.addressLocality) : undefined,
-		lat: geo ? num(geo.latitude) : undefined,
-		lng: geo ? num(geo.longitude) : undefined,
+		lat: geo ? num(geo.latitude) : location && typeof location === 'object' ? num(location.latitude) : undefined,
+		lng: geo ? num(geo.longitude) : location && typeof location === 'object' ? num(location.longitude) : undefined,
 		priceMin: prices.length ? Math.min(...prices) : undefined,
 		priceMax: prices.length > 1 ? Math.max(...prices) : undefined,
 		free: prices.length > 0 && Math.max(...prices) === 0 ? true : undefined,

@@ -68,6 +68,8 @@ export interface EventItem {
 	apkaime?: string;
 	lat?: number;
 	lng?: number;
+	/** True when lat/lng is the town centre, not the venue. */
+	approx?: boolean;
 	price?: Price;
 	tickets: TicketLink[];
 	/** Main page at the original source. */
@@ -85,6 +87,29 @@ export interface EventItem {
 	status?: EventStatus;
 	/** Editorial or popularity boost, 0 to 1. */
 	boost?: number;
+}
+
+/** Fields that load only on the event page (static/data/details/<shard>.json). */
+export const DETAIL_KEYS = ['desc', 'tickets', 'sources', 'url', 'address', 'imgW', 'imgH', 'lang'] as const;
+export type DetailKey = (typeof DETAIL_KEYS)[number];
+
+/** List record in static/data/events.json: everything a card, ranking and search need. */
+export type EventCore = Omit<EventItem, DetailKey> & {
+	/** Number of distinct sources, for tie-breaks. */
+	src?: number;
+};
+
+export type EventDetail = Pick<EventItem, DetailKey | 'times'>;
+
+export const DETAIL_SHARDS = 16;
+/** Times kept in the list file; the rest load with the details. */
+export const CORE_TIMES = 3;
+
+/** Detail shard for an event id: stable across pipeline and app. */
+export function shardOf(id: string): number {
+	let hash = 0;
+	for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+	return hash % DETAIL_SHARDS;
 }
 
 /** What an adapter returns, before normalisation. */

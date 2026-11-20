@@ -1,0 +1,206 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//wp-events-plugin.com//6.4.6.4//EN
+TZID:Europe/Riga
+X-WR-TIMEZONE:Europe/Riga
+BEGIN:VEVENT
+UID:8146@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga;VALUE=DATE:20230101
+DTEND;TZID=Europe/Riga;VALUE=DATE:20270101
+DTSTAMP:20260105T100056Z
+URL:https://www.visitdaugavpils.lv/pasakumi/kulturas-pasakumi-daugavpils-k
+ ulturas-pili/
+SUMMARY:Cultural events in Daugavpils Unity House
+DESCRIPTION:The Unity House is the organiser of many events in Daugavpils. 
+ It actively works on implementing cultural projects and serves as a guardi
+ an of Latvia’s cultural heritage. The Unity House organises educational 
+ and entertainment events\, celebrations\, and concerts\, and contributes t
+ o the preservation\, promotion\, and accessibility of cultural values.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2023/10/371857684_800746085388257_3863677684482816558_n.jpg
+CATEGORIES:Svētki un
+ festivāli,Kultūra,Izklaide,Izstādes,Bērniem,Mūzika
+END:VEVENT
+BEGIN:VEVENT
+UID:11099@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga;VALUE=DATE:20230101
+DTEND;TZID=Europe/Riga;VALUE=DATE:20270101
+DTSTAMP:20260105T154407Z
+URL:https://www.visitdaugavpils.lv/pasakumi/meistarklases-tekstila-un-maks
+ las-studija-lama-dazz/
+SUMMARY:Master classes  in the textile and art studio “Lama Dazz”
+DESCRIPTION:The textile and art studio “Lama Dazz” offers master classe
+ s\, creative workshops for adults and children\, also offers master classe
+ s on site.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/01/486700250_18060525218504743_1896772446375034329_n.jpg
+CATEGORIES:Izklaide,Bērniem,Citi pasākumi
+END:VEVENT
+BEGIN:VEVENT
+UID:11751@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga;VALUE=DATE:20230101
+DTEND;TZID=Europe/Riga;VALUE=DATE:20270101
+DTSTAMP:20260427T084811Z
+URL:https://www.visitdaugavpils.lv/pasakumi/radosas-nodarbibas-darbnica-a-
+ a-candle-daugavpils-cietoksni/
+SUMMARY:Творческие занятия в мастерской “A.A.
+  Candle” в Даугавпилсской крепости
+DESCRIPTION:Творческая мастерская “A.A. Candle” н
+ аходится в Даугавпилсской крепости и пр
+ иглашает посетителей погрузиться в атмо
+ сферу творчества и спокойствия\, которую
+  создаёт уникальная историческая среда. 
+ Мастер по изготовлению свечей Анастасия
+  с радостью знакомит гостей с процессом 
+ создания свечей и гипсовых изделий\, поз
+ воляя каждому создать собственный\, непо
+ вторимый предмет.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/04/radosa-darbnica-cietoksni-1.jpg
+CATEGORIES:Ekskursija,Bērniem,Citi pasākumi,Kultūra,Izklaide
+END:VEVENT
+BEGIN:VEVENT
+UID:12341@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261120T150000
+DTEND;TZID=Europe/Riga:20261120T150000
+DTSTAMP:20261026T082437Z
+URL:https://www.visitdaugavpils.lv/pasakumi/nodarbiba-berniem-radosa-lasis
+ ana-rotko-muzeja-4/
+SUMMARY:Nodarbība bērniem "Radošā lasīšana" Rotko muzejā
+DESCRIPTION: 20. novembrī plkst. 15.00 Rotko muzejā notiks nodarbība b
+ ērniem "Radošā lasīšana".
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/10/dtv_Afisai_RM_nodarbibas_NOV_3.jpg
+CATEGORIES:Bērniem
+END:VEVENT
+BEGIN:VEVENT
+UID:12417@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261120T180000
+DTEND;TZID=Europe/Riga:20261120T180000
+DTSTAMP:20261116T075410Z
+URL:https://www.visitdaugavpils.lv/pasakumi/literari-muzikalais-vakars-dze
+ jniekam-stanislavam-volodjko-70/
+SUMMARY:Literāri muzikālais vakars "Dzejniekam Staņislavam Volodjko - 70
+ "
+DESCRIPTION:20. novembrī plkst. 18.00 Forštates kultūrtelpā notiks dzej
+ nieka Staņislava Volodjko jubilejai veltīts literāri muzikālais vakars
+ .
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/11/904033530_122139783266968683_4467873299684866082_n.jpg
+CATEGORIES:Citi pasākumi,Kultūra
+END:VEVENT
+BEGIN:VEVENT
+UID:12296@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261120T180000
+DTEND;TZID=Europe/Riga:20261120T180000
+DTSTAMP:20261009T141544Z
+URL:https://www.visitdaugavpils.lv/pasakumi/muzikals-vakars-kopa-ar-dzeza-
+ trio-la-petite-paris/
+SUMMARY:Muzikāls vakars kopā ar džeza trio „La Petite Paris”
+DESCRIPTION:20. novembrī plkst. 18.00 Daugavpils Vienības nama Mediju zā
+ lē klausītāji aicināti uz muzikālu vakaru kopā ar trio „La Petite 
+ Paris” – muzikālo apvienību\, kuras skanējums klausītājus aizved 
+ uz Parīzes kafejnīcu romantisko atmosfēru\, franču šansona pasauli un
+  viegla džeza noskaņām.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/10/pasakums-VN.webp
+CATEGORIES:Izklaide,Kultūra,Mūzika
+END:VEVENT
+BEGIN:VEVENT
+UID:12249@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261120T200000
+DTEND;TZID=Europe/Riga:20261120T200000
+DTSTAMP:20260925T122411Z
+URL:https://www.visitdaugavpils.lv/pasakumi/daugavpils-kulturas-pils-ruden
+ s-disko-balle/
+SUMMARY:Daugavpils Kultūras pils rudens disko balle
+DESCRIPTION:20. novembrī plkst. 20.00 Daugavpils Kultūras pils aicina uz 
+ “Pils rudens disko balli” – rudens vakaru\, kas pārtaps dejā!
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/09/zKueMGIynwz4oNZX8qoZjVyWDGUUtUb94LYEH3zJ-1.jpg
+CATEGORIES:Citi pasākumi,Izklaide
+END:VEVENT
+BEGIN:VEVENT
+UID:12386@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261121T090000
+DTEND;TZID=Europe/Riga:20261121T150000
+DTSTAMP:20261104T135705Z
+URL:https://www.visitdaugavpils.lv/pasakumi/meistarklase-uzkodu-plate-uz-b
+ agetes-bazes-2/
+SUMMARY:Meistarklase "Uzkodu plate uz bagetes bāzes"
+DESCRIPTION:21. novembrī no plkst. 9.00 līdz 15.00 Latgales mācību cent
+ rā norisināsies meistarklase "Uzkodu plate uz bagetes bāzes".
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/11/888451595_1590602372868882_7573672838526411799_n.jpg
+CATEGORIES:Citi pasākumi,Izklaide
+END:VEVENT
+BEGIN:VEVENT
+UID:11422@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261121T100000
+DTEND;TZID=Europe/Riga:20261121T160000
+DTSTAMP:20260223T111227Z
+URL:https://www.visitdaugavpils.lv/pasakumi/tirdzins-rigas-iela-39/
+SUMMARY:Tirdziņš Rīgas ielā
+DESCRIPTION:Sestdien\, 21. novembrī\, no plkst. 10.00 līdz 16.00 Daugavpi
+ lī norisināsies tradicionālais Rīgas ielas tirdziņš. Tajā piedalīs
+ ies tirgotāji no Latvijas\, Lietuvas un citām valstīm\, piedāvājot pl
+ ašu pārtikas produktu klāstu – mājās ceptu maizi un konditoreju\, m
+ edu un biškopības produktus\, zāļu tējas\, garšvielas\, sierus\, sal
+ dumus\, smiltsērkšķu\, kaņepju un lavandas izstrādājumus.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/02/Rigas-ielas-tirdzins-4-scaled.jpg
+CATEGORIES:Bērniem,Citi pasākumi,Izklaide,Kultūra,Svētki un festivāli
+END:VEVENT
+BEGIN:VEVENT
+UID:11423@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261121T100000
+DTEND;TZID=Europe/Riga:20261121T160000
+DTSTAMP:20260223T111313Z
+URL:https://www.visitdaugavpils.lv/pasakumi/tirdzins-rigas-iela-39/
+SUMMARY:Ярмарка на улице Ригас
+DESCRIPTION:В субботу\, 21 ноября\, с 10:00 до 16:00 в Д
+ аугавпилсе пройдёт традиционная ярмарк
+ а на улице Ригас. В ней примут участие то
+ рговцы из Латвии\, Литвы и других стран\, 
+ предлагая широкий выбор продуктов: дома
+ шний хлеб и выпечку\, мёд и продукцию пче
+ ловодства\, травяные чаи\, специи\, сыры\, 
+ сладости\, изделия из облепихи\, конопли 
+ и лаванды.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/02/Rigas-ielas-tirdzins-4-scaled.jpg
+CATEGORIES:Bērniem,Citi pasākumi,Kultūra,Svētki un festivāli,Izklaide
+END:VEVENT
+BEGIN:VEVENT
+UID:11424@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261121T100000
+DTEND;TZID=Europe/Riga:20261121T160000
+DTSTAMP:20260223T111407Z
+URL:https://www.visitdaugavpils.lv/pasakumi/tirdzins-rigas-iela-39/
+SUMMARY:Rīgas Street Market
+DESCRIPTION:On Saturday\, November 21\, from 10:00 to 16:00\, the tradition
+ al Rīgas Street Market will take place in Daugavpils. Traders from Latvia
+ \, Lithuania\, and other countries will offer a wide range of products —
+  homemade bread and pastries\, honey and beekeeping goods\, herbal teas\, 
+ spices\, cheeses\, sweets\, and various sea buckthorn\, hemp\, and lavende
+ r products.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/02/Rigas-ielas-tirdzins-4-scaled.jpg
+CATEGORIES:Svētki un festivāli,Kultūra,Izklaide,Bērniem,Citi pasākumi
+END:VEVENT
+BEGIN:VEVENT
+UID:12326@visitdaugavpils.lv
+DTSTART;TZID=Europe/Riga:20261121T120000
+DTEND;TZID=Europe/Riga:20261121T120000
+DTSTAMP:20261019T133601Z
+URL:https://www.visitdaugavpils.lv/pasakumi/svecu-izgatavosanas-meistarkla
+ se-darbnica-a-a-candle-4/
+SUMMARY:Sveču izgatavošanas meistarklase darbnīcā “A.A. Candle”
+DESCRIPTION:21. novembrī plkst. 12.00 darbnīcā “A.A. Candle” notiks 
+ sveču izgatavošanas meistarklase. Meistarklases laikā ikvienam būs ies
+ pēja izgatavot unikālu sveci un sirsnīgu dāvanu sev vai mīļajiem.
+ATTACH;FMTTYPE=image/jpeg:https://www.visitdaugavpils.lv/wp-content/upload
+ s/2026/10/svecu-meistarklases.jpg
+CATEGORIES:Bērniem,Citi pasākumi,Izklaide
+END:VEVENT
+END:VCALENDAR

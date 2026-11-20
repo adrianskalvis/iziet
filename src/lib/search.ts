@@ -1,6 +1,6 @@
 import MiniSearch from 'minisearch';
 import { fold } from '$shared/fold';
-import type { EventItem } from '$shared/types';
+import type { EventCore } from '$shared/types';
 import { has, t } from './i18n';
 
 /**
@@ -15,12 +15,12 @@ interface SearchDoc {
 	topics: string;
 }
 
-function topics(event: EventItem): string {
+function topics(event: EventCore): string {
 	const labels = [t(`cat.${event.cat}`), ...event.tags.map((tag) => (has(`tag.${tag}`) ? t(`tag.${tag}`) : tag))];
 	return labels.join(' ');
 }
 
-export function buildIndex(events: EventItem[]): MiniSearch<SearchDoc> {
+export function buildIndex(events: EventCore[]): MiniSearch<SearchDoc> {
 	const index = new MiniSearch<SearchDoc>({
 		fields: ['title', 'place', 'topics'],
 		storeFields: ['id'],
@@ -36,7 +36,7 @@ export function buildIndex(events: EventItem[]): MiniSearch<SearchDoc> {
 		events.map((event) => ({
 			id: event.id,
 			title: event.title,
-			place: [event.venue, event.town, event.address].filter(Boolean).join(' '),
+			place: [event.venue, event.town].filter(Boolean).join(' '),
 			topics: topics(event)
 		}))
 	);

@@ -16,6 +16,7 @@
 	import { savedStore } from '$lib/stores/saved.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
 	import { CATEGORY_TINT } from '$shared/categories';
+	import type { EventItem } from '$shared/types';
 	import CalendarPlus from '@lucide/svelte/icons/calendar-plus';
 	import Calendar from '@lucide/svelte/icons/calendar';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
@@ -28,8 +29,22 @@
 
 	let now = $state(new Date());
 	const id = $derived(browser ? (page.url.searchParams.get('id') ?? '') : '');
-	const event = $derived(eventStore.byId.get(id));
+	let full = $state.raw<EventItem | undefined>(undefined);
+	let requested = '';
+	const core = $derived(eventStore.byId.get(id));
+	const event = $derived<EventItem | undefined>(
+		full?.id === id ? full : core ? ({ tickets: [], sources: [], url: '', ...core } as EventItem) : undefined
+	);
 	const origin = $derived(resolveOrigin(profileStore.value));
+
+	$effect(() => {
+		const current = id;
+		if (!current || requested === current) return;
+		requested = current;
+		eventStore.details(current).then((loaded) => {
+			if (loaded?.id === id) full = loaded;
+		});
+	});
 	const km = $derived(event ? distanceKm(origin, event) : undefined);
 	const saved = $derived(event ? savedStore.ids.includes(event.id) : false);
 	const price = $derived(event ? formatPriceRange(event.price) : undefined);
@@ -130,8 +145,8 @@
 					<dt><MapPin size={20} aria-hidden="true" /><span class="visually-hidden">{t('event.where')}</span></dt>
 					<dd>
 						{#if event.venue}<strong>{event.venue}</strong><br />{/if}
-						{[event.address, event.town].filter(Boolean).join(', ')}
-						{#if km !== undefined}<span class="distance"> · {t('card.distance', { distance: formatDistance(km) })}</span>{/if}
+						{event.address && event.address.includes(event.town) ? event.address : [event.address, event.town].filter(Boolean).join(', ')}
+						{#if km !== undefined}{' · '}<span class="distance">{t('card.distance', { distance: formatDistance(km) })}</span>{/if}
 					</dd>
 				</div>
 				{#if price}
@@ -324,7 +339,7 @@
 		border: 2px solid var(--color-border-subtle);
 		border-radius: var(--radius-button);
 		background: var(--color-surface);
-		font-size: 0.875rem;
+		font-size: 1rem;
 		font-weight: 750;
 		line-height: 1.15;
 		text-align: center;

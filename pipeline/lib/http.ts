@@ -66,6 +66,18 @@ export interface HttpConfig {
 interface RobotsEntry {
 	isAllowed: (url: string) => boolean;
 	delayMs: number;
+	/** Set when robots.txt could not be fetched (host down or blocking), as opposed to a real Disallow. */
+	unreachable?: string;
+}
+
+export class HostUnreachableError extends Error {
+	constructor(
+		public readonly origin: string,
+		reason: string
+	) {
+		super(`Host unreachable (${origin}): ${reason}`);
+		this.name = 'HostUnreachableError';
+	}
 }
 
 interface CachedResponse {
@@ -157,7 +169,7 @@ export function createHttp(config: HttpConfig = {}): Http {
 					return { isAllowed: () => true, delayMs: minDelayMs };
 				}
 				log(`robots.txt unreachable for ${origin}: ${(error as Error).message}`);
-				return { isAllowed: () => false, delayMs: minDelayMs };
+				return { isAllowed: () => false, delayMs: minDelayMs, unreachable: (error as Error).message };
 			}
 			const parser = robotsParser(robotsUrl, text);
 			const crawlDelay = parser.getCrawlDelay(ROBOTS_TOKEN) ?? 0;
@@ -187,6 +199,7 @@ export function createHttp(config: HttpConfig = {}): Http {
 		}
 		const { origin, host } = new URL(url);
 		const robots = await loadRobots(origin);
+		if (robots.unreachable) throw new HostUnreachableError(origin, robots.unreachable);
 		if (!robots.isAllowed(url)) throw new RobotsDisallowedError(url);
 
 		let lastError: unknown;

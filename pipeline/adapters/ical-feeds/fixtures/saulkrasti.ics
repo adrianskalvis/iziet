@@ -1,0 +1,360 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//wp-events-plugin.com//7.4.9//EN
+BEGIN:VEVENT
+UID:3444@saulkrasti.lv
+DTSTART:20261121T160000Z
+DTEND:20261121T173000Z
+DTSTAMP:20261116T085640Z
+URL:https://saulkrasti.lv/events/sejas-jauniesu-kamerorkestra-3-gadu-jubilejas-koncerts-tresais-celiens/
+SUMMARY:Sējas Jauniešu kamerorķestra 3 gadu jubilejas koncerts “Trešais cēliens”
+DESCRIPTION:21.novembrī plkst. 18.00 Sējas kultūras namā uz trīs gadu jubilejas koncertu “Trešais cēliens” aicina Sējas Jauniešu kamerorķestris.\n“Trīs gadu laikā esam kopā auguši\, mācījušies\, muzicējuši un piedzīvojuši daudz skaistu mirkļu. Šajā laikā mūs vienojusi ne tikai mūzika\, bet arī draudzība\, kopīgi piedzīvojumi un prieks būt kopā. Jubilejas koncertā atskatīsimies uz paveikto un ar mūzikas palīdzību izstāstīsim mūsu stāstu.”\nAicinām ikvienu pievienoties mums šajos svētkos\, baudīt mūziku un kopā nosvinēt Sējas Jauniešu kamerorķestra trešo dzimšanas dienu!\nVakars pie galdiņiem ar groziņiem. Rezervācija pa \nIeeja bez maksas.
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/Tresais_celiens.png
+CATEGORIES:Kultūra
+LOCATION:Sējas kultūras nams\, Loja\, Saulkrastu novads\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Loja\, Saulkrastu novads\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Sējas kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3404@saulkrasti.lv
+DTSTART:20261122T120000Z
+DTEND:20261122T140000Z
+DTSTAMP:20261006T080940Z
+URL:https://saulkrasti.lv/events/svecisu-vakars-miruso-pieminas-diena/
+SUMMARY:Svecīšu vakars - mirušo piemiņas diena
+DESCRIPTION:22. novembrī plkst. 14.00 Saulkrastu kapos notiek Svecīšu vakars - mirušo piemiņas diena.
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2016/10/Kapi.jpg
+CATEGORIES:Pašvaldība un sabiedrība
+LOCATION:Saulkrastu kapi\, Raiņa iela 2a\, Saulkrasti\, Saulkrastu novads\, LV-2160\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Raiņa iela 2a\, Saulkrasti\, Saulkrastu novads\, LV-2160\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kapi:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3432@saulkrasti.lv
+DTSTART:20261125T153000Z
+DTEND:20261125T173000Z
+DTSTAMP:20261022T121214Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-2/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 2. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3164@saulkrasti.lv
+DTSTART:20261126T080000Z
+DTEND:20261126T110000Z
+DTSTAMP:20260105T084747Z
+URL:https://saulkrasti.lv/events/domes-karteja-sede-14/
+SUMMARY:Domes kārtējā sēde
+DESCRIPTION:\n\nCeturtdien\, 26. novembrī\, plkst.10.00 Saulkrastu novada pašvaldības Domes sēžu zālē (Raiņa ielā 8\, Saulkrasti) notiks Saulkrastu novada domes kārtējā sēde.\nDomes sēdes darba kārtību un izskatāmo jautājumu lēmumu projektus var izlasīt ŠEIT.\n\n\n\n\nIedzīvotāji domes sēdei var sekot līdzi sociālo mediju platformā Facebook/ Saulkrastu novada pašvaldība un Saulkrastu novada pašvaldības mājaslapā.\nAtgādinām\, ka Saulkrastu novada domes sēdes ir atklātas\, izņemot likumā noteiktos gadījumus. Tas nozīmē\, ka domes sēdi klātienē var apmeklēt ikviens iedzīvotājs.\n\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2021/05/Dome.png
+CATEGORIES:Pašvaldība un sabiedrība
+LOCATION:Saulkrastu novada pašvaldība\, Raiņa iela 8\, Saulkrasti\, Saulkrastu novads\, LV-2160\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Raiņa iela 8\, Saulkrasti\, Saulkrastu novads\, LV-2160\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu novada pašvaldība:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3452@saulkrasti.lv
+DTSTART:20261126T133000Z
+DTEND:20261126T153000Z
+DTSTAMP:20261117T123335Z
+URL:https://saulkrasti.lv/events/picu-darbnica-jauniesiem/
+SUMMARY:Picu darbnīca jauniešiem
+DESCRIPTION:Pica kā mana dzīve! Galva pilna domu\, emociju un jautājumu? Nāc un noskaidro\, kā labāk saprast sevi un citus!\nAicinām jauniešus no 13 gadu vecuma uz aizraujošu pēcpusdienu Jauniešu mājā Saulkrastos. Kopā ar Saulkrastu novada vidusskolas vecāku biedrību “3I komanda” jaunieši caur spēlēm\, sarunām un dažādām aktivitātēm iepazīs sevi\, izzinās savas emocijas un mācīsies labāk izprast citus. Pasākuma laikā būs iespēja arī kopīgi gatavot un baudīt gardas picas!\nNāc viens vai kopā ar draugiem – būs interesanti\, garšīgi un noteikti nebūs garlaicīgi!\nSaulkrastu Jauniešu mājā\, Raiņa ielā 7\, Saulkrasti\n26. novembrī plkst. 15.30\nDalība bez maksas!\nLai varētu nopirkt pareizo produktu daudzumu\, lūdzu iepriekš piesakies ŠEIT.\nAktivitātes nodrošinās Saulkrastu novada vidusskolas vecāku atbalsta biedrība un biedrība 3L pārstāvji.\nAktivitāte tiek īstenota iniciatīvu projekta “Skola – kopiena” ietvaros\, projekta “Ceļš uz sevi: jauniešu\, vecāku un pedagogu sadarbības programma Saulkrastu novadā” ietvaros.\nProjektu konkurss tiek īstenots Eiropas Sociālā fonda Plus projekta Nr. 4.2.3.1/1/24/I/001 “Skola – kopienā” ietvaros\, kura mērķis ir stiprināt skolas un kopienas sadarbību un mazināt sociālās atstumtības un priekšlaicīgas mācību pārtraukšanas riskus.\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/11/Afisa-26.11.2026-Ka-labak-sevi-saprast-002.jpeg
+CATEGORIES:Izglītība un jaunieši
+LOCATION:Jauniešu māja\, Raiņa iela 7\, Saulkrasti\, Saulkrastu novads\, LV-2160\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Raiņa iela 7\, Saulkrasti\, Saulkrastu novads\, LV-2160\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Jauniešu māja:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3448@saulkrasti.lv
+DTSTART:20261128T123000Z
+DTEND:20261128T153000Z
+DTSTAMP:20261110T080401Z
+URL:https://saulkrasti.lv/events/egles-iedegsanas-svetki-saulgriezu-aicinajums/
+SUMMARY:Egles iedegšanas svētki “Saulgriežu aicinājums”
+DESCRIPTION:28. novembrī plkst. 16.00 pie Sējas kultūras nama notiks Ziemassvētku ieskandināšanas un egles iedegšanas pasākums “Saulgriežu aicinājums”. Tā būs iespēja iepazīt senlatviešu Ziemassvētku tradīcijas\, iesaistīties jautrās rotaļās\, izdejoties un izdziedāties\, kopīgi atklājot ceļu ziemas saulgriežiem.\nPasākumā folkloras kopa “Dvīga” aicinās uz kopīgu sadziedāšanos un rotaļām\, bet senlatviešu tradīciju meistarklasēs ikviens varēs radoši darboties un pašu rokām radīt ko īpašu. Būs iespēja izgatavot senus latviešu mājas rotājumus puzurus\, kas simbolizē pasaules kārtību un harmoniju\, darināt sveces un sietspiedes tehnikā apdrukāt auduma maisiņus ar paša izvēlētu latviešu zīmi.\nSvētku noskaņu papildinās tradicionālā senlatviešu ēdiena ķūķa baudīšana pie ugunskura\, izbraucieni gaismas kamanās un izjādes ar poniju.\nLai pasākumam piešķirtu vēl vairāk krāšņuma un rotaļīguma\, aicinām apmeklētājus ierasties maskās\, izvēloties gan dzīvnieku tēlus\, gan citus radošus un atraktīvus tēlus. Svētku gaismas radīšanai ikviens aicināts ņemt līdzi arī savu gaismas avotu\, tas var būt lukturītis\, gaismas virtene vai cits gaismas rotājums\, lai kopīgi izgaismotu svētku vakaru.\nJau otro gadu Ziemassvētku gaidīšanas laiku novadā ieskandinās arī “Gaismas brauciens”\, kura laikā bērnu dziesmu un deju kolektīvi ar priekšnesumiem priecēs iedzīvotājus vairākos novada ciemos. Aicinām iedzīvotājus pulcēties pieturvietās\, lai atbalstītu bērnus un kopīgi radītu svētku noskaņu.\n“Gaismas brauciena” pieturvietas un laiki:\nplkst. 14.30 Pabaži\nplkst. 15.00 Sēja\nplkst. 15.40 Murjāņi\nplkst. 16.00 pie Sējas kultūras nama\nAicinām ikvienu pievienoties svētku notikumam\, lai\, iepazīstot senās tradīcijas\, darbojoties radošajās meistarklasēs un baudot kopā būšanu iesāktu Ziemassvētku gaidīšanas laiku.\nDalība bez maksas.\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/11/Saulgriezu-aicinajums-event.png
+CATEGORIES:Kultūra
+END:VEVENT
+BEGIN:VEVENT
+UID:3447@saulkrasti.lv
+DTSTART:20261129T140000Z
+DTEND:20261129T160000Z
+DTSTAMP:20261110T075855Z
+URL:https://saulkrasti.lv/events/saulkrastu-lielas-egles-iedegsanas-svetki/
+SUMMARY:Saulkrastu lielās egles iedegšanas svētki
+DESCRIPTION:Aicinām lielus un mazus novada iedzīvotājus un pilsētas viesus kopā atklāt svētku laiku Saulkrastos\, ļaujoties gaismas\, prieka un kopā būšanas burvībai!\nSvētku svinības 29. novembrī plkst. 16.00 sāksim ar kopīgu Gaismas gājienu no Meža parka uz Saules laukumu. Aicinām ikvienu pievienoties gājienam un kļūt par daļu no svētku stāsta! Lai gājiens būtu vēl krāšņāks\, aicinām dalībniekus tērpties mirdzoši – spožākos un radošākos gājiena dalībniekus sagaidīs pārsteiguma balvas!\nSaules laukumā svētku apmeklētājus priecēs Saulkrastu bērnu māksliniecisko kolektīvu muzikālie sveicieni\, aizraujoša izrāde bērniem „Rūķu gudrību grāmata” un jautras rotaļas. Savukārt pašiem mazākajiem būs iespēja piedzīvot īpašu svētku prieku – doties izbraucienā zirga pajūgā un iepazīties ar poniju.\nSvētku kulminācijā kopīgi iedegsim lielo Saulkrastu Ziemassvētku egli\, piepildot pilsētu ar gaismu\, siltumu un priecīgu svētku gaidīšanas sajūtu!\nSaģērbies silti\, ņem līdzi ģimeni un draugus\, pievienojies Gaismas gājienam un kopā ar mums iededzini svētku prieku Saulkrastos!\nPasākuma laikā apmeklētāji var tikt fotografēti un filmēti. Iegūtie fotoattēli un video materiāli var tikt izmantoti\, publicēti\, reproducēti un izplatīti Saulkrastu kultūras centra publicitātes un komunikācijas vajadzībām bez laika un teritorijas ierobežojuma.\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/11/saulkrasti-mirdz-event.jpg
+CATEGORIES:Kultūra
+END:VEVENT
+BEGIN:VEVENT
+UID:3422@saulkrasti.lv
+DTSTART:20261202T153000Z
+DTEND:20261202T173000Z
+DTSTAMP:20261022T122242Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-3/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 3. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3449@saulkrasti.lv
+DTSTART:20261205T130000Z
+DTEND:20261205T150000Z
+DTSTAMP:20261116T152443Z
+URL:https://saulkrasti.lv/events/senioru-deju-kolektivs-saulgriezi-tautas-deju-koncerts-sadancosana-ziemas-saulgriezos/
+SUMMARY:Senioru deju kolektīvs “Saulgrieži” tautas deju koncerts “Sadancošana Ziemas Saulgriežos”
+DESCRIPTION:5.decembrī plkst. 15.00 Saulkrastu kultūras namā “Zvejniekciems” senioru deju kolektīvs “Saulgrieži” aicina ikvienu dejas un latvisko tradīciju cienītāju uz gadskārtējo tautas deju koncertu “Sadancošana Ziemas Saulgriežos”.\nKoncertā piedalās senioru deju kolektīvi no Ogres\, Siguldas\, Ainažiem\, Salacgrīvas\, Ādažiem\, Baldones\, Ulbrokas\, Daugavpils\, Limbažiem\, Tauraģes (Lietuva)\, kā arī Saulkrastu jauniešu un vidējās paaudzes deju kolektīvi.\nIeeja bez maksas.
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/11/Sadancosana_ziemas_saulgriezos.png
+CATEGORIES:Kultūra
+END:VEVENT
+BEGIN:VEVENT
+UID:3450@saulkrasti.lv
+DTSTART:20261206T100000Z
+DTEND:20261206T110000Z
+DTSTAMP:20261116T153335Z
+URL:https://saulkrasti.lv/events/izrade-berniem-ka-saule-gadijas/
+SUMMARY:Izrāde bērniem “Kā saule gadījās”
+DESCRIPTION:6. decembrī plkst. 12.00 Saulkrastu kultūras namā "Zvejniekciems" aicinām uz Dirty Deal Teatro “Kā saule gadījās”.\nIzrāde paredzēta 3 līdz 9 gadus veciem bērniem ar latviešu tautas pasaku stāstīšanu un cepumu cepšanu.\nVai zināt\, kā Saule radusies? Kā zvaigznes sakritušas nakts palagā\, un kāpēc Mēness spīd? Izrādē “Kā saule gadījās”\, izmantojot latviešu tautas teikas\, virtuves rīkus un pārtikas produktus\, aktieri ar bērnu līdzdalību atklās brīnumus par Zemes\, Saules\, Mēness\, zvaigžņu\, ūdens un cilvēka izcelšanos.\nNo kopīgi pagatavotās piparkūku mīklas bērniem būs iespēja atveidot un izgaršot izrādē gūtos iespaidus.\nRežisore Inga Tropa par izrādi: “Izrādes ideja radās\, darbojoties virtuvē kopā ar dēlu. Ikdienišķās lietas var pārvērsties iedvesmojošā rotaļā\, reizē sniedzot iespēju apgūt jaunas prasmes un iegūt zināšanas radošā un nepiespiestā veidā. Lai iepriecinātu bērnus\, nebūt nav nepieciešamas dārgas rotaļlietas.”\nIzrādes ilgums: 1 stunda\nIeeja bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/11/izrade_berniem_6dec.png
+CATEGORIES:Kultūra
+END:VEVENT
+BEGIN:VEVENT
+UID:3433@saulkrasti.lv
+DTSTART:20261209T153000Z
+DTEND:20261209T173000Z
+DTSTAMP:20261022T121344Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-3/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 3. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3453@saulkrasti.lv
+DTSTART:20261212T110000Z
+DTEND:20261212T130000Z
+DTSTAMP:20261117T124154Z
+URL:https://saulkrasti.lv/events/saulkrastu-novada-senioru-ziemassvetku-pasakums-kopa-ar-ati-auzanu/
+SUMMARY:Saulkrastu novada senioru Ziemassvētku pasākums kopā ar Ati Auzānu
+DESCRIPTION:Mīļi aicinām Saulkrastu novada seniorus uz Ziemassvētku pasākumu kopā ar Ati Auzānu.\nPasākums notiks 12. decembrī plkst. 13.00 Saulkrastu novada kultūras centrā "Zvejniekciems". Līdzi jāņem groziņu un labu noskaņojumu.\nLai senioriem bez sava transporta būtu ērtāk nokļūt uz pasākumu\, tiks nodrošināts pašvaldības autobuss maršrutā Murjāņi (pulcēšanās laukumā pie Klintslejām plkst. 12.00) – Loja – Sēja – Pabaži – Baltā kāpa – Saulkrasti – Saulkrastu kultūras nams „Zvejniekciems” un atpakaļ šajā pašā maršrutā.\nSenioriem\, kas brauks ar autobusu\, lūgums pirms tam pieteikties pa .
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/11/Senioru_pasakums_Atis_Auzans.png
+CATEGORIES:Kultūra
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3423@saulkrasti.lv
+DTSTART:20261216T153000Z
+DTEND:20261216T173000Z
+DTSTAMP:20261022T114050Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-4/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 4. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3435@saulkrasti.lv
+DTSTART:20261223T153000Z
+DTEND:20261223T173000Z
+DTSTAMP:20261022T122445Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-5/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 5. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3424@saulkrasti.lv
+DTSTART:20261230T153000Z
+DTEND:20261230T173000Z
+DTSTAMP:20261022T114244Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-5/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 5. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3434@saulkrasti.lv
+DTSTART:20270106T153000Z
+DTEND:20270106T173000Z
+DTSTAMP:20261022T122002Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-4/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 5. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3425@saulkrasti.lv
+DTSTART:20270113T153000Z
+DTEND:20270113T173000Z
+DTSTAMP:20261022T114355Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-6/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 6. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3436@saulkrasti.lv
+DTSTART:20270120T153000Z
+DTEND:20270120T173000Z
+DTSTAMP:20261022T122623Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-6/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 6. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3426@saulkrasti.lv
+DTSTART:20270127T153000Z
+DTEND:20270127T173000Z
+DTSTAMP:20261022T114456Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-7/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 7. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3437@saulkrasti.lv
+DTSTART:20270203T153000Z
+DTEND:20270203T173000Z
+DTSTAMP:20261022T123532Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-7/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 7. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3427@saulkrasti.lv
+DTSTART:20270210T153000Z
+DTEND:20270210T173000Z
+DTSTAMP:20261022T114613Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-8/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 8. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3438@saulkrasti.lv
+DTSTART:20270217T153000Z
+DTEND:20270217T173000Z
+DTSTAMP:20261022T123658Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-8/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 8. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3428@saulkrasti.lv
+DTSTART:20270224T153000Z
+DTEND:20270224T173000Z
+DTSTAMP:20261022T114732Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-9/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 9. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas\n
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3439@saulkrasti.lv
+DTSTART:20270303T153000Z
+DTEND:20270303T173000Z
+DTSTAMP:20261022T123823Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-9/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 9. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3429@saulkrasti.lv
+DTSTART:20270310T153000Z
+DTEND:20270310T173000Z
+DTSTAMP:20261022T114838Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-10/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 10. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3440@saulkrasti.lv
+DTSTART:20270317T153000Z
+DTEND:20270317T173000Z
+DTSTAMP:20261022T123954Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-10/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 10. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3430@saulkrasti.lv
+DTSTART:20270324T153000Z
+DTEND:20270324T173000Z
+DTSTAMP:20261022T114943Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-zolite-11/
+SUMMARY:Galda spēļu turnīrs (zolīte)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 11. posms zolītes spēlē.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Saulkrastu kultūras nams "Zvejniekciems"\, Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Atpūtas ielā 1B\, Saulkrasti\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Saulkrastu kultūras nams "Zvejniekciems":geo:0,0
+END:VEVENT
+BEGIN:VEVENT
+UID:3441@saulkrasti.lv
+DTSTART:20270330T210000Z
+DTEND:20270330T210000Z
+DTSTAMP:20261022T124059Z
+URL:https://saulkrasti.lv/events/galda-spelu-turnirs-novuss-11/
+SUMMARY:Galda spēļu turnīrs (novuss)
+DESCRIPTION:Saulkrastu novada galda spēļu turnīra 11. posms novusā.\nTurnīra NOLIKUMS.\nDalība turnīrā ir bez maksas
+ATTACH;FMTTYPE=image/jpeg:https://saulkrasti.lv/wp-content/uploads/2026/10/ziemas_galda_seplu_turnirs.jpg
+CATEGORIES:Sports
+LOCATION:Pabažu kultūras nams\, Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Pabaži\, Sējas pagasts\, Saulkrastu novads\, LV-2162\, Latvia;X-APPLE-RADIUS=100;X-TITLE=Pabažu kultūras nams:geo:0,0
+END:VEVENT
+END:VCALENDAR

@@ -87,12 +87,13 @@ function sameSlot(a: EventItem, b: EventItem): boolean {
 	const aTimed = !a.allDay;
 	const bTimed = !b.allDay;
 	if (aTimed && bTimed && Math.abs(Date.parse(a.start) - Date.parse(b.start)) > START_MS) return false;
-	if (a.lat !== undefined && b.lat !== undefined && a.lng !== undefined && b.lng !== undefined && a.venue && b.venue) {
+	const precise = !a.approx && !b.approx;
+	if (precise && a.lat !== undefined && b.lat !== undefined && a.lng !== undefined && b.lng !== undefined && a.venue && b.venue) {
 		if (haversineKm({ lat: a.lat, lng: a.lng }, { lat: b.lat, lng: b.lng }) <= VENUE_KM) return true;
 	}
 	if (a.town !== b.town) return false;
 	if (!a.venue || !b.venue) return true;
-	return trigramSimilarity(a.venue, b.venue) >= 0.5 || a.venue.includes(b.venue) || b.venue.includes(a.venue);
+	return trigramSimilarity(a.venue, b.venue) >= 0.7 || a.venue.includes(b.venue) || b.venue.includes(a.venue);
 }
 
 function priority(event: EventItem): number {
