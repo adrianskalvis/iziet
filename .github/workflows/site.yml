@@ -30,17 +30,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       # Raw source results stay out of the public repo; the Actions cache keeps
       # them between runs so a failing source can fall back to its last result.
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: data/cache/sources
           key: sources-${{ github.run_id }}
@@ -64,10 +64,22 @@ jobs:
           SOURCE_NICHE_BLUSA: ${{ vars.SOURCE_NICHE_BLUSA }}
       - name: Unit tests
         run: npm test
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: event-data
           path: static/data
+          retention-days: 3
+      # Text only: which sources have had no fresh events for days (pipeline/health.ts).
+      # The health job below, which may write issues, reads this file and runs no project code.
+      - name: Write the source health report
+        run: |
+          mkdir -p health
+          npx tsx pipeline/health-run.ts > health/health.md
+          if [ -s health/health.md ]; then echo stale > health/status.txt; else echo fresh > health/status.txt; fi
+      - uses: actions/upload-artifact@v7
+        with:
+          name: source-health
+          path: health
           retention-days: 3
 
   build:
@@ -76,16 +88,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - if: needs.data.result == 'success'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: event-data
           path: artifact
@@ -93,12 +105,12 @@ jobs:
         if: needs.data.result == 'success'
         run: rsync -a --include='*/' --include='*.json' --exclude='*' artifact/ static/data/
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Build
         run: npm run build
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: build
 
@@ -114,7 +126,38 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+
+  # One issue tells the owner when something needs a human: it opens when a source
+  # goes stale, updates while it stays stale and closes when every source is back.
+  health:
+    needs: data
+    if: always() && needs.data.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: source-health
+          path: health
+      - name: Open, update or close the source health issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          number=$(gh issue list --state open --label source-health --json number --jq '.[0].number // empty')
+          if [ -s health/health.md ]; then
+            if [ -n "$number" ]; then
+              gh issue edit "$number" --body-file health/health.md
+            else
+              gh label create source-health --color B60205 --description "Opened by the data run when a source goes stale" --force
+              gh issue create --title "Event sources need attention" --label source-health --body-file health/health.md
+            fi
+          elif [ -n "$number" ]; then
+            gh issue close "$number" --comment "All sources are fresh again."
+          fi
 
   commit-data:
     needs: [data, deploy]
@@ -124,8 +167,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with:
           name: event-data
           path: artifact

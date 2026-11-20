@@ -7,8 +7,8 @@
  *   npm run data -- --only=fienta    run selected adapters (others use their cache)
  *
  * A failing source falls back to the newer of its last cached result
- * (data/cache/sources) and its relay file (data/relay, see relay.ts), when
- * under 7 days old. A run that would shrink the dataset by more than 80%
+ * (data/cache/sources, up to 7 days old) and its relay file (data/relay, see
+ * relay.ts, up to 30 days old). A run that would shrink the dataset by more than 80%
  * keeps the old file.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -31,7 +31,7 @@ import {
 import { isEnabled, loadAdapters } from './adapters/registry';
 import type { Adapter } from './adapters/types';
 import { dedupe } from './dedupe';
-import { CACHE_MAX_AGE_MS, HORIZON_DAYS } from './config';
+import { CACHE_MAX_AGE_MS, HORIZON_DAYS, RELAY_MAX_AGE_MS } from './config';
 import { createHttp } from './lib/http';
 import { normalize } from './normalize';
 import { isSourceResult, newestFresh, RELAY_DIR, type SourceResult } from './relay';
@@ -109,7 +109,13 @@ async function runAdapter(adapter: Adapter, now: Date): Promise<{ status: Source
 	}
 	const cached = await readSourceResult(cacheFile);
 	const relayed = await readSourceResult(path.join(RELAY_DIR, `${adapter.id}.json`));
-	const fallback = newestFresh([cached, relayed], now.getTime(), CACHE_MAX_AGE_MS);
+	const fallback = newestFresh(
+		[
+			{ result: cached, maxAgeMs: CACHE_MAX_AGE_MS },
+			{ result: relayed, maxAgeMs: RELAY_MAX_AGE_MS }
+		],
+		now.getTime()
+	);
 	if (fallback) {
 		const from = fallback === relayed ? 'relay' : 'cache';
 		log(`↺ ${adapter.id}: using ${from} from ${fallback.fetchedAt} (${fallback.events.length} events)`);
@@ -197,7 +203,11 @@ async function main(): Promise<void> {
 		return;
 	}
 
-	const meta: DataMeta = { generatedAt: now.toISOString(), count: events.length, sources: results.map((r) => r.status) };
+	// lastOkAt survives runs in which a source gives nothing, so health.ts can say for how long.
+	const previousMeta = await readJson<DataMeta>(path.join(OUT_DIR, 'meta.json'));
+	const previousOk = new Map((previousMeta?.sources ?? []).map((source) => [source.id, source.lastOkAt]));
+	const sources = results.map(({ status }) => ({ ...status, lastOkAt: status.fetchedAt ?? previousOk.get(status.id) }));
+	const meta: DataMeta = { generatedAt: now.toISOString(), count: events.length, sources };
 	await mkdir(path.join(OUT_DIR, 'details'), { recursive: true });
 	await writeFile(path.join(OUT_DIR, 'events.json'), JSON.stringify(events.map(toCore)));
 	const shards: Array<Record<string, EventDetail>> = Array.from({ length: DETAIL_SHARDS }, () => ({}));

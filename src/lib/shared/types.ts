@@ -161,6 +161,8 @@ export interface SourceStatus {
 	count: number;
 	message?: string;
 	fetchedAt?: string;
+	/** When the events now in use were fetched; kept from run to run while the source gives nothing. */
+	lastOkAt?: string;
 }
 
 export interface DataMeta {

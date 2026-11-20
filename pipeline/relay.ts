@@ -4,7 +4,7 @@
  * owner's computer with the same IzietBot user agent, robots.txt rules and
  * 1 request per second, scrubs contact details, and writes data/relay/<id>.json.
  * The GitHub run uses a relay file when its own fetch fails and the file is
- * newer than its own cache and under 7 days old.
+ * newer than its own cache and under 30 days old.
  */
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -57,13 +57,13 @@ export function isSourceResult(value: unknown): value is SourceResult {
 	);
 }
 
-/** The newest result fetched less than maxAgeMs before now, if any. */
+/** The newest result among those younger than their own age limit, if any. */
 export function newestFresh<T extends { fetchedAt: string }>(
-	candidates: (T | undefined)[],
-	now: number,
-	maxAgeMs: number
+	candidates: Array<{ result: T | undefined; maxAgeMs: number }>,
+	now: number
 ): T | undefined {
 	return candidates
-		.filter((candidate): candidate is T => candidate !== undefined && now - Date.parse(candidate.fetchedAt) < maxAgeMs)
-		.reduce<T | undefined>((best, candidate) => (!best || candidate.fetchedAt > best.fetchedAt ? candidate : best), undefined);
+		.filter(({ result, maxAgeMs }) => result !== undefined && now - Date.parse(result.fetchedAt) < maxAgeMs)
+		.map(({ result }) => result as T)
+		.reduce<T | undefined>((best, result) => (!best || result.fetchedAt > best.fetchedAt ? result : best), undefined);
 }

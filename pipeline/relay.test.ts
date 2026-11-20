@@ -36,16 +36,20 @@ describe('newestFresh', () => {
 	const now = Date.parse('2026-11-21T12:00:00Z');
 	const at = (daysAgo: number) => ({ fetchedAt: new Date(now - daysAgo * DAY_MS).toISOString(), events: [] });
 
-	test('picks the newest result under the age limit', () => {
+	const week = (result: ReturnType<typeof at> | undefined) => ({ result, maxAgeMs: 7 * DAY_MS });
+	const month = (result: ReturnType<typeof at> | undefined) => ({ result, maxAgeMs: 30 * DAY_MS });
+
+	test('picks the newest result under its age limit', () => {
 		const cache = at(3);
 		const relay = at(1);
-		expect(newestFresh([cache, relay], now, 7 * DAY_MS)).toBe(relay);
+		expect(newestFresh([week(cache), month(relay)], now)).toBe(relay);
 	});
 
-	test('ignores missing and stale results', () => {
-		expect(newestFresh([undefined, at(8)], now, 7 * DAY_MS)).toBeUndefined();
-		const cache = at(2);
-		expect(newestFresh([cache, undefined], now, 7 * DAY_MS)).toBe(cache);
+	test('ignores missing and stale results, each by its own limit', () => {
+		expect(newestFresh([week(undefined), week(at(8))], now)).toBeUndefined();
+		const relay = at(20);
+		expect(newestFresh([week(at(8)), month(relay)], now)).toBe(relay);
+		expect(newestFresh([month(at(31))], now)).toBeUndefined();
 	});
 });
 
