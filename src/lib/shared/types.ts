@@ -147,6 +147,8 @@ export interface RawEvent {
 	ageMax?: number;
 	status?: 'scheduled' | EventStatus;
 	organizer?: string;
+	/** Category set by a person (curated data); skips keyword voting. */
+	category?: CategoryId;
 	/** Source-level default category when nothing else matches. */
 	defaultCategory?: CategoryId;
 }

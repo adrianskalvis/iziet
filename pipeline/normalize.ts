@@ -33,6 +33,7 @@ function countHits(text: string, keywords: string[]): number {
 
 /** Weighted keyword vote: title 3, source category labels 2, description 1. */
 export function classify(raw: RawEvent): CategoryId {
+	if (raw.category) return raw.category;
 	const title = ` ${fold(raw.title)} `;
 	const hints = ` ${fold((raw.categoryHint ?? []).join(' '))} `;
 	const desc = ` ${fold((raw.description ?? '').slice(0, 400))} `;

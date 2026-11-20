@@ -18,7 +18,7 @@ export const CATEGORY_RULES: CategoryRule[] = [
 	{
 		id: 'blusu',
 		tint: 'blusu',
-		keywords: ['blusu', 'flea market', 'kramu tirg', 'antikvar', 'vintage', 'second hand', 'lietotu mantu', 'garazas izpardo', 'car boot', 'mantu tirg', 'kramu']
+		keywords: ['blusu', 'flea market', 'kramu tirg', 'antikvar', 'vintage', 'second hand', 'lietotu mantu', 'garazas izpardo', 'car boot', 'mantu tirg', 'kramu', 'kramin', 'krami ']
 	},
 	{
 		id: 'tirdzini',

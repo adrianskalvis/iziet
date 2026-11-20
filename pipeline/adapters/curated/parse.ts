@@ -104,6 +104,7 @@ export function recordToRaw(record: CuratedRecord, now: Date, horizonDays: numbe
 		tags: record.tags.length ? record.tags : undefined,
 		lang: record.lang,
 		status: 'scheduled',
+		category: record.category,
 		defaultCategory: record.category
 	};
 }
