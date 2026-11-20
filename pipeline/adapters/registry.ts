@@ -22,9 +22,19 @@ export async function loadAdapters(only?: string[]): Promise<Adapter[]> {
 		} catch {
 			continue;
 		}
-		const module = (await import(pathToFileURL(indexFile).href)) as { default?: Adapter | Adapter[] };
-		const exported = module.default;
-		if (!exported) throw new Error(`Adapter folder ${entry} has no default export`);
+		let exported: Adapter | Adapter[] | undefined;
+		try {
+			const module = (await import(pathToFileURL(indexFile).href)) as { default?: Adapter | Adapter[] };
+			exported = module.default;
+		} catch (error) {
+			// One broken adapter must not stop the others.
+			console.error(`Adapter folder ${entry} failed to load: ${(error as Error).message}`);
+			continue;
+		}
+		if (!exported) {
+			console.error(`Adapter folder ${entry} has no default export`);
+			continue;
+		}
 		for (const adapter of Array.isArray(exported) ? exported : [exported]) {
 			if (!only || only.includes(adapter.id)) adapters.push(adapter);
 		}

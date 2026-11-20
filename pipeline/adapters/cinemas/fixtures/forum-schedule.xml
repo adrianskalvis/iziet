@@ -1,0 +1,1186 @@
+<?xml version="1.0"?>
+<Schedule xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PubDate>2026-11-20T00:00:00+00:00</PubDate>
+  <Shows>
+    <Show>
+      <ID>442946</ID>
+      <dtAccounting>2026-11-20T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-20T14:00:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-20T12:00:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-20T16:58:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-20T14:58:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-20T14:10:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-20T12:10:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/442946/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444152</ID>
+      <dtAccounting>2026-11-20T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-20T16:25:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-20T14:25:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-20T19:23:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-20T17:23:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-20T16:35:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-20T14:35:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1203</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>7. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 7. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444152/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>442947</ID>
+      <dtAccounting>2026-11-20T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-20T17:40:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-20T15:40:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-20T20:38:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-20T18:38:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-20T17:50:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-20T15:50:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/442947/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>442945</ID>
+      <dtAccounting>2026-11-20T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-20T19:00:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-20T17:00:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-20T21:58:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-20T19:58:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-20T19:10:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-20T17:10:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1194</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>PEPSI aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, PEPSI aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>Premium 2D</PresentationMethodAndLanguage>
+      <PresentationMethod>Premium 2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/442945/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444156</ID>
+      <dtAccounting>2026-11-20T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-20T20:00:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-20T18:00:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-20T22:58:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-20T20:58:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-20T20:10:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-20T18:10:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1203</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>7. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 7. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444156/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443549</ID>
+      <dtAccounting>2026-11-20T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-20T21:20:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-20T19:20:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-21T00:18:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-20T22:18:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-20T21:30:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-20T19:30:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443549/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443552</ID>
+      <dtAccounting>2026-11-21T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-21T12:30:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-21T10:30:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-21T15:28:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-21T13:28:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-21T12:40:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-21T10:40:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443552/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443551</ID>
+      <dtAccounting>2026-11-21T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-21T16:10:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-21T14:10:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-21T19:08:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-21T17:08:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-21T16:20:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-21T14:20:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443551/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444260</ID>
+      <dtAccounting>2026-11-21T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-21T18:10:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-21T16:10:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-21T21:08:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-21T19:08:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-21T18:20:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-21T16:20:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1191</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>DELFI LUX aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, DELFI LUX aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444260/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443550</ID>
+      <dtAccounting>2026-11-21T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-21T19:45:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-21T17:45:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-21T22:43:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-21T20:43:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-21T19:55:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-21T17:55:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443550/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443548</ID>
+      <dtAccounting>2026-11-21T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-21T21:20:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-21T19:20:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-22T00:18:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-21T22:18:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-21T21:30:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-21T19:30:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1194</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>PEPSI aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, PEPSI aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>Premium 2D</PresentationMethodAndLanguage>
+      <PresentationMethod>Premium 2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443548/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443557</ID>
+      <dtAccounting>2026-11-22T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-22T11:00:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-22T09:00:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-22T13:58:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-22T11:58:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-22T11:10:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-22T09:10:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1194</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>PEPSI aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, PEPSI aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>Premium 2D</PresentationMethodAndLanguage>
+      <PresentationMethod>Premium 2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443557/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444314</ID>
+      <dtAccounting>2026-11-22T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-22T13:00:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-22T11:00:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-22T15:58:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-22T13:58:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-22T13:10:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-22T11:10:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444314/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443558</ID>
+      <dtAccounting>2026-11-22T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-22T14:50:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-22T12:50:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-22T17:48:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-22T15:48:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-22T15:00:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-22T13:00:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1194</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>PEPSI aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, PEPSI aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>Premium 2D</PresentationMethodAndLanguage>
+      <PresentationMethod>Premium 2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443558/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444315</ID>
+      <dtAccounting>2026-11-22T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-22T16:40:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-22T14:40:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-22T19:33:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-22T17:33:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-22T16:50:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-22T14:50:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444315/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>443556</ID>
+      <dtAccounting>2026-11-22T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-22T18:40:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-22T16:40:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-22T21:38:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-22T19:38:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-22T18:50:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-22T16:50:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1194</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>PEPSI aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, PEPSI aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>Premium 2D</PresentationMethodAndLanguage>
+      <PresentationMethod>Premium 2D</PresentationMethod>
+      <EventSeries />
+      <ShowURL>http://www.forumcinemas.lv/websales/show/443556/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444401</ID>
+      <dtAccounting>2026-11-23T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-23T14:00:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-23T12:00:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-23T16:58:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-23T14:58:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-23T14:10:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-23T12:10:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries>Vieglā Pirmdiena</EventSeries>
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444401/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444416</ID>
+      <dtAccounting>2026-11-23T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-23T17:40:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-23T15:40:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-23T20:33:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-23T18:33:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-23T17:50:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-23T15:50:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1197</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>2. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 2. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries>Vieglā Pirmdiena</EventSeries>
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444416/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444422</ID>
+      <dtAccounting>2026-11-23T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-23T19:00:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-23T17:00:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-23T21:58:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-23T19:58:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-23T19:10:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-23T17:10:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1194</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>PEPSI aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, PEPSI aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>Premium 2D</PresentationMethodAndLanguage>
+      <PresentationMethod>Premium 2D</PresentationMethod>
+      <EventSeries>Vieglā Pirmdiena</EventSeries>
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444422/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+    <Show>
+      <ID>444425</ID>
+      <dtAccounting>2026-11-23T00:00:00</dtAccounting>
+      <dttmShowStart>2026-11-23T20:05:00</dttmShowStart>
+      <dttmShowStartUTC>2026-11-23T18:05:00Z</dttmShowStartUTC>
+      <dttmShowEnd>2026-11-23T23:03:00</dttmShowEnd>
+      <dttmShowEndUTC>2026-11-23T21:03:00Z</dttmShowEndUTC>
+      <ShowSalesStartTime>2000-01-01T00:00:00</ShowSalesStartTime>
+      <ShowSalesStartTimeUTC>2000-01-01T00:00:00Z</ShowSalesStartTimeUTC>
+      <ShowSalesEndTime>2026-11-23T20:15:00</ShowSalesEndTime>
+      <ShowSalesEndTimeUTC>2026-11-23T18:15:00Z</ShowSalesEndTimeUTC>
+      <ShowReservationStartTime>0001-01-01T00:00:00</ShowReservationStartTime>
+      <ShowReservationStartTimeUTC>0001-01-01T00:00:00</ShowReservationStartTimeUTC>
+      <ShowReservationEndTime>0001-01-01T00:00:00</ShowReservationEndTime>
+      <ShowReservationEndTimeUTC>0001-01-01T00:00:00</ShowReservationEndTimeUTC>
+      <EventID>304619</EventID>
+      <Title>Bada spēles: Izlozes rītausma</Title>
+      <OriginalTitle>The Hunger Games: Sunrise on the Reaping</OriginalTitle>
+      <ProductionYear>2026</ProductionYear>
+      <LengthInMinutes>158</LengthInMinutes>
+      <dtLocalRelease>2026-11-18T00:00:00</dtLocalRelease>
+      <Rating>Līdz 12 g.v. -  neiesakām</Rating>
+      <RatingLabel>N12</RatingLabel>
+      <RatingImageUrl>http://forumcinemaslv.blob.core.windows.net/images/rating_large_N12.png</RatingImageUrl>
+      <EventType>Movie</EventType>
+      <Genres>Piedzīvojumi, Asa sižeta, Fantastika</Genres>
+      <TheatreID>1032</TheatreID>
+      <TheatreAuditriumID>1203</TheatreAuditriumID>
+      <Theatre>Forum Cinemas Centrs</Theatre>
+      <TheatreAuditorium>7. aud.</TheatreAuditorium>
+      <TheatreAndAuditorium>Forum Cinemas Centrs, 7. aud.</TheatreAndAuditorium>
+      <PresentationMethodAndLanguage>2D</PresentationMethodAndLanguage>
+      <PresentationMethod>2D</PresentationMethod>
+      <EventSeries>Vieglā Pirmdiena</EventSeries>
+      <ShowURL>http://www.forumcinemas.lv/websales/show/444425/</ShowURL>
+      <EventURL>http://www.forumcinemas.lv/event/304619/title/bada_sp%C4%93les_izlozes_r%C4%ABtausma/</EventURL>
+      <SpokenLanguage>
+        <Name>Angļu</Name>
+        <NameInLanguage>Angļu</NameInLanguage>
+        <ISOTwoLetterCode>en</ISOTwoLetterCode>
+      </SpokenLanguage>
+      <SubtitleLanguage1>
+        <Name>Latviešu</Name>
+        <NameInLanguage>Latviešu</NameInLanguage>
+        <ISOTwoLetterCode>lv</ISOTwoLetterCode>
+      </SubtitleLanguage1>
+      <SubtitleLanguage2>
+        <Name>Krievu</Name>
+        <NameInLanguage>Krievu</NameInLanguage>
+        <ISOTwoLetterCode>ru</ISOTwoLetterCode>
+      </SubtitleLanguage2>
+      <Images>
+        <EventMicroImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_micro/Hunger-Games-plakats.jpg</EventMicroImagePortrait>
+        <EventSmallImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_small/Hunger-Games-plakats.jpg</EventSmallImagePortrait>
+        <EventMediumImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_medium/Hunger-Games-plakats.jpg</EventMediumImagePortrait>
+        <EventLargeImagePortrait>http://forumcinemaslv.blob.core.windows.net/1012/Event_11158/portrait_large/Hunger-Games-plakats.jpg</EventLargeImagePortrait>
+      </Images>
+      <ContentDescriptors />
+    </Show>
+  </Shows>
+</Schedule>

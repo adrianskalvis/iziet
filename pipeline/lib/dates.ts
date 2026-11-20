@@ -11,7 +11,7 @@ const MONTH_STEMS: Array<[RegExp, number]> = [
 	[/^febr|^feb\b/, 2],
 	[/^mart|^marc|^mar\b/, 3],
 	[/^apr/, 4],
-	[/^maij|^may/, 5],
+	[/^maij|^may|^mai\b|^mai$/, 5],
 	[/^jun|^jūn/, 6],
 	[/^jul|^jūl/, 7],
 	[/^aug/, 8],

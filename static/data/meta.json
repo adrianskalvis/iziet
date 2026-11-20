@@ -1,0 +1,478 @@
+{
+ "generatedAt": "2026-11-20T12:10:35.526Z",
+ "count": 356,
+ "sources": [
+  {
+   "id": "apollo-kino",
+   "name": "Apollo Kino",
+   "homepage": "https://www.apollokino.lv",
+   "state": "ok",
+   "count": 83,
+   "fetchedAt": "2026-11-20T12:10:35.572Z"
+  },
+  {
+   "id": "forum-cinemas",
+   "name": "Forum Cinemas",
+   "homepage": "https://www.forumcinemas.lv",
+   "state": "ok",
+   "count": 86,
+   "fetchedAt": "2026-11-20T12:10:35.662Z"
+  },
+  {
+   "id": "curated",
+   "name": "Kurētie pasākumi",
+   "homepage": "https://iziet.lv/par",
+   "state": "ok",
+   "count": 5,
+   "fetchedAt": "2026-11-20T12:10:35.554Z"
+  },
+  {
+   "id": "fienta",
+   "name": "Fienta",
+   "homepage": "https://fienta.com/lv",
+   "state": "ok",
+   "count": 217,
+   "fetchedAt": "2026-11-20T12:10:35.714Z"
+  },
+  {
+   "id": "daugavpils-ical",
+   "name": "Visit Daugavpils",
+   "homepage": "https://www.visitdaugavpils.lv/pasakumi/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "saulkrasti",
+   "name": "Saulkrastu novads",
+   "homepage": "https://saulkrasti.lv/events/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "daugavpils",
+   "name": "Daugavpils pilsētas afiša",
+   "homepage": "https://www.daugavpils.lv/afisa/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "liepaja",
+   "name": "Liepājas pasākumu kalendārs",
+   "homepage": "https://kalendars.liepaja.lv/lv/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "lnso",
+   "name": "Latvijas Nacionālais simfoniskais orķestris",
+   "homepage": "https://www.lnso.lv/event-list/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "dailes",
+   "name": "Dailes teātris",
+   "homepage": "https://www.dailesteatris.lv/lv/kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "jekabpils",
+   "name": "Visit Jēkabpils",
+   "homepage": "https://visit.jekabpils.lv/lv/visi-pasakumi/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "bauska",
+   "name": "Visit Bauska",
+   "homepage": "https://visit.bauska.lv/lv/pasakumi/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "liveriga",
+   "name": "Live Riga",
+   "homepage": "https://www.liveriga.com",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-riga",
+   "name": "Rīga (pašvaldība)",
+   "homepage": "https://www.riga.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-jurmala",
+   "name": "Jūrmala (pašvaldība)",
+   "homepage": "https://www.jurmala.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-ogre",
+   "name": "Ogres novads (pašvaldība)",
+   "homepage": "https://www.ogresnovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-jekabpils",
+   "name": "Jēkabpils (pašvaldība)",
+   "homepage": "https://www.jekabpils.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-marupe",
+   "name": "Mārupes novads (pašvaldība)",
+   "homepage": "https://www.marupe.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-adazi",
+   "name": "Ādažu novads (pašvaldība)",
+   "homepage": "https://www.adazunovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-bauska",
+   "name": "Bauskas novads (pašvaldība)",
+   "homepage": "https://www.bauskasnovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-dobele",
+   "name": "Dobeles novads (pašvaldība)",
+   "homepage": "https://www.dobele.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-gulbene",
+   "name": "Gulbenes novads (pašvaldība)",
+   "homepage": "https://www.gulbene.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-limbazi",
+   "name": "Limbažu novads (pašvaldība)",
+   "homepage": "https://www.limbazunovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-ludza",
+   "name": "Ludzas novads (pašvaldība)",
+   "homepage": "https://www.ludzasnovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-smiltene",
+   "name": "Smiltenes novads (pašvaldība)",
+   "homepage": "https://www.smiltenesnovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-talsi",
+   "name": "Talsu novads (pašvaldība)",
+   "homepage": "https://www.talsunovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-tukums",
+   "name": "Tukuma novads (pašvaldība)",
+   "homepage": "https://www.tukums.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-aizkraukle",
+   "name": "Aizkraukles novads (pašvaldība)",
+   "homepage": "https://www.aizkraukle.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-balvi",
+   "name": "Balvu novads (pašvaldība)",
+   "homepage": "https://www.balvi.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-dienvidkurzeme",
+   "name": "Dienvidkurzemes novads (pašvaldība)",
+   "homepage": "https://www.dkn.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-jelgavas-novads",
+   "name": "Jelgavas novads (pašvaldība)",
+   "homepage": "https://www.jelgavasnovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-kraslava",
+   "name": "Krāslavas novads (pašvaldība)",
+   "homepage": "https://www.kraslava.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-livani",
+   "name": "Līvānu novads (pašvaldība)",
+   "homepage": "https://www.livani.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-preili",
+   "name": "Preiļu novads (pašvaldība)",
+   "homepage": "https://www.preili.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-ropazi",
+   "name": "Ropažu novads (pašvaldība)",
+   "homepage": "https://www.ropazi.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-valka",
+   "name": "Valkas novads (pašvaldība)",
+   "homepage": "https://www.valka.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "muni-ventspils-novads",
+   "name": "Ventspils novads (pašvaldība)",
+   "homepage": "https://www.ventspilsnovads.lv/lv/notikumu-kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "niche-blusa",
+   "name": "Blusa.eu tirdziņi",
+   "homepage": "https://blusa.eu/markets",
+   "state": "disabled",
+   "count": 0,
+   "message": "blusa.eu terms page is rendered by script and could not be read; the research list asks for a partner feed first. Enable after written permission."
+  },
+  {
+   "id": "niche-lemade",
+   "name": "LeMade School keramika",
+   "homepage": "https://www.lemade.lv/nodarbibas",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "niche-bt1",
+   "name": "BT 1 izstādes Ķīpsalā",
+   "homepage": "https://www.bt1.lv/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "niche-kalnciems",
+   "name": "Kalnciema kvartāls",
+   "homepage": "https://www.kalnciemaiela.lv/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "lielais-dzintars",
+   "name": "Lielais dzintars",
+   "homepage": "https://lielaisdzintars.lv/lv/kalendars",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "gors",
+   "name": "Latgales vēstniecība GORS",
+   "homepage": "https://www.latgalesgors.lv/lv/notikumi",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "cesis-koncertzale",
+   "name": "Koncertzāle Cēsis",
+   "homepage": "https://www.cesukoncertzale.lv/pasakumi",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "valmieras-teatris",
+   "name": "Valmieras Drāmas teātris",
+   "homepage": "https://valmierasteatris.lv/kalendars/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "dobele",
+   "name": "Visit Dobele",
+   "homepage": "https://visitdobele.lv/pasakumi",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "tukums",
+   "name": "Visit Tukums",
+   "homepage": "https://visittukums.lv/lv/Pasakumi",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "talsi",
+   "name": "Visit Talsi",
+   "homepage": "https://visittalsi.com/pasakumi/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "latgale",
+   "name": "Latgale Travel",
+   "homepage": "https://latgale.travel/notikumi/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "jelgava",
+   "name": "Jelgavas pilsēta",
+   "homepage": "https://www.jelgava.lv/pasakumi/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "xiaomi-arena",
+   "name": "Xiaomi Arēna",
+   "homepage": "https://xiaomi-arena.com",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "palladium",
+   "name": "Palladium Rīga",
+   "homepage": "https://www.palladium.lv",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "hanzas-perons",
+   "name": "Hanzas Perons",
+   "homepage": "https://hanzasperons.lv",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "mezaparks",
+   "name": "Mežaparka Lielā estrāde",
+   "homepage": "https://estrade.riga.lv",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "opera",
+   "name": "Latvijas Nacionālā opera un balets",
+   "homepage": "https://www.opera.lv",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "nacionalais-teatris",
+   "name": "Latvijas Nacionālais teātris",
+   "homepage": "https://teatris.lv",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "lnmm",
+   "name": "Latvijas Nacionālais mākslas muzejs",
+   "homepage": "https://lnmm.gov.lv",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "dzintari",
+   "name": "Dzintaru koncertzāle",
+   "homepage": "https://dzintarukoncertzale.lv/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  },
+  {
+   "id": "aluksne",
+   "name": "Alūksnes novada pasākumi",
+   "homepage": "https://aluksne.lv/",
+   "state": "cached",
+   "count": 0,
+   "message": "Not run"
+  }
+ ]
+}

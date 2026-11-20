@@ -73,7 +73,8 @@
 		"distance": "{distance} no tevis",
 		"moreTimes": "un vēl {count}",
 		"save": "Saglabāt",
-		"unsave": "Noņemt no saglabātajiem"
+		"unsave": "Noņemt no saglabātajiem",
+		"why": "Kāpēc iesakām"
 	},
 	"event": {
 		"when": "Kad",
