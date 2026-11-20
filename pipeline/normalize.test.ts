@@ -52,6 +52,7 @@ describe('normalize', () => {
 		expect(normalize(raw({ title: 'Ogres novada pašvaldības domes sēde' }), ctx)).toBeUndefined();
 		expect(normalize(raw({ title: 'Attīstības komitejas sēde' }), ctx)).toBeUndefined();
 		expect(normalize(raw({ title: 'Iedzīvotāju sapulce Piltenē' }), ctx)).toBeUndefined();
+		expect(normalize(raw({ title: 'Engures pagasta iedzīvotāju konsultatīvās padomes sēde' }), ctx)).toBeUndefined();
 		expect(normalize(raw({ title: 'Attālināti kursi pedagogiem “MS Excel izglītībā”' }), ctx)).toBeUndefined();
 		expect(normalize(raw({ title: 'Seminārs “Mikrozaļumu audzēšana mājas apstākļos”' }), ctx)).toBeDefined();
 	});

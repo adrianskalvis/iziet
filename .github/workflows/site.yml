@@ -1,8 +1,9 @@
 name: Site
 
 # One workflow for the live site:
-# - push to main: build with the committed data and deploy to GitHub Pages.
-# - every 6 hours (and by hand): fetch fresh events first, deploy, then commit the data.
+# - every 6 hours (and by hand): fetch fresh events, deploy, then commit the data.
+# - push to main: rebuild the data from the cached source results with the new
+#   code, then deploy. A code push therefore never puts older events back online.
 # Scraping runs in a read-only job without stored git credentials; only the
 # commit job can write, and it copies JSON files only.
 on:
@@ -26,7 +27,6 @@ concurrency:
 
 jobs:
   data:
-    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -56,7 +56,8 @@ jobs:
       - name: Fetch and normalise events
         run: npm run data -- ${ONLY:+"--only=$ONLY"}
         env:
-          ONLY: ${{ inputs.only }}
+          # On a push no source is fetched: "none" matches no source id, so every source replays its cached result.
+          ONLY: ${{ github.event_name == 'push' && 'none' || inputs.only }}
           # Sources that need written permission stay off until a repository variable is set to "1".
           SOURCE_BILESUSERVISS: ${{ vars.SOURCE_BILESUSERVISS }}
           SOURCE_LATVIATRAVEL: ${{ vars.SOURCE_LATVIATRAVEL }}
@@ -84,7 +85,8 @@ jobs:
 
   build:
     needs: data
-    if: always() && (needs.data.result == 'success' || needs.data.result == 'skipped')
+    # A push still deploys its code when the data job fails; it then uses the committed data.
+    if: always() && (needs.data.result == 'success' || github.event_name == 'push')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -161,7 +163,7 @@ jobs:
 
   commit-data:
     needs: [data, deploy]
-    if: always() && needs.data.result == 'success'
+    if: always() && needs.data.result == 'success' && github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -184,5 +186,10 @@ jobs:
             echo "No data changes"
           else
             git commit -m "chore: refresh event data"
-            git push
+            # A code push may land while the data run is busy: replay the data commit on top and try again.
+            for attempt in 1 2 3; do
+              if git push; then exit 0; fi
+              git pull --rebase
+            done
+            exit 1
           fi
