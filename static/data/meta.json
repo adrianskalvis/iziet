@@ -1,24 +1,24 @@
 {
- "generatedAt": "2026-11-20T23:51:24.952Z",
- "count": 2459,
+ "generatedAt": "2026-11-21T05:41:46.338Z",
+ "count": 2462,
  "sources": [
   {
    "id": "apollo-kino",
    "name": "Apollo Kino",
    "homepage": "https://www.apollokino.lv",
    "state": "cached",
-   "count": 83,
-   "fetchedAt": "2026-11-20T23:49:55.353Z",
-   "lastOkAt": "2026-11-20T23:49:55.353Z"
+   "count": 84,
+   "fetchedAt": "2026-11-21T05:40:06.174Z",
+   "lastOkAt": "2026-11-21T05:40:06.174Z"
   },
   {
    "id": "forum-cinemas",
    "name": "Forum Cinemas",
    "homepage": "https://www.forumcinemas.lv",
    "state": "cached",
-   "count": 86,
-   "fetchedAt": "2026-11-20T23:49:57.002Z",
-   "lastOkAt": "2026-11-20T23:49:57.002Z"
+   "count": 90,
+   "fetchedAt": "2026-11-21T05:40:08.346Z",
+   "lastOkAt": "2026-11-21T05:40:08.346Z"
   },
   {
    "id": "curated",
@@ -77,8 +77,8 @@
    "homepage": "https://saulkrasti.lv/events/",
    "state": "cached",
    "count": 26,
-   "fetchedAt": "2026-11-20T23:49:57.531Z",
-   "lastOkAt": "2026-11-20T23:49:57.531Z"
+   "fetchedAt": "2026-11-21T05:40:09.138Z",
+   "lastOkAt": "2026-11-21T05:40:09.138Z"
   },
   {
    "id": "daugavpils",
@@ -104,8 +104,8 @@
    "homepage": "https://www.lnso.lv/event-list/",
    "state": "cached",
    "count": 23,
-   "fetchedAt": "2026-11-20T23:51:01.020Z",
-   "lastOkAt": "2026-11-20T23:51:01.020Z"
+   "fetchedAt": "2026-11-21T05:41:12.323Z",
+   "lastOkAt": "2026-11-21T05:41:12.323Z"
   },
   {
    "id": "dailes",
@@ -541,8 +541,8 @@
    "homepage": "https://dzintarukoncertzale.lv/",
    "state": "cached",
    "count": 32,
-   "fetchedAt": "2026-11-20T23:51:02.498Z",
-   "lastOkAt": "2026-11-20T23:51:02.498Z"
+   "fetchedAt": "2026-11-21T05:41:13.793Z",
+   "lastOkAt": "2026-11-21T05:41:13.793Z"
   },
   {
    "id": "aluksne",
