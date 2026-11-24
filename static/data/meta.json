@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-23T17:40:36.041Z",
- "count": 2450,
+ "generatedAt": "2026-11-23T23:54:17.747Z",
+ "count": 2558,
  "sources": [
   {
    "id": "apollo-kino",
@@ -24,19 +24,19 @@
    "id": "curated",
    "name": "Kurētie pasākumi",
    "homepage": "https://adrianskalvis.github.io/iziet/par",
-   "state": "cached",
+   "state": "ok",
    "count": 5,
-   "fetchedAt": "2026-11-23T07:39:49.593Z",
-   "lastOkAt": "2026-11-23T07:39:49.593Z"
+   "fetchedAt": "2026-11-23T23:54:17.951Z",
+   "lastOkAt": "2026-11-23T23:54:17.951Z"
   },
   {
    "id": "fienta",
    "name": "Fienta",
    "homepage": "https://fienta.com/lv",
-   "state": "cached",
-   "count": 174,
-   "fetchedAt": "2026-11-23T07:39:54.221Z",
-   "lastOkAt": "2026-11-23T07:39:54.221Z"
+   "state": "ok",
+   "count": 176,
+   "fetchedAt": "2026-11-23T23:54:22.192Z",
+   "lastOkAt": "2026-11-23T23:54:22.192Z"
   },
   {
    "id": "bilesuserviss",
@@ -66,10 +66,10 @@
    "id": "daugavpils-ical",
    "name": "Visit Daugavpils",
    "homepage": "https://www.visitdaugavpils.lv/pasakumi/",
-   "state": "cached",
+   "state": "ok",
    "count": 117,
-   "fetchedAt": "2026-11-23T07:39:52.187Z",
-   "lastOkAt": "2026-11-23T07:39:52.187Z"
+   "fetchedAt": "2026-11-23T23:54:20.598Z",
+   "lastOkAt": "2026-11-23T23:54:20.598Z"
   },
   {
    "id": "saulkrasti",
@@ -84,19 +84,19 @@
    "id": "daugavpils",
    "name": "Daugavpils pilsētas afiša",
    "homepage": "https://www.daugavpils.lv/afisa/",
-   "state": "cached",
+   "state": "ok",
    "count": 31,
-   "fetchedAt": "2026-11-23T07:45:27.440Z",
-   "lastOkAt": "2026-11-23T07:45:27.440Z"
+   "fetchedAt": "2026-11-23T23:59:59.200Z",
+   "lastOkAt": "2026-11-23T23:59:59.200Z"
   },
   {
    "id": "liepaja",
    "name": "Liepājas pasākumu kalendārs",
    "homepage": "https://kalendars.liepaja.lv/lv/",
-   "state": "cached",
-   "count": 272,
-   "fetchedAt": "2026-11-23T07:43:22.158Z",
-   "lastOkAt": "2026-11-23T07:43:22.158Z"
+   "state": "ok",
+   "count": 292,
+   "fetchedAt": "2026-11-23T23:57:37.758Z",
+   "lastOkAt": "2026-11-23T23:57:37.758Z"
   },
   {
    "id": "lnso",
@@ -111,252 +111,252 @@
    "id": "dailes",
    "name": "Dailes teātris",
    "homepage": "https://www.dailesteatris.lv/lv/kalendars",
-   "state": "cached",
+   "state": "ok",
    "count": 103,
-   "fetchedAt": "2026-11-23T07:39:51.700Z",
-   "lastOkAt": "2026-11-23T07:39:51.700Z"
+   "fetchedAt": "2026-11-23T23:54:20.695Z",
+   "lastOkAt": "2026-11-23T23:54:20.695Z"
   },
   {
    "id": "jekabpils",
    "name": "Visit Jēkabpils",
    "homepage": "https://visit.jekabpils.lv/lv/visi-pasakumi/",
-   "state": "cached",
-   "count": 43,
-   "fetchedAt": "2026-11-23T07:40:43.607Z",
-   "lastOkAt": "2026-11-23T07:40:43.607Z"
+   "state": "ok",
+   "count": 49,
+   "fetchedAt": "2026-11-23T23:55:32.284Z",
+   "lastOkAt": "2026-11-23T23:55:32.284Z"
   },
   {
    "id": "bauska",
    "name": "Visit Bauska",
    "homepage": "https://visit.bauska.lv/lv/pasakumi/",
-   "state": "cached",
+   "state": "ok",
    "count": 6,
-   "fetchedAt": "2026-11-23T07:40:00.695Z",
-   "lastOkAt": "2026-11-23T07:40:00.695Z"
+   "fetchedAt": "2026-11-23T23:54:30.581Z",
+   "lastOkAt": "2026-11-23T23:54:30.581Z"
   },
   {
    "id": "liveriga",
    "name": "Live Riga",
    "homepage": "https://www.liveriga.com",
-   "state": "cached",
-   "count": 152,
-   "fetchedAt": "2026-11-23T07:43:13.097Z",
-   "lastOkAt": "2026-11-23T07:43:13.097Z"
+   "state": "ok",
+   "count": 153,
+   "fetchedAt": "2026-11-23T23:57:44.721Z",
+   "lastOkAt": "2026-11-23T23:57:44.721Z"
   },
   {
    "id": "muni-riga",
    "name": "Rīga (pašvaldība)",
    "homepage": "https://www.riga.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 14,
-   "fetchedAt": "2026-11-23T07:40:51.977Z",
-   "lastOkAt": "2026-11-23T07:40:51.977Z"
+   "state": "ok",
+   "count": 17,
+   "fetchedAt": "2026-11-23T23:54:41.161Z",
+   "lastOkAt": "2026-11-23T23:54:41.161Z"
   },
   {
    "id": "muni-jurmala",
    "name": "Jūrmala (pašvaldība)",
    "homepage": "https://www.jurmala.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 91,
-   "fetchedAt": "2026-11-23T07:41:33.992Z",
-   "lastOkAt": "2026-11-23T07:41:33.992Z"
+   "state": "ok",
+   "count": 96,
+   "fetchedAt": "2026-11-23T23:54:56.982Z",
+   "lastOkAt": "2026-11-23T23:54:56.982Z"
   },
   {
    "id": "muni-ogre",
    "name": "Ogres novads (pašvaldība)",
    "homepage": "https://www.ogresnovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 129,
-   "fetchedAt": "2026-11-23T07:41:42.018Z",
-   "lastOkAt": "2026-11-23T07:41:42.018Z"
+   "state": "ok",
+   "count": 130,
+   "fetchedAt": "2026-11-23T23:55:36.954Z",
+   "lastOkAt": "2026-11-23T23:55:36.954Z"
   },
   {
    "id": "muni-jekabpils",
    "name": "Jēkabpils (pašvaldība)",
    "homepage": "https://www.jekabpils.lv/lv/notikumu-kalendars",
-   "state": "cached",
+   "state": "failed",
    "count": 0,
-   "message": "Not run"
+   "message": "No events and no recent cache"
   },
   {
    "id": "muni-marupe",
    "name": "Mārupes novads (pašvaldība)",
    "homepage": "https://www.marupe.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 58,
-   "fetchedAt": "2026-11-23T07:41:36.753Z",
-   "lastOkAt": "2026-11-23T07:41:36.753Z"
+   "state": "ok",
+   "count": 64,
+   "fetchedAt": "2026-11-23T23:55:45.762Z",
+   "lastOkAt": "2026-11-23T23:55:45.762Z"
   },
   {
    "id": "muni-adazi",
    "name": "Ādažu novads (pašvaldība)",
    "homepage": "https://www.adazunovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 8,
-   "fetchedAt": "2026-11-23T07:41:36.985Z",
-   "lastOkAt": "2026-11-23T07:41:36.985Z"
+   "state": "ok",
+   "count": 7,
+   "fetchedAt": "2026-11-23T23:55:42.089Z",
+   "lastOkAt": "2026-11-23T23:55:42.089Z"
   },
   {
    "id": "muni-bauska",
    "name": "Bauskas novads (pašvaldība)",
    "homepage": "https://www.bauskasnovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 104,
-   "fetchedAt": "2026-11-23T07:42:17.344Z",
-   "lastOkAt": "2026-11-23T07:42:17.344Z"
+   "state": "ok",
+   "count": 110,
+   "fetchedAt": "2026-11-23T23:55:52.086Z",
+   "lastOkAt": "2026-11-23T23:55:52.086Z"
   },
   {
    "id": "muni-dobele",
    "name": "Dobeles novads (pašvaldība)",
    "homepage": "https://www.dobele.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 22,
-   "fetchedAt": "2026-11-23T07:41:40.883Z",
-   "lastOkAt": "2026-11-23T07:41:40.883Z"
+   "state": "ok",
+   "count": 23,
+   "fetchedAt": "2026-11-23T23:55:46.154Z",
+   "lastOkAt": "2026-11-23T23:55:46.154Z"
   },
   {
    "id": "muni-gulbene",
    "name": "Gulbenes novads (pašvaldība)",
    "homepage": "https://www.gulbene.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 63,
-   "fetchedAt": "2026-11-23T07:42:04.957Z",
-   "lastOkAt": "2026-11-23T07:42:04.957Z"
+   "state": "ok",
+   "count": 64,
+   "fetchedAt": "2026-11-23T23:56:05.672Z",
+   "lastOkAt": "2026-11-23T23:56:05.672Z"
   },
   {
    "id": "muni-limbazi",
    "name": "Limbažu novads (pašvaldība)",
    "homepage": "https://www.limbazunovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 26,
-   "fetchedAt": "2026-11-23T07:41:57.196Z",
-   "lastOkAt": "2026-11-23T07:41:57.196Z"
+   "state": "ok",
+   "count": 29,
+   "fetchedAt": "2026-11-23T23:56:06.196Z",
+   "lastOkAt": "2026-11-23T23:56:06.196Z"
   },
   {
    "id": "muni-ludza",
    "name": "Ludzas novads (pašvaldība)",
    "homepage": "https://www.ludzasnovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 26,
-   "fetchedAt": "2026-11-23T07:42:13.004Z",
-   "lastOkAt": "2026-11-23T07:42:13.004Z"
+   "state": "ok",
+   "count": 25,
+   "fetchedAt": "2026-11-23T23:56:05.750Z",
+   "lastOkAt": "2026-11-23T23:56:05.750Z"
   },
   {
    "id": "muni-smiltene",
    "name": "Smiltenes novads (pašvaldība)",
    "homepage": "https://www.smiltenesnovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 64,
-   "fetchedAt": "2026-11-23T07:42:38.344Z",
-   "lastOkAt": "2026-11-23T07:42:38.344Z"
+   "state": "ok",
+   "count": 63,
+   "fetchedAt": "2026-11-23T23:57:08.920Z",
+   "lastOkAt": "2026-11-23T23:57:08.920Z"
   },
   {
    "id": "muni-talsi",
    "name": "Talsu novads (pašvaldība)",
    "homepage": "https://www.talsunovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 46,
-   "fetchedAt": "2026-11-23T07:42:19.386Z",
-   "lastOkAt": "2026-11-23T07:42:19.386Z"
+   "state": "ok",
+   "count": 50,
+   "fetchedAt": "2026-11-23T23:56:29.241Z",
+   "lastOkAt": "2026-11-23T23:56:29.241Z"
   },
   {
    "id": "muni-tukums",
    "name": "Tukuma novads (pašvaldība)",
    "homepage": "https://www.tukums.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 40,
-   "fetchedAt": "2026-11-23T07:42:30.938Z",
-   "lastOkAt": "2026-11-23T07:42:30.938Z"
+   "state": "ok",
+   "count": 42,
+   "fetchedAt": "2026-11-23T23:56:16.245Z",
+   "lastOkAt": "2026-11-23T23:56:16.245Z"
   },
   {
    "id": "muni-aizkraukle",
    "name": "Aizkraukles novads (pašvaldība)",
    "homepage": "https://www.aizkraukle.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 79,
-   "fetchedAt": "2026-11-23T07:42:30.653Z",
-   "lastOkAt": "2026-11-23T07:42:30.653Z"
+   "state": "ok",
+   "count": 81,
+   "fetchedAt": "2026-11-23T23:56:49.892Z",
+   "lastOkAt": "2026-11-23T23:56:49.892Z"
   },
   {
    "id": "muni-balvi",
    "name": "Balvu novads (pašvaldība)",
    "homepage": "https://www.balvi.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 19,
-   "fetchedAt": "2026-11-23T07:42:32.818Z",
-   "lastOkAt": "2026-11-23T07:42:32.818Z"
+   "state": "ok",
+   "count": 24,
+   "fetchedAt": "2026-11-23T23:56:33.325Z",
+   "lastOkAt": "2026-11-23T23:56:33.325Z"
   },
   {
    "id": "muni-dienvidkurzeme",
    "name": "Dienvidkurzemes novads (pašvaldība)",
    "homepage": "https://www.dkn.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 67,
-   "fetchedAt": "2026-11-23T07:42:39.825Z",
-   "lastOkAt": "2026-11-23T07:42:39.825Z"
+   "state": "ok",
+   "count": 87,
+   "fetchedAt": "2026-11-23T23:58:55.072Z",
+   "lastOkAt": "2026-11-23T23:58:55.072Z"
   },
   {
    "id": "muni-jelgavas-novads",
    "name": "Jelgavas novads (pašvaldība)",
    "homepage": "https://www.jelgavasnovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 8,
-   "fetchedAt": "2026-11-23T07:42:38.288Z",
-   "lastOkAt": "2026-11-23T07:42:38.288Z"
+   "state": "ok",
+   "count": 7,
+   "fetchedAt": "2026-11-23T23:56:51.115Z",
+   "lastOkAt": "2026-11-23T23:56:51.115Z"
   },
   {
    "id": "muni-kraslava",
    "name": "Krāslavas novads (pašvaldība)",
    "homepage": "https://www.kraslava.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 20,
-   "fetchedAt": "2026-11-23T07:42:40.997Z",
-   "lastOkAt": "2026-11-23T07:42:40.997Z"
+   "state": "ok",
+   "count": 33,
+   "fetchedAt": "2026-11-23T23:56:57.576Z",
+   "lastOkAt": "2026-11-23T23:56:57.576Z"
   },
   {
    "id": "muni-livani",
    "name": "Līvānu novads (pašvaldība)",
    "homepage": "https://www.livani.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 2,
-   "fetchedAt": "2026-11-23T07:42:39.664Z",
-   "lastOkAt": "2026-11-23T07:42:39.664Z"
+   "state": "ok",
+   "count": 1,
+   "fetchedAt": "2026-11-23T23:56:59.449Z",
+   "lastOkAt": "2026-11-23T23:56:59.449Z"
   },
   {
    "id": "muni-preili",
    "name": "Preiļu novads (pašvaldība)",
    "homepage": "https://www.preili.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 11,
-   "fetchedAt": "2026-11-23T07:42:52.307Z",
-   "lastOkAt": "2026-11-23T07:42:52.307Z"
+   "state": "ok",
+   "count": 13,
+   "fetchedAt": "2026-11-23T23:57:03.337Z",
+   "lastOkAt": "2026-11-23T23:57:03.337Z"
   },
   {
    "id": "muni-ropazi",
    "name": "Ropažu novads (pašvaldība)",
    "homepage": "https://www.ropazi.lv/lv/notikumu-kalendars",
-   "state": "cached",
+   "state": "ok",
    "count": 39,
-   "fetchedAt": "2026-11-23T07:42:44.568Z",
-   "lastOkAt": "2026-11-23T07:42:44.568Z"
+   "fetchedAt": "2026-11-23T23:57:34.095Z",
+   "lastOkAt": "2026-11-23T23:57:34.095Z"
   },
   {
    "id": "muni-valka",
    "name": "Valkas novads (pašvaldība)",
    "homepage": "https://www.valka.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 20,
-   "fetchedAt": "2026-11-23T07:42:51.683Z",
-   "lastOkAt": "2026-11-23T07:42:51.683Z"
+   "state": "ok",
+   "count": 22,
+   "fetchedAt": "2026-11-23T23:57:26.220Z",
+   "lastOkAt": "2026-11-23T23:57:26.220Z"
   },
   {
    "id": "muni-ventspils-novads",
    "name": "Ventspils novads (pašvaldība)",
    "homepage": "https://www.ventspilsnovads.lv/lv/notikumu-kalendars",
-   "state": "cached",
-   "count": 28,
-   "fetchedAt": "2026-11-23T07:42:54.028Z",
-   "lastOkAt": "2026-11-23T07:42:54.028Z"
+   "state": "ok",
+   "count": 27,
+   "fetchedAt": "2026-11-23T23:57:29.946Z",
+   "lastOkAt": "2026-11-23T23:57:29.946Z"
   },
   {
    "id": "niche-blusa",
@@ -370,170 +370,171 @@
    "id": "niche-lemade",
    "name": "LeMade School keramika",
    "homepage": "https://www.lemade.lv/nodarbibas",
-   "state": "cached",
+   "state": "failed",
    "count": 0,
-   "message": "Not run"
+   "message": "No events and no recent cache"
   },
   {
    "id": "niche-bt1",
    "name": "BT 1 izstādes Ķīpsalā",
    "homepage": "https://www.bt1.lv/",
-   "state": "cached",
+   "state": "ok",
    "count": 5,
-   "fetchedAt": "2026-11-23T07:42:55.001Z",
-   "lastOkAt": "2026-11-23T07:42:55.001Z"
+   "fetchedAt": "2026-11-23T23:57:36.816Z",
+   "lastOkAt": "2026-11-23T23:57:36.816Z"
   },
   {
    "id": "niche-kalnciems",
    "name": "Kalnciema kvartāls",
    "homepage": "https://www.kalnciemaiela.lv/",
-   "state": "cached",
+   "state": "ok",
    "count": 2,
-   "fetchedAt": "2026-11-23T07:43:07.813Z",
-   "lastOkAt": "2026-11-23T07:43:07.813Z"
+   "fetchedAt": "2026-11-23T23:57:50.438Z",
+   "lastOkAt": "2026-11-23T23:57:50.438Z"
   },
   {
    "id": "lielais-dzintars",
    "name": "Lielais dzintars",
    "homepage": "https://lielaisdzintars.lv/lv/kalendars",
-   "state": "cached",
+   "state": "ok",
    "count": 79,
-   "fetchedAt": "2026-11-23T07:43:02.194Z",
-   "lastOkAt": "2026-11-23T07:43:02.194Z"
+   "fetchedAt": "2026-11-23T23:57:45.258Z",
+   "lastOkAt": "2026-11-23T23:57:45.258Z"
   },
   {
    "id": "gors",
    "name": "Latgales vēstniecība GORS",
    "homepage": "https://www.latgalesgors.lv/lv/notikumi",
-   "state": "cached",
+   "state": "ok",
    "count": 10,
-   "fetchedAt": "2026-11-23T07:43:48.066Z",
-   "lastOkAt": "2026-11-23T07:43:48.066Z"
+   "fetchedAt": "2026-11-23T23:58:31.544Z",
+   "lastOkAt": "2026-11-23T23:58:31.544Z"
   },
   {
    "id": "cesis-koncertzale",
    "name": "Koncertzāle Cēsis",
    "homepage": "https://www.cesukoncertzale.lv/pasakumi",
-   "state": "cached",
+   "state": "ok",
    "count": 15,
-   "fetchedAt": "2026-11-23T07:45:28.873Z",
-   "lastOkAt": "2026-11-23T07:45:28.873Z"
+   "fetchedAt": "2026-11-24T00:00:09.575Z",
+   "lastOkAt": "2026-11-24T00:00:09.575Z"
   },
   {
    "id": "valmieras-teatris",
    "name": "Valmieras Drāmas teātris",
    "homepage": "https://valmierasteatris.lv/kalendars/",
-   "state": "cached",
+   "state": "ok",
    "count": 85,
-   "fetchedAt": "2026-11-23T07:43:14.252Z",
-   "lastOkAt": "2026-11-23T07:43:14.252Z"
+   "fetchedAt": "2026-11-23T23:57:52.312Z",
+   "lastOkAt": "2026-11-23T23:57:52.312Z"
   },
   {
    "id": "dobele",
    "name": "Visit Dobele",
    "homepage": "https://visitdobele.lv/pasakumi",
-   "state": "cached",
-   "count": 25,
-   "fetchedAt": "2026-11-23T07:43:43.131Z",
-   "lastOkAt": "2026-11-23T07:43:43.131Z"
+   "state": "ok",
+   "count": 26,
+   "fetchedAt": "2026-11-23T23:58:24.024Z",
+   "lastOkAt": "2026-11-23T23:58:24.024Z"
   },
   {
    "id": "tukums",
    "name": "Visit Tukums",
    "homepage": "https://visittukums.lv/lv/Pasakumi",
-   "state": "cached",
-   "count": 44,
-   "fetchedAt": "2026-11-23T07:44:14.714Z",
-   "lastOkAt": "2026-11-23T07:44:14.714Z"
+   "state": "ok",
+   "count": 54,
+   "fetchedAt": "2026-11-23T23:59:06.222Z",
+   "lastOkAt": "2026-11-23T23:59:06.222Z"
   },
   {
    "id": "talsi",
    "name": "Visit Talsi",
    "homepage": "https://visittalsi.com/pasakumi/",
-   "state": "cached",
+   "state": "ok",
    "count": 12,
-   "fetchedAt": "2026-11-23T07:43:27.290Z",
-   "lastOkAt": "2026-11-23T07:43:27.290Z"
+   "fetchedAt": "2026-11-23T23:58:29.279Z",
+   "lastOkAt": "2026-11-23T23:58:29.279Z"
   },
   {
    "id": "latgale",
    "name": "Latgale Travel",
    "homepage": "https://latgale.travel/notikumi/",
-   "state": "cached",
-   "count": 22,
-   "fetchedAt": "2026-11-23T07:45:03.768Z",
-   "lastOkAt": "2026-11-23T07:45:03.768Z"
+   "state": "ok",
+   "count": 23,
+   "fetchedAt": "2026-11-23T23:59:58.252Z",
+   "lastOkAt": "2026-11-23T23:59:58.252Z"
   },
   {
    "id": "jelgava",
    "name": "Jelgavas pilsēta",
    "homepage": "https://www.jelgava.lv/pasakumi/",
-   "state": "cached",
+   "state": "ok",
    "count": 38,
-   "fetchedAt": "2026-11-23T07:43:46.846Z",
-   "lastOkAt": "2026-11-23T07:43:46.846Z"
+   "fetchedAt": "2026-11-23T23:58:35.853Z",
+   "lastOkAt": "2026-11-23T23:58:35.853Z"
   },
   {
    "id": "xiaomi-arena",
    "name": "Xiaomi Arēna",
    "homepage": "https://xiaomi-arena.com",
-   "state": "cached",
+   "state": "ok",
    "count": 23,
-   "fetchedAt": "2026-11-23T07:44:40.687Z",
-   "lastOkAt": "2026-11-23T07:44:40.687Z"
+   "fetchedAt": "2026-11-23T23:59:30.020Z",
+   "lastOkAt": "2026-11-23T23:59:30.020Z"
   },
   {
    "id": "palladium",
    "name": "Palladium Rīga",
    "homepage": "https://www.palladium.lv",
-   "state": "cached",
+   "state": "ok",
    "count": 15,
-   "fetchedAt": "2026-11-23T07:44:09.237Z",
-   "lastOkAt": "2026-11-23T07:44:09.237Z"
+   "fetchedAt": "2026-11-23T23:59:16.321Z",
+   "lastOkAt": "2026-11-23T23:59:16.321Z"
   },
   {
    "id": "hanzas-perons",
    "name": "Hanzas Perons",
    "homepage": "https://hanzasperons.lv",
-   "state": "cached",
+   "state": "ok",
    "count": 3,
-   "fetchedAt": "2026-11-23T07:44:13.659Z",
-   "lastOkAt": "2026-11-23T07:44:13.659Z"
+   "fetchedAt": "2026-11-23T23:59:10.961Z",
+   "lastOkAt": "2026-11-23T23:59:10.961Z"
   },
   {
    "id": "mezaparks",
    "name": "Mežaparka Lielā estrāde",
    "homepage": "https://estrade.riga.lv",
-   "state": "cached",
-   "count": 0,
-   "message": "Not run"
+   "state": "ok",
+   "count": 1,
+   "fetchedAt": "2026-11-23T23:59:18.707Z",
+   "lastOkAt": "2026-11-23T23:59:18.707Z"
   },
   {
    "id": "opera",
    "name": "Latvijas Nacionālā opera un balets",
    "homepage": "https://www.opera.lv",
-   "state": "cached",
-   "count": 38,
-   "fetchedAt": "2026-11-23T07:44:24.830Z",
-   "lastOkAt": "2026-11-23T07:44:24.830Z"
+   "state": "ok",
+   "count": 37,
+   "fetchedAt": "2026-11-23T23:59:28.147Z",
+   "lastOkAt": "2026-11-23T23:59:28.147Z"
   },
   {
    "id": "nacionalais-teatris",
    "name": "Latvijas Nacionālais teātris",
    "homepage": "https://teatris.lv",
-   "state": "cached",
-   "count": 24,
-   "fetchedAt": "2026-11-23T07:45:35.442Z",
-   "lastOkAt": "2026-11-23T07:45:35.442Z"
+   "state": "ok",
+   "count": 22,
+   "fetchedAt": "2026-11-24T00:00:40.783Z",
+   "lastOkAt": "2026-11-24T00:00:40.783Z"
   },
   {
    "id": "lnmm",
    "name": "Latvijas Nacionālais mākslas muzejs",
    "homepage": "https://lnmm.gov.lv",
-   "state": "cached",
-   "count": 28,
-   "fetchedAt": "2026-11-23T07:44:26.471Z",
-   "lastOkAt": "2026-11-23T07:44:26.471Z"
+   "state": "ok",
+   "count": 29,
+   "fetchedAt": "2026-11-23T23:59:30.095Z",
+   "lastOkAt": "2026-11-23T23:59:30.095Z"
   },
   {
    "id": "dzintari",
@@ -548,10 +549,10 @@
    "id": "aluksne",
    "name": "Alūksnes novada pasākumi",
    "homepage": "https://aluksne.lv/",
-   "state": "cached",
+   "state": "ok",
    "count": 21,
-   "fetchedAt": "2026-11-23T07:44:28.400Z",
-   "lastOkAt": "2026-11-23T07:44:28.400Z"
+   "fetchedAt": "2026-11-23T23:59:31.441Z",
+   "lastOkAt": "2026-11-23T23:59:31.441Z"
   }
  ]
 }
